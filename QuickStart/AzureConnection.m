@@ -12,7 +12,7 @@
 @interface AzureConnection()
 
 @property (nonatomic) NSInteger busyCount;
-@property (nonatomic, strong)   MSTable *table;
+//@property (nonatomic, strong)   MSTable *barListing;
 
 @end
 
@@ -33,7 +33,11 @@
         
         //Uncomment line for creating a table to add items
         // Create an MSTable instance to allow us to work with the TodoItem table
-        //self.table = [_client getTable:@"TodoItem"];
+        //self.barListing = [self.client getTable:@"Venue"];
+        //[self.barListing readWithCompletion:<#^(NSArray *items, NSInteger totalCount, NSError *error)completion#>
+                     //   {
+                       //     self.barList = [items mutableCopy];
+                       // }];
         
         self.items = [[NSMutableArray alloc] init];
         self.busyCount = 0;

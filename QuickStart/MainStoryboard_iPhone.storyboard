@@ -43,7 +43,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="uzX-nN-yEf"/>
                     <connections>
-                        <segue destination="MzF-aS-3IF" kind="push" identifier="AuthenticateFB" id="1eo-wY-dgY"/>
+                        <segue destination="MzF-aS-3IF" kind="modal" identifier="AuthenticateFB" modalTransitionStyle="flipHorizontal" id="1eo-wY-dgY"/>
                         <segue destination="gmK-oN-f7A" kind="modal" identifier="SkipFirstAuthentication" modalTransitionStyle="flipHorizontal" id="Hpv-B0-Vby"/>
                     </connections>
                 </viewController>
@@ -133,15 +133,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="toDrinkList" textLabel="JWY-oY-v7d" style="IBUITableViewCellStyleDefault" id="Ivg-AV-wr5">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="toDrinkList" textLabel="JWY-oY-v7d" style="IBUITableViewCellStyleDefault" id="Ivg-AV-wr5">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JWY-oY-v7d">
-                                            <rect key="frame" x="10" y="0.0" width="267" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -163,8 +163,12 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="uwf-gl-IZz">
                         <barButtonItem key="backBarButtonItem" title="Back" id="aG8-MR-aya"/>
+                        <barButtonItem key="rightBarButtonItem" title="💰 0 Items" style="plain" id="q47-Jq-jC5">
+                            <connections>
+                                <segue destination="7bg-WO-gDZ" kind="push" id="LLB-Kg-cAZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CSk-C6-dlN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -179,12 +183,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="drinkItem" id="M8N-To-AJw">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="specificDrinkList" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="drinkItem" textLabel="dcm-u3-XZH" style="IBUITableViewCellStyleDefault" id="M8N-To-AJw">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dcm-u3-XZH">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </tableViewCell>
@@ -194,14 +207,43 @@
                             <outlet property="delegate" destination="2Em-oH-0j0" id="nCq-h4-FVC"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="roW-Nn-v4O">
                         <barButtonItem key="backBarButtonItem" title="Back" id="DpC-4i-7pw"/>
+                        <barButtonItem key="rightBarButtonItem" title=" 💰 0 Items" style="plain" id="EdI-dS-okD">
+                            <connections>
+                                <segue destination="7bg-WO-gDZ" kind="push" id="ZNI-wJ-crE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLi-Ds-mbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1394" y="493"/>
+            <point key="canvasLocation" x="1401" y="493"/>
+        </scene>
+        <!--Cart View Controller-->
+        <scene sceneID="Ntx-rb-GMj">
+            <objects>
+                <viewController id="7bg-WO-gDZ" customClass="CartViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ni1-Zr-uWL">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time to Pay up!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5L7-VO-fpi">
+                                <rect key="frame" x="100" y="20" width="120" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vIr-OM-Kjc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S8d-ec-YHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1183" y="1135"/>
         </scene>
     </scenes>
     <resources>
@@ -210,9 +252,16 @@
     <classes>
         <class className="AuthenticationViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AuthenticationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="LogInFB:" candidateClass="UIButton"/>
+                <relationship kind="action" name="skipToBars:" candidateClass="UIButton"/>
+            </relationships>
         </class>
         <class className="BarTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BarTableViewController.h"/>
+        </class>
+        <class className="CartViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CartViewController.h"/>
         </class>
         <class className="DrinkTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DrinkTableViewController.h"/>
@@ -228,5 +277,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="8Cw-D7-CtZ"/>
+        <segue reference="ZNI-wJ-crE"/>
     </inferredMetricsTieBreakers>
 </document>

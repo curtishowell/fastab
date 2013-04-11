@@ -7,6 +7,8 @@
 //
 
 #import "BarTableViewController.h"
+#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "AzureConnection.h"
 
 @interface BarTableViewController ()
 

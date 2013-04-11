@@ -16,8 +16,10 @@ typedef void (^CompletionWithIndexBlock) (NSUInteger index);
 typedef void (^BusyUpdateBlock) (BOOL busy);
 
 @interface AzureConnection : NSObject
+@property (nonatomic, strong)   MSTable *barListing;
 @property (nonatomic, strong)   NSArray *items;
 @property (nonatomic, strong)   MSClient *client;
+@property (nonatomic, strong)   NSArray *barList;
 @property (nonatomic, copy)     BusyUpdateBlock busyUpdate;
 
 - (void) refreshDataOnSuccess:(CompletionBlock) completion;

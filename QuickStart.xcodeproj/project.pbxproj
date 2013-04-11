@@ -30,6 +30,7 @@
 		496ECAF61710E5620096B362 /* BarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496ECAF51710E5620096B362 /* BarTableViewController.m */; };
 		496ECAF91710EC290096B362 /* AzureConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 496ECAF81710EC290096B362 /* AzureConnection.m */; };
 		49D491BD1714FABC008647DC /* DrinkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D491BC1714FABC008647DC /* DrinkTableViewController.m */; };
+		49D491C017173911008647DC /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D491BF17173911008647DC /* CartViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,8 @@
 		496ECAF81710EC290096B362 /* AzureConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AzureConnection.m; path = QuickStart/AzureConnection.m; sourceTree = SOURCE_ROOT; };
 		49D491BB1714FABC008647DC /* DrinkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkTableViewController.h; path = QuickStart/DrinkTableViewController.h; sourceTree = SOURCE_ROOT; };
 		49D491BC1714FABC008647DC /* DrinkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkTableViewController.m; path = QuickStart/DrinkTableViewController.m; sourceTree = SOURCE_ROOT; };
+		49D491BE17173910008647DC /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartViewController.h; path = QuickStart/CartViewController.h; sourceTree = SOURCE_ROOT; };
+		49D491BF17173911008647DC /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CartViewController.m; path = QuickStart/CartViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				034879F416117A73002D0B52 /* AppDelegate.h */,
 				034879F516117A73002D0B52 /* AppDelegate.m */,
 				03487A0B16117A9B002D0B52 /* MainStoryboard_iPhone.storyboard */,
+				49D491BE17173910008647DC /* CartViewController.h */,
+				49D491BF17173911008647DC /* CartViewController.m */,
 				49D491BB1714FABC008647DC /* DrinkTableViewController.h */,
 				49D491BC1714FABC008647DC /* DrinkTableViewController.m */,
 				496ECAE81710B7CC0096B362 /* AuthenticationViewController.h */,
@@ -236,6 +241,7 @@
 				496ECAF61710E5620096B362 /* BarTableViewController.m in Sources */,
 				496ECAF91710EC290096B362 /* AzureConnection.m in Sources */,
 				49D491BD1714FABC008647DC /* DrinkTableViewController.m in Sources */,
+				49D491C017173911008647DC /* CartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

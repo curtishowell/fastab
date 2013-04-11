@@ -10,4 +10,7 @@
 
 @interface DrinkTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSArray *drinkTypeListing; //List of drink types per bar
+@property (nonatomic, strong) NSArray *specificDrinks; //List of specific drinks for a type
+
 @end

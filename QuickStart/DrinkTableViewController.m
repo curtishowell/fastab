@@ -7,6 +7,8 @@
 //
 
 #import "DrinkTableViewController.h"
+#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "AzureConnection.h"
 
 @interface DrinkTableViewController ()
 
@@ -14,29 +16,47 @@
 
 @implementation DrinkTableViewController
 
+- (void)setdrinkTypeListing:(NSArray *)drinkTypeListing
+{
+    _drinkTypeListing = drinkTypeListing;
+    [self.tableView reloadData];
+}
+
+- (void)setspecificDrinks:(NSArray *)specificDrinks
+{
+    _specificDrinks = specificDrinks;
+    [self.tableView reloadData];
+}
 
 #pragma mark - Table view data source
 
+/*
+ // We may or may not have multiple sections for drinks. If we decide we need more sections,
+ // we can define this method. It will remain commented out until the final decision has been made
+ // by the designer.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 0;
 }
+*/
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 1;
+    //(#2)return [self.BarListing count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"drinkItem";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    //(#1)cell.textLabel.text = [self titleForRow: indexPath.row];
+    cell.textLabel.text = @"BEEEEEEEEEERRRRR";
     
     return cell;
 }
