@@ -56,7 +56,7 @@
     
     // Configure the cell...
     //(#1)cell.textLabel.text = [self titleForRow: indexPath.row];
-    cell.textLabel.text = @"BEEEEEEEEEERRRRR";
+    cell.textLabel.text = @"> BEEEEEEEEEERRRRR";
     
     return cell;
 }

@@ -11,6 +11,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2I3-GH-Stn">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Yrn-sY-Tce">
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="pHA-qJ-347" kind="relationship" relationship="rootViewController" id="xSm-pY-vxP"/>
                     </connections>
@@ -43,8 +47,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="uzX-nN-yEf"/>
                     <connections>
-                        <segue destination="MzF-aS-3IF" kind="modal" identifier="AuthenticateFB" modalTransitionStyle="flipHorizontal" id="1eo-wY-dgY"/>
-                        <segue destination="gmK-oN-f7A" kind="modal" identifier="SkipFirstAuthentication" modalTransitionStyle="flipHorizontal" id="Hpv-B0-Vby"/>
+                        <segue destination="MzF-aS-3IF" kind="push" identifier="AuthenticateFB" id="1eo-wY-dgY"/>
+                        <segue destination="og6-nO-ocj" kind="push" identifier="SkipFirstAuthentication" id="agS-Pr-ng4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Joo-jv-xu9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -101,40 +105,37 @@
                     </view>
                     <navigationItem key="navigationItem" id="WZk-bA-NAS"/>
                     <connections>
-                        <segue destination="gmK-oN-f7A" kind="modal" identifier="ViewBars" modalTransitionStyle="flipHorizontal" id="8Cw-D7-CtZ"/>
+                        <segue destination="og6-nO-ocj" kind="push" identifier="ViewBars" id="7IW-H6-WcD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJf-Ib-F4C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="951" y="-97"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="AVf-AH-b9z">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="gmK-oN-f7A" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="vNK-Yu-Yu0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4S7-3G-gOU">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="og6-nO-ocj" kind="relationship" relationship="rootViewController" id="1Yh-O4-7YX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a23-Et-j6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="418" y="493"/>
-        </scene>
         <!--Bar Table View Controller - Bar Locations-->
         <scene sceneID="ScZ-2y-N5Q">
             <objects>
                 <tableViewController title="Bar Locations" id="og6-nO-ocj" customClass="BarTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ek2-cD-CxL">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="6tD-Ac-RaG">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Bars" id="dOZ-zb-EtD">
+                                    <barButtonItem key="rightBarButtonItem" title="0 Drinks" id="Pzc-Rm-K7D">
+                                        <connections>
+                                            <segue destination="7bg-WO-gDZ" kind="modal" id="0Uo-lt-NPL"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="toDrinkList" textLabel="JWY-oY-v7d" style="IBUITableViewCellStyleDefault" id="Ivg-AV-wr5">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
@@ -151,7 +152,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="2Em-oH-0j0" kind="push" id="Ggm-dC-fEX"/>
+                                    <segue destination="2Em-oH-0j0" kind="modal" modalTransitionStyle="flipHorizontal" id="Ggm-dC-fEX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -163,11 +164,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="uwf-gl-IZz">
                         <barButtonItem key="backBarButtonItem" title="Back" id="aG8-MR-aya"/>
-                        <barButtonItem key="rightBarButtonItem" title="💰 0 Items" style="plain" id="q47-Jq-jC5">
-                            <connections>
-                                <segue destination="7bg-WO-gDZ" kind="push" id="LLB-Kg-cAZ"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="0 Drinks" style="plain" id="q47-Jq-jC5"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CSk-C6-dlN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -179,12 +176,30 @@
             <objects>
                 <tableViewController id="2Em-oH-0j0" customClass="DrinkTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7F7-9d-lUN">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="jzs-ar-hXx">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Drinks" id="iRd-On-V5C">
+                                    <barButtonItem key="leftBarButtonItem" title="Bars" id="QkD-Hv-GM1">
+                                        <connections>
+                                            <segue destination="og6-nO-ocj" kind="modal" modalTransitionStyle="flipHorizontal" id="HHH-TD-uQm"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem key="rightBarButtonItem" title="0 Drinks" id="soQ-kT-O2w">
+                                        <connections>
+                                            <segue destination="7bg-WO-gDZ" kind="modal" id="gzc-ap-pGo"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="specificDrinkList" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="drinkItem" textLabel="dcm-u3-XZH" style="IBUITableViewCellStyleDefault" id="M8N-To-AJw">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
@@ -210,11 +225,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="roW-Nn-v4O">
                         <barButtonItem key="backBarButtonItem" title="Back" id="DpC-4i-7pw"/>
-                        <barButtonItem key="rightBarButtonItem" title=" 💰 0 Items" style="plain" id="EdI-dS-okD">
-                            <connections>
-                                <segue destination="7bg-WO-gDZ" kind="push" id="ZNI-wJ-crE"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="0 Drinks" style="plain" id="EdI-dS-okD"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLi-Ds-mbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -226,16 +237,16 @@
             <objects>
                 <viewController id="7bg-WO-gDZ" customClass="CartViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ni1-Zr-uWL">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time to Pay up!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5L7-VO-fpi">
-                                <rect key="frame" x="100" y="20" width="120" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <navigationBar contentMode="scaleToFill" id="OZJ-ig-WAN">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Time To Pay!" id="Cks-UC-Nzm"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -276,7 +287,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="8Cw-D7-CtZ"/>
-        <segue reference="ZNI-wJ-crE"/>
+        <segue reference="HHH-TD-uQm"/>
+        <segue reference="gzc-ap-pGo"/>
     </inferredMetricsTieBreakers>
 </document>
