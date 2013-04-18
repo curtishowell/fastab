@@ -33,12 +33,8 @@
         
         //Uncomment line for creating a table to add items
         // Create an MSTable instance to allow us to work with the TodoItem table
-        //self.barListing = [self.client getTable:@"Venue"];
-        //[self.barListing readWithCompletion:<#^(NSArray *items, NSInteger totalCount, NSError *error)completion#>
-                     //   {
-                       //     self.barList = [items mutableCopy];
-                       // }];
-        
+        self.barListing = [self.client getTable:@"Venue"];
+
         self.items = [[NSMutableArray alloc] init];
         self.busyCount = 0;
     }
@@ -89,18 +85,18 @@
 - (void) refreshDataOnSuccess:(CompletionBlock)completion
 {
     // Create a predicate that finds items where complete is false
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"complete == NO"];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"name == name"];
     
     // Query the TodoItem table and update the items property with the results from the service
-    //[self.table readWhere:predicate completion:^(NSArray *results, NSInteger totalCount, NSError *error) {
+    [self.barListing readWhere:predicate completion:^(NSArray *results, NSInteger totalCount, NSError *error) {
         
-     //   [self logErrorIfNotNil:error];
+        [self logErrorIfNotNil:error];
         
-     //   items = [results mutableCopy];
+        items = [results mutableCopy];
         
         // Let the caller know that we finished
-     //   completion();
-    //}];
+        completion();
+    }];
     
 }
 

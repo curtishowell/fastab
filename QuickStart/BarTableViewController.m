@@ -35,8 +35,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
-    //(#2)return [self.BarListing count];
+    //return 2;
+    NSLog(@"BOOOOOM%lu", (unsigned long)[self.BarListing count]);
+    return [self.BarListing count];
 }
 
 - (NSString *)titleForRow:(NSUInteger) row
@@ -51,8 +52,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    //(#1)cell.textLabel.text = [self titleForRow: indexPath.row];
-    cell.textLabel.text = @"WOOHOOO GIRL";
+    //cell.textLabel.text = [self titleForRow: indexPath.row];
+    NSDictionary *item = [self.BarListing objectAtIndex:indexPath.row];
+    cell.textLabel.text = [item objectForKey:@"name"];
+    
+    //cell.textLabel.text = @"WOOHOOO GIRL";
     
     return cell;
 }
