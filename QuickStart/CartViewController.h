@@ -10,4 +10,6 @@
 
 @interface CartViewController : UIViewController
 
+@property (strong, nonatomic) NS *cart;
+
 @end

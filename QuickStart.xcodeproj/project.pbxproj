@@ -33,6 +33,7 @@
 		49D491C017173911008647DC /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D491BF17173911008647DC /* CartViewController.m */; };
 		49D51B22171B7B23004B81C9 /* ViewOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D51B21171B7B23004B81C9 /* ViewOrderViewController.m */; };
 		E698A4D21721D2BB00891A74 /* DrinkTypeTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */; };
+		E698A4D51722010200891A74 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = E698A4D41722010200891A74 /* Item.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,8 @@
 		49D51B21171B7B23004B81C9 /* ViewOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewOrderViewController.m; path = QuickStart/ViewOrderViewController.m; sourceTree = SOURCE_ROOT; };
 		E698A4D01721D2BB00891A74 /* DrinkTypeTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkTypeTVC.h; path = QuickStart/DrinkTypeTVC.h; sourceTree = SOURCE_ROOT; };
 		E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkTypeTVC.m; path = QuickStart/DrinkTypeTVC.m; sourceTree = SOURCE_ROOT; };
+		E698A4D31722010200891A74 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = QuickStart/Model/Item.h; sourceTree = SOURCE_ROOT; };
+		E698A4D41722010200891A74 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = QuickStart/Model/Item.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +151,7 @@
 				496ECAF81710EC290096B362 /* AzureConnection.m */,
 				039AB33D1614AD7200F0915A /* TodoService.h */,
 				039AB33E1614AD7200F0915A /* TodoService.m */,
+				E698A4D61722011300891A74 /* Model */,
 				034879EC16117A73002D0B52 /* Supporting Files */,
 			);
 			path = Quickstart;
@@ -169,6 +173,15 @@
 				034879FB16117A73002D0B52 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E698A4D61722011300891A74 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E698A4D31722010200891A74 /* Item.h */,
+				E698A4D41722010200891A74 /* Item.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +267,7 @@
 				49D491C017173911008647DC /* CartViewController.m in Sources */,
 				49D51B22171B7B23004B81C9 /* ViewOrderViewController.m in Sources */,
 				E698A4D21721D2BB00891A74 /* DrinkTypeTVC.m in Sources */,
+				E698A4D51722010200891A74 /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

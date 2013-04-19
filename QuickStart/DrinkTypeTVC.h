@@ -11,10 +11,6 @@
 
 @interface DrinkTypeTVC : UITableViewController
 
-//@property (strong, nonatomic)  venueID;
-
-@property (nonatomic, strong) NSNumber *venueID;
-
-
+@property (strong, nonatomic) NSNumber venueID;
 
 @end
