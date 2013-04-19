@@ -9,30 +9,42 @@
 #import "BarTableViewController.h"
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 #import "AzureConnection.h"
+#import "DrinkTypeTVC.h"
 
 @interface BarTableViewController ()
 @property (strong, nonatomic) AzureConnection *azureConnection;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableDictionary *drinkTypeMap;
 @end
 
 @implementation BarTableViewController
 @synthesize azureConnection;
+//@synthesize drinkTypeMap = _drinkTypeMap;
+@synthesize tableView;
 
-- (void)setBarListing:(NSArray *)BarListing
-{
-    _BarListing = BarListing;
-    [self.tableView reloadData];
+
+- (NSMutableDictionary *) drinkTypeMap {
+    if(!_drinkTypeMap){
+        _drinkTypeMap = [[NSMutableDictionary alloc] init];
+    }
+    return _drinkTypeMap;
 }
+
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     // Create the connection to Azure - this creates the Mobile Service client inside the wrapped service
-    self.azureConnection = [[AzureConnection alloc]init];
+    self.azureConnection = [[AzureConnection alloc] initWithTableName: @"Venue"];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"name == name"];
+
+    
     
     [self.azureConnection refreshDataOnSuccess:^{
         [self.tableView reloadData];
-    }];
+    } withPredicate:predicate];
 }
 
 #pragma mark - Table view data source
@@ -47,15 +59,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return 2;
-    //NSLog(@"BOOOOOM%lu", (unsigned long)[self.BarListing count]);
     return [self.azureConnection.items count];
-}
-
-- (NSString *)titleForRow:(NSUInteger) row
-{
-    //put the code to get the titles of bars for the stuff
-    //once this is implemented uncomment the following areas: (#1, #2)
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,9 +70,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    //get the item from Azure
     NSDictionary *item = [self.azureConnection.items objectAtIndex:indexPath.row];
+    
+    //get the venue name and ID out of the azure item
+    NSString *venueName = [item objectForKey:@"name"];
+    NSNumber *venueID = [NSNumber numberWithInt:[item objectForKey:@"id"]];
+    
     cell.textLabel.textColor = [UIColor blackColor];
-    cell.textLabel.text = [item objectForKey:@"name"];
+    cell.textLabel.text = venueName;
+
+    //add the cell info to the drinkTypeMap
+    //[drinkTypeMap setValue:venueID forKey:venueName];
     
     return cell;
 }
@@ -92,5 +105,31 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"barsToTypes"]) {
+        UITableViewController *drinkTypeTVC = segue.destinationViewController;
+                
+        
+        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
+        UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+        NSString *drinkType = selectedCell.textLabel.text;
+        
+        //NSNumber *venueID = [drinkTypeMap objectForKey:drinkType];
+        
+
+        
+        //[drinkTypeTVC performSelector:@selector(setVenueID:)
+        //                   withObject:venueID];
+        
+        
+        
+        
+    }
+}
+
+
 
 @end

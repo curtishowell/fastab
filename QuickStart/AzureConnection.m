@@ -20,7 +20,7 @@
 
 @synthesize items;
 
--(AzureConnection *) init
+-(AzureConnection *) initWithTableName: (NSString*) tableName
 {
     self = [super init];
     if (self) {
@@ -33,7 +33,7 @@
         
         //Uncomment line for creating a table to add items
         // Create an MSTable instance to allow us to work with the TodoItem table
-        self.barListing = [self.client getTable:@"Venue"];
+        self.barListing = [self.client getTable:tableName];
 
         self.items = [[NSMutableArray alloc] init];
         self.busyCount = 0;
@@ -82,10 +82,10 @@
     onNext(request, wrappedResponse);
 }
 
-- (void) refreshDataOnSuccess:(CompletionBlock)completion
+- (void) refreshDataOnSuccess:(CompletionBlock)completion withPredicate:(NSPredicate *) predicate
 {
     // Create a predicate that finds items where complete is false
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"name == name"];
+    //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"name == name"];
     
     // Query the TodoItem table and update the items property with the results from the service
     [self.barListing readWhere:predicate completion:^(NSArray *results, NSInteger totalCount, NSError *error) {

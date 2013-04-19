@@ -22,9 +22,12 @@ typedef void (^BusyUpdateBlock) (BOOL busy);
 @property (nonatomic, strong)   NSArray *barList;
 @property (nonatomic, copy)     BusyUpdateBlock busyUpdate;
 
-- (void) refreshDataOnSuccess:(CompletionBlock) completion;
+- (void) refreshDataOnSuccess:(CompletionBlock) completion
+                withPredicate:(NSPredicate *) predicate;
 
 - (void) handleRequest:(NSURLRequest *)request
                 onNext:(MSFilterNextBlock)onNext
             onResponse:(MSFilterResponseBlock)onResponse;
+
+- (AzureConnection *) initWithTableName: (NSString *) tableName;
 @end

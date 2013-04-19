@@ -10,6 +10,4 @@
 
 @interface BarTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSArray *BarListing; //List of bars
-
 @end

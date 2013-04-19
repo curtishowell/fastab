@@ -32,6 +32,7 @@
 		49D491BD1714FABC008647DC /* DrinkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D491BC1714FABC008647DC /* DrinkTableViewController.m */; };
 		49D491C017173911008647DC /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D491BF17173911008647DC /* CartViewController.m */; };
 		49D51B22171B7B23004B81C9 /* ViewOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D51B21171B7B23004B81C9 /* ViewOrderViewController.m */; };
+		E698A4D21721D2BB00891A74 /* DrinkTypeTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,8 @@
 		49D491BF17173911008647DC /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CartViewController.m; path = QuickStart/CartViewController.m; sourceTree = SOURCE_ROOT; };
 		49D51B20171B7B23004B81C9 /* ViewOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewOrderViewController.h; path = QuickStart/ViewOrderViewController.h; sourceTree = SOURCE_ROOT; };
 		49D51B21171B7B23004B81C9 /* ViewOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewOrderViewController.m; path = QuickStart/ViewOrderViewController.m; sourceTree = SOURCE_ROOT; };
+		E698A4D01721D2BB00891A74 /* DrinkTypeTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkTypeTVC.h; path = QuickStart/DrinkTypeTVC.h; sourceTree = SOURCE_ROOT; };
+		E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkTypeTVC.m; path = QuickStart/DrinkTypeTVC.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				034879F416117A73002D0B52 /* AppDelegate.h */,
 				034879F516117A73002D0B52 /* AppDelegate.m */,
 				03487A0B16117A9B002D0B52 /* MainStoryboard_iPhone.storyboard */,
+				E698A4D01721D2BB00891A74 /* DrinkTypeTVC.h */,
+				E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */,
 				49D51B20171B7B23004B81C9 /* ViewOrderViewController.h */,
 				49D51B21171B7B23004B81C9 /* ViewOrderViewController.m */,
 				49D491BE17173910008647DC /* CartViewController.h */,
@@ -248,6 +253,7 @@
 				49D491BD1714FABC008647DC /* DrinkTableViewController.m in Sources */,
 				49D491C017173911008647DC /* CartViewController.m in Sources */,
 				49D51B22171B7B23004B81C9 /* ViewOrderViewController.m in Sources */,
+				E698A4D21721D2BB00891A74 /* DrinkTypeTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

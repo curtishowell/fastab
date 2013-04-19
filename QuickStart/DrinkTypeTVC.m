@@ -1,14 +1,14 @@
-#import "DrinkTableViewController.h"
+#import "DrinkTypeTVC.h"
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 #import "AzureConnection.h"
 
-
-@interface DrinkTableViewController ()
+@interface DrinkTypeTVC ()
 @property (strong, nonatomic) AzureConnection *azureConnection;
 @end
 
-@implementation DrinkTableViewController
+@implementation DrinkTypeTVC
 @synthesize azureConnection;
+@synthesize venueID;
 
 
 - (void)viewDidLoad
@@ -16,8 +16,8 @@
     [super viewDidLoad];
     
     // Create the connection to Azure - this creates the Mobile Service client inside the wrapped service
-    self.azureConnection = [[AzureConnection alloc] initWithTableName: @"Item"];
-    
+    self.azureConnection = [[AzureConnection alloc] initWithTableName: @"ItemType"];
+            
     //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"venue == %d", venueID];
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"name == name"];
     
@@ -35,7 +35,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"drinkItem";
+    static NSString *CellIdentifier = @"drinkTypeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
