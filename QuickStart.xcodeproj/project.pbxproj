@@ -34,7 +34,6 @@
 		49D51B22171B7B23004B81C9 /* ViewOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D51B21171B7B23004B81C9 /* ViewOrderViewController.m */; };
 		E698A4D21721D2BB00891A74 /* DrinkTypeTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */; };
 		E698A4D51722010200891A74 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = E698A4D41722010200891A74 /* Item.m */; };
-		E698A4D917220E1B00891A74 /* LineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E698A4D817220E1B00891A74 /* LineItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,8 +79,6 @@
 		E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkTypeTVC.m; path = QuickStart/DrinkTypeTVC.m; sourceTree = SOURCE_ROOT; };
 		E698A4D31722010200891A74 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = QuickStart/Model/Item.h; sourceTree = SOURCE_ROOT; };
 		E698A4D41722010200891A74 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = QuickStart/Model/Item.m; sourceTree = SOURCE_ROOT; };
-		E698A4D717220E1B00891A74 /* LineItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineItem.h; path = QuickStart/LineItem.h; sourceTree = SOURCE_ROOT; };
-		E698A4D817220E1B00891A74 /* LineItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineItem.m; path = QuickStart/LineItem.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,8 +180,6 @@
 			children = (
 				E698A4D31722010200891A74 /* Item.h */,
 				E698A4D41722010200891A74 /* Item.m */,
-				E698A4D717220E1B00891A74 /* LineItem.h */,
-				E698A4D817220E1B00891A74 /* LineItem.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -273,7 +268,6 @@
 				49D51B22171B7B23004B81C9 /* ViewOrderViewController.m in Sources */,
 				E698A4D21721D2BB00891A74 /* DrinkTypeTVC.m in Sources */,
 				E698A4D51722010200891A74 /* Item.m in Sources */,
-				E698A4D917220E1B00891A74 /* LineItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

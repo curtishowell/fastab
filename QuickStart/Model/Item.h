@@ -15,5 +15,7 @@
 @property (nonatomic, strong) NSNumber *price;
 @property (nonatomic, strong) NSString *imageURL;
 @property (nonatomic, strong) NSNumber *itemType;
+@property (nonatomic, strong) NSNumber *qty;
+
 
 @end

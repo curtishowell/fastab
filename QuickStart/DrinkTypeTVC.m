@@ -8,7 +8,7 @@
 
 @implementation DrinkTypeTVC
 @synthesize azureConnection;
-//@synthesize venueID;
+@synthesize venueID;
 
 
 - (void)viewDidLoad
