@@ -11,10 +11,11 @@
 #import "AzureConnection.h"
 
 @interface BarTableViewController ()
-
+@property (strong, nonatomic) AzureConnection *azureConnection;
 @end
 
 @implementation BarTableViewController
+@synthesize azureConnection;
 
 - (void)setBarListing:(NSArray *)BarListing
 {
@@ -22,6 +23,17 @@
     [self.tableView reloadData];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // Create the connection to Azure - this creates the Mobile Service client inside the wrapped service
+    self.azureConnection = [[AzureConnection alloc]init];
+    
+    [self.azureConnection refreshDataOnSuccess:^{
+        [self.tableView reloadData];
+    }];
+}
 
 #pragma mark - Table view data source
 
@@ -36,8 +48,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //return 2;
-    NSLog(@"BOOOOOM%lu", (unsigned long)[self.BarListing count]);
-    return [self.BarListing count];
+    //NSLog(@"BOOOOOM%lu", (unsigned long)[self.BarListing count]);
+    return [self.azureConnection.items count];
 }
 
 - (NSString *)titleForRow:(NSUInteger) row
@@ -49,14 +61,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"toDrinkList";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
-    // Configure the cell...
-    //cell.textLabel.text = [self titleForRow: indexPath.row];
-    NSDictionary *item = [self.BarListing objectAtIndex:indexPath.row];
+    NSDictionary *item = [self.azureConnection.items objectAtIndex:indexPath.row];
+    cell.textLabel.textColor = [UIColor blackColor];
     cell.textLabel.text = [item objectForKey:@"name"];
-    
-    //cell.textLabel.text = @"WOOHOOO GIRL";
     
     return cell;
 }
@@ -75,6 +87,10 @@
      */
 }
 
-//testing adding new shit to this file. YEAH BITCH
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end
