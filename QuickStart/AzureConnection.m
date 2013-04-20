@@ -20,7 +20,7 @@
 
 @synthesize items;
 
--(AzureConnection *) initWithTableName: (NSString*) tableName
+-(AzureConnection *) init
 {
     self = [super init];
     if (self) {
@@ -33,12 +33,20 @@
         
         //Uncomment line for creating a table to add items
         // Create an MSTable instance to allow us to work with the TodoItem table
-        self.barListing = [self.client getTable:tableName];
-
-        self.items = [[NSMutableArray alloc] init];
-        self.busyCount = 0;
+        
     }
     
+    return self;
+}
+
+
+-(AzureConnection *) initWithTableName: (NSString*) tableName
+{
+    self = [self init]; //needed to get around compiler
+    self.barListing = [self.client getTable:tableName];
+    
+    self.items = [[NSMutableArray alloc] init];
+    self.busyCount = 0;
     return self;
 }
 

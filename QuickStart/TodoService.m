@@ -73,7 +73,6 @@
         // Let the caller know that we finished
         completion();
     }];
-
 }
  
 -(void) addItem:(NSDictionary *)item completion:(CompletionWithIndexBlock)completion
