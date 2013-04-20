@@ -5,6 +5,7 @@
 
 @interface DrinkTableViewController ()
 @property (strong, nonatomic) AzureConnection *azureConnection;
+@property (nonatomic) BOOL *selected;
 @end
 
 @implementation DrinkTableViewController
@@ -14,6 +15,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.selected = NO;
     
     // Create the connection to Azure - this creates the Mobile Service client inside the wrapped service
     self.azureConnection = [[AzureConnection alloc] initWithTableName: @"Item"];
@@ -41,6 +44,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    
     NSDictionary *item = [self.azureConnection.items objectAtIndex:indexPath.row];
     cell.textLabel.textColor = [UIColor blackColor];
     //need to change the string we send in to objectForKey
@@ -50,18 +54,27 @@
 }
 
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat) tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if (self.selected != NO) {
+        NSLog(@"poke");
+        return 44;
+    }
+    return 88;
 }
+
+- (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    self.selected = YES;
+    [self tableView: tableView heightForRowAtIndexPath: indexPath];
+    //cell.frame = CGRectMake(0.0, 44, 320.0, 88);
+    cell.textLabel.text = @"CHANGE DAMNIT!";
+}
+
+
+#pragma mark - Table view delegate
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
 {
