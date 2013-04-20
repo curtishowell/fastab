@@ -24,7 +24,7 @@
 
 
 - (NSMutableDictionary *) drinkTypeMap {
-    if(!_drinkTypeMap){
+    if(! _drinkTypeMap) {
         _drinkTypeMap = [[NSMutableDictionary alloc] init];
     }
     return _drinkTypeMap;
@@ -81,7 +81,7 @@
     cell.textLabel.text = venueName;
 
     //add the cell info to the drinkTypeMap
-    //[drinkTypeMap setValue:venueID forKey:venueName];
+    [self.drinkTypeMap setValue:venueID forKey:venueName];
     
     return cell;
 }
@@ -111,18 +111,17 @@
 {
     if ([segue.identifier isEqualToString:@"barsToTypes"]) {
         UITableViewController *drinkTypeTVC = segue.destinationViewController;
-                
         
         NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
         UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
         NSString *drinkType = selectedCell.textLabel.text;
         
-        //NSNumber *venueID = [drinkTypeMap objectForKey:drinkType];
+        NSNumber *venueID = [self.drinkTypeMap objectForKey:drinkType];
         
-
         
-        //[drinkTypeTVC performSelector:@selector(setVenueID:)
-        //                   withObject:venueID];
+        
+        [drinkTypeTVC performSelector:@selector(setVenueID:)
+                           withObject:venueID];
         
         
         

@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Item.h"
+#import <Foundation/Foundation.h>
+
 
 @interface CartViewController : UIViewController
 
-//@property (strong, nonatomic) NS *cart;
+- (void)addItemToCart:(Item *)item;
+
+
 
 @end

@@ -10,12 +10,12 @@
 
 @interface Item : NSObject
 
-@property (nonatomic, strong) NSNumber *ID;
+@property (nonatomic) int *ID;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSNumber *price;
+@property (nonatomic) double *price;
 @property (nonatomic, strong) NSString *imageURL;
 @property (nonatomic, strong) NSNumber *itemType;
-@property (nonatomic, strong) NSNumber *qty;
+@property (nonatomic) int *qty;
 
 
 @end
