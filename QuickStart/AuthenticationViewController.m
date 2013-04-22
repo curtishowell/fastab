@@ -31,6 +31,9 @@
 {
     [super viewDidLoad];
     self.azureConnection = [[AzureConnection alloc]init];
+    
+    //hide back button
+    self.navigationItem.hidesBackButton = YES;
 }
 
 - (void) login

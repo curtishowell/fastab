@@ -45,6 +45,9 @@
     [self.azureConnection refreshDataOnSuccess:^{
         [self.tableView reloadData];
     } withPredicate:predicate];
+    
+    //hide back button
+    self.navigationItem.hidesBackButton = YES;
 }
 
 #pragma mark - Table view data source

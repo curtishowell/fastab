@@ -506,7 +506,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1z1-MI-MEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1424" y="2356"/>
+            <point key="canvasLocation" x="1410" y="2356"/>
         </scene>
         <!--Payment View Controller - Add Credit Card-->
         <scene sceneID="p3O-rh-o71">
@@ -877,9 +877,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="BuX-GE-05A"/>
+        <segue reference="sqT-L1-UPN"/>
+        <segue reference="FGZ-NP-AXv"/>
         <segue reference="jr7-Jm-g9W"/>
-        <segue reference="74Q-sa-k4p"/>
-        <segue reference="voc-Bt-LX9"/>
+        <segue reference="BuX-GE-05A"/>
     </inferredMetricsTieBreakers>
 </document>
