@@ -12,5 +12,6 @@
 @interface DrinkTypeTVC : UITableViewController
 
 @property (strong, nonatomic) NSNumber *venueID;
+@property (strong, nonatomic) NSString *venueName;
 
 @end

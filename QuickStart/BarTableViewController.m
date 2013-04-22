@@ -15,7 +15,7 @@
 @property (strong, nonatomic) AzureConnection *azureConnection;
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableDictionary *drinkTypeMap;
+@property (strong, nonatomic) NSMutableDictionary *drinkTypeMap; //of type NSString to NSNumber
 @end
 
 @implementation BarTableViewController
@@ -63,7 +63,8 @@
     return [self.azureConnection.items count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"toDrinkList";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -76,14 +77,17 @@
     
     //get the venue name and ID out of the azure item
     NSString *venueName = [item objectForKey:@"name"];
-    int temp = [item objectForKey:@"id"];
-    NSNumber *venueID = [NSNumber numberWithInt:[item objectForKey:@"id"]];
+    int temp = [[item objectForKey:@"id"] intValue];
+    NSNumber *venueID = [NSNumber numberWithInt:[[item objectForKey:@"id"] intValue]];
     
+    //set cell label
     cell.textLabel.textColor = [UIColor blackColor];
     cell.textLabel.text = venueName;
+    
+    NSString *key = [NSString stringWithFormat:@"%d",indexPath.row];
 
     //add the cell info to the drinkTypeMap
-    [self.drinkTypeMap setValue:venueID forKey:venueName];
+    [self.drinkTypeMap setValue:venueID forKey:key];
     
     return cell;
 }
@@ -100,6 +104,8 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    
+    
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
@@ -118,15 +124,19 @@
         UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
         NSString *drinkType = selectedCell.textLabel.text;
         
-        NSNumber *venueID = [self.drinkTypeMap objectForKey:drinkType];
+        //key for getting the NSNumber out of the map
+        NSString *key = [NSString stringWithFormat:@"%d",indexPath.row];
         
+        //get the NSNumber out of the map using key
+        NSNumber *venueID = [self.drinkTypeMap objectForKey:key];
         
+        int temp = [venueID intValue];
         
+        //set values in the drink type view controller
         [drinkTypeTVC performSelector:@selector(setVenueID:)
                            withObject:venueID];
-        
-        
-        
+        [drinkTypeTVC performSelector:@selector(setVenueName:)
+                           withObject:drinkType];
         
     }
 }
