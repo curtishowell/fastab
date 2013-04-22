@@ -18,12 +18,19 @@
     // Create the connection to Azure - this creates the Mobile Service client inside the wrapped service
     self.azureConnection = [[AzureConnection alloc] initWithTableName: @"Item"];
     
-    //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"venue == %d", venueID];
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"name == name"];
+    //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"itemType == 1"];
+    //NSLog([NSString stringWithFormat:@"item type is %d", self.itemTypeID]);
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"itemtype == %d", [self.itemTypeID intValue]];
+    //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"name == name"];
     
     [self.azureConnection refreshDataOnSuccess:^{
         [self.tableView reloadData];
     } withPredicate:predicate];
+    
+    //set title in the nav bar
+    //self.navigationItem.title = @"best name ever";
+    self.navigationItem.title = self.itemTypeName;
+
 }
 
 #pragma mark - Table view data source

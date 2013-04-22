@@ -20,7 +20,6 @@
 
 @implementation BarTableViewController
 @synthesize azureConnection;
-//@synthesize drinkTypeMap = _drinkTypeMap;
 @synthesize tableView;
 
 
@@ -120,8 +119,8 @@
     if ([segue.identifier isEqualToString:@"barsToTypes"]) {
         UITableViewController *drinkTypeTVC = segue.destinationViewController;
         
-        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
-        UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
         NSString *drinkType = selectedCell.textLabel.text;
         
         //key for getting the NSNumber out of the map

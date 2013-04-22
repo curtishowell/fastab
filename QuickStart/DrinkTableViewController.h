@@ -13,4 +13,10 @@
 @property (nonatomic, strong) NSArray *drinkTypeListing; //List of drink types per bar
 @property (nonatomic, strong) NSArray *specificDrinks; //List of specific drinks for a type
 
+//set by item type TVC before segueing
+@property (nonatomic, strong) NSNumber *itemTypeID;
+@property (nonatomic, strong) NSString *itemTypeName;
+
+
+
 @end

@@ -4,6 +4,8 @@
 
 @interface DrinkTypeTVC ()
 @property (strong, nonatomic) AzureConnection *azureConnection;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableDictionary *drinkTypeMap; //of type NSString to NSNumber
 @end
 
 @implementation DrinkTypeTVC
@@ -18,6 +20,12 @@
     return _venueID;
 }
 
+- (NSMutableDictionary *) drinkTypeMap {
+    if(! _drinkTypeMap) {
+        _drinkTypeMap = [[NSMutableDictionary alloc] init];
+    }
+    return _drinkTypeMap;
+}
 
 - (void)viewDidLoad
 {
@@ -36,16 +44,19 @@
     
     //set title in the nav bar
     self.navigationItem.title = self.venueName;
+    
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
     return [self.azureConnection.items count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"drinkTypeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -57,6 +68,22 @@
     cell.textLabel.textColor = [UIColor blackColor];
     //need to change the string we send in to objectForKey
     cell.textLabel.text = [item objectForKey:@"name"];
+    
+    
+    //get the venue name and ID out of the azure item
+    NSString *venueName = [item objectForKey:@"name"];
+    int temp = [[item objectForKey:@"id"] intValue];
+    NSNumber *venueID = [NSNumber numberWithInt:[[item objectForKey:@"id"] intValue]];
+    
+    //set cell label
+    cell.textLabel.textColor = [UIColor blackColor];
+    cell.textLabel.text = venueName;
+    
+    NSString *key = [NSString stringWithFormat:@"%d",indexPath.row];
+    
+    //add the cell info to the drinkTypeMap
+    [self.drinkTypeMap setValue:venueID forKey:key];
+    
     
     return cell;
 }
@@ -79,6 +106,36 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
+{
+    //NSLog(segue.identifier);
+    //NSLog([NSString stringWithFormat:@"%@", segue.identifier]);
+    if ([segue.identifier isEqualToString:@"typesToItems"]) {
+        UITableViewController *drinkTypeTVC = segue.destinationViewController;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
+        NSString *drinkType = selectedCell.textLabel.text;
+        
+        //key for getting the NSNumber out of the map
+        NSString *key = [NSString stringWithFormat:@"%d",indexPath.row];
+        
+        //get the NSNumber out of the map using key
+        NSNumber *venueID = [self.drinkTypeMap objectForKey:key];
+        
+        int temp = [venueID intValue];
+        
+        //set values in the drink type view controller
+        [drinkTypeTVC performSelector:@selector(setItemTypeID:)
+                           withObject:venueID];
+        [drinkTypeTVC performSelector:@selector(setItemTypeName:)
+                           withObject:drinkType];
+        
+    }
 }
 
 @end

@@ -239,7 +239,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="2Em-oH-0j0" kind="push" id="haT-Jr-YND"/>
+                                    <segue destination="2Em-oH-0j0" kind="push" identifier="typesToItems2" id="haT-Jr-YND"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -249,6 +249,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="drink types" id="zoM-lt-wcE"/>
+                    <connections>
+                        <outlet property="tableView" destination="gLd-Un-Z6Q" id="rSk-AY-3wy"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kih-Ea-fuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -379,7 +382,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="17h-U0-iCR" kind="push" id="XeS-yC-XmH"/>
+                                    <segue destination="17h-U0-iCR" kind="push" identifier="typesToItems" id="XeS-yC-XmH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -520,7 +523,7 @@
                                 <action selector="cancel:" destination="W4Y-CJ-yln" id="fQ9-M0-VeA"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="Whu-km-DCt">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="Whu-km-DCt">
                             <connections>
                                 <action selector="save:" destination="W4Y-CJ-yln" id="eMk-K9-R8a"/>
                             </connections>
@@ -824,6 +827,9 @@
         </class>
         <class className="DrinkTypeTVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DrinkTypeTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
