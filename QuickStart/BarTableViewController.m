@@ -13,6 +13,7 @@
 
 @interface BarTableViewController ()
 @property (strong, nonatomic) AzureConnection *azureConnection;
+//@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableDictionary *drinkTypeMap;
 @end
@@ -75,6 +76,7 @@
     
     //get the venue name and ID out of the azure item
     NSString *venueName = [item objectForKey:@"name"];
+    int temp = [item objectForKey:@"id"];
     NSNumber *venueID = [NSNumber numberWithInt:[item objectForKey:@"id"]];
     
     cell.textLabel.textColor = [UIColor blackColor];

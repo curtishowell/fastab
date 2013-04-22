@@ -89,6 +89,8 @@
                                    // Handle error
                                }
                            }];*/
+    
+    [self performSegueWithIdentifier:@"PaymentToBarList" sender:self];
 }
 
 - (void)handleError:(NSError *)error

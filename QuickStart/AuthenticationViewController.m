@@ -48,7 +48,7 @@
          } else {
              // No error, so load the data
              NSLog(@"Success Logging in");
-            [self performSegueWithIdentifier:@"ViewBars" sender:self];
+            [self performSegueWithIdentifier:@"AuthToPayment" sender:self];
              //[self.azureConnection refreshDataOnSuccess:^{
              //}];
          }
