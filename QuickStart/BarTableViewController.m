@@ -66,15 +66,14 @@
     return [self.azureConnection.items count];
 }
 
-<<<<<<< HEAD
-=======
+
 - (NSString *)titleForRow:(NSUInteger) row
 {
     //put the code to get the titles of bars for the stuff
     //once this is implemented uncomment the following areas: (#1, #2)
 }
 
->>>>>>> some formatting
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
