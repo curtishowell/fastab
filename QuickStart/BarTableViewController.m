@@ -60,11 +60,21 @@
 //    return 0;
 //}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
     return [self.azureConnection.items count];
 }
 
+<<<<<<< HEAD
+=======
+- (NSString *)titleForRow:(NSUInteger) row
+{
+    //put the code to get the titles of bars for the stuff
+    //once this is implemented uncomment the following areas: (#1, #2)
+}
+
+>>>>>>> some formatting
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -97,7 +107,8 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
     /*
