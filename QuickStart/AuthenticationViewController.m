@@ -39,16 +39,18 @@
 - (void) login
 {
     NSLog(@"Step1");
-    UINavigationController *controller =
+    MSLoginController *controller =
     
     [self.azureConnection.client
      loginViewControllerWithProvider:@"facebook"
      completion:^(MSUser *user, NSError *error) {
          if (error) {
              NSLog(@"Authentication Error: %@", error);
+             NSLog(@"Step2A");
              // Note that error.code == -1503 indicates
              // that the user cancelled the dialog
          } else {
+             NSLog(@"Step2B");
              // No error, so load the data
              NSLog(@"Success Logging in");
             [self performSegueWithIdentifier:@"AuthToPayment" sender:self];

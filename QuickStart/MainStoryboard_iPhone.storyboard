@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LlT-TF-AHU">
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T1d-l5-Wsa">
+>>>>>>> Boo
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -851,8 +855,6 @@
         <class className="PaymentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PaymentViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="save:"/>
                 <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="saveButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="stripeView" candidateClass="STPView"/>
@@ -877,9 +879,14 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
         <segue reference="sqT-L1-UPN"/>
         <segue reference="FGZ-NP-AXv"/>
         <segue reference="jr7-Jm-g9W"/>
+=======
+        <segue reference="7IW-H6-WcD"/>
+        <segue reference="0Uo-lt-NPL"/>
+>>>>>>> Boo
         <segue reference="BuX-GE-05A"/>
     </inferredMetricsTieBreakers>
 </document>
