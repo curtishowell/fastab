@@ -355,7 +355,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Locations" id="HL8-me-Y3o"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="jeO-dd-k2n" id="9go-aN-5R0"/>
                     </connections>
@@ -398,15 +398,16 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O2o-kJ-a9l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1106" y="3064"/>
+            <point key="canvasLocation" x="1100" y="3056"/>
         </scene>
-        <!--View Controller-->
+        <!--Cart View Controller-->
         <scene sceneID="hsy-3V-1P8">
             <objects>
-                <viewController id="9u3-C6-lTE" sceneMemberID="viewController">
+                <viewController id="9u3-C6-lTE" customClass="CartViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="drG-7T-syw">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -449,6 +450,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aq2-vy-ex9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -529,7 +531,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <connections>
                         <outlet property="cancelButton" destination="y3R-9L-nwb" id="FfC-Vj-1cm"/>
                         <outlet property="saveButton" destination="Whu-km-DCt" id="KSI-Mv-8Dp"/>
@@ -875,8 +877,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="74Q-sa-k4p"/>
         <segue reference="sqT-L1-UPN"/>
-        <segue reference="FGZ-NP-AXv"/>
         <segue reference="jr7-Jm-g9W"/>
         <segue reference="BuX-GE-05A"/>
     </inferredMetricsTieBreakers>

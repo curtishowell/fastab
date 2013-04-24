@@ -12,13 +12,21 @@
 @interface AzureConnection()
 
 @property (nonatomic) NSInteger busyCount;
-//@property (nonatomic, strong)   MSTable *barListing;
+@property (nonatomic, strong)   MSTable *table;
 
 @end
 
 @implementation AzureConnection
 
 @synthesize items;
+
+
+- (MSClient *)clinet {
+    if(!_client){
+        _client = [[MSClient alloc] init];
+    }
+    return _client;
+}
 
 -(AzureConnection *) init
 {
@@ -43,7 +51,7 @@
 -(AzureConnection *) initWithTableName: (NSString*) tableName
 {
     self = [self init]; //needed to get around compiler
-    self.barListing = [self.client getTable:tableName];
+    self.table = [self.client getTable:tableName];
     
     self.items = [[NSMutableArray alloc] init];
     self.busyCount = 0;
@@ -96,7 +104,7 @@
     //NSPredicate * predicate = [NSPredicate predicateWithFormat:@"name == name"];
     
     // Query the TodoItem table and update the items property with the results from the service
-    [self.barListing readWhere:predicate completion:^(NSArray *results, NSInteger totalCount, NSError *error) {
+    [self.table readWhere:predicate completion:^(NSArray *results, NSInteger totalCount, NSError *error) {
         
         [self logErrorIfNotNil:error];
         
@@ -108,11 +116,18 @@
     
 }
 
--(void) addItem:(NSDictionary *)item completion:(CompletionWithIndexBlock)completion
+/*
+ 
+ 
+where did this implementation come from? Patrick, did you write this?
+ 
+ 
+ -(void) addItem:(NSDictionary *)item
+     completion:(CompletionWithIndexBlock)completion
 {
     // TODO
     // Insert the item into the TodoItem table and add to the items array on completion
-    [self.barListing insert:item completion:^(NSDictionary *result, NSError *error) {
+    [self.table insert:item completion:^(NSDictionary *result, NSError *error) {
         NSUInteger index = [items count];
         [(NSMutableArray *)items insertObject:item atIndex:index];
         
@@ -151,6 +166,22 @@
         completion(index);
         
     }];
+}*/
+
+-(void)addItem:(NSDictionary *)item
+    completion:(CompletionWithIndexBlock)completion
+{
+    // Insert the item into the TodoItem table and add to the items array on completion
+    [self.table insert:item completion:^(NSDictionary *result, NSError *error)
+     {
+         [self logErrorIfNotNil:error];
+         
+         NSUInteger index = [items count];
+         [(NSMutableArray *)items insertObject:result atIndex:index];
+         
+         // Let the caller know that we finished
+         completion(index);
+     }];
 }
 
 

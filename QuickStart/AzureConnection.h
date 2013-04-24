@@ -16,7 +16,7 @@ typedef void (^CompletionWithIndexBlock) (NSUInteger index);
 typedef void (^BusyUpdateBlock) (BOOL busy);
 
 @interface AzureConnection : NSObject
-@property (nonatomic, strong)   MSTable *barListing;
+//@property (nonatomic, strong)   MSTable *barListing;
 @property (nonatomic, strong)   NSArray *items;
 @property (nonatomic, strong)   MSClient *client;
 //@property (nonatomic, strong)   NSArray *barList;
@@ -30,4 +30,7 @@ typedef void (^BusyUpdateBlock) (BOOL busy);
             onResponse:(MSFilterResponseBlock)onResponse;
 
 - (AzureConnection *) initWithTableName: (NSString *) tableName;
+
+- (void) addItem:(NSDictionary *) item
+      completion:(CompletionWithIndexBlock) completion;
 @end
