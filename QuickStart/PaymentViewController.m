@@ -53,6 +53,8 @@
 						//[self refresh];
 					}];
 	
+	//don't do anyting else here; if we need more code, do it above the if statement above
+	
 }
 
 
@@ -115,8 +117,9 @@
 	
     [self.azureConnection addItem:item completion:^(NSUInteger index){
         
-        //kill progress and connection UIs
-        NSLog(@"token successfully sent to server");
+        //TODO: kill progress and connection UIs
+        
+		NSLog(@"token successfully sent to server");
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[viewController performSegueWithIdentifier:@"PaymentToBarList" sender:viewController];
