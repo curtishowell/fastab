@@ -11,7 +11,7 @@
 @implementation DrinkTypeTVC
 
 @synthesize azureConnection;
-
+@synthesize venueName;
 
 - (NSNumber *)venueID {
     if(!_venueID){
@@ -134,7 +134,13 @@
                            withObject:venueID];
         [drinkTypeTVC performSelector:@selector(setItemTypeName:)
                            withObject:drinkType];
+        [drinkTypeTVC performSelector:@selector(setVenue:) withObject:self.venueName];
         
+    }
+    if ([segue.identifier isEqualToString:@"DTypeCheckout"]) {
+        UIViewController *checkout = segue.destinationViewController;
+        NSString *venuePlace = self.venueName;
+        [checkout performSelector:@selector(setVenue:) withObject:venuePlace];
     }
 }
 

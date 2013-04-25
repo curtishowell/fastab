@@ -76,4 +76,14 @@
     return YES;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"DCheckout"]) {
+        UIViewController *checkout = segue.destinationViewController;
+        NSString *venuePlace = self.venue;
+        [checkout performSelector:@selector(setVenue:) withObject:venuePlace];
+    }
+}
+
 @end

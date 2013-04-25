@@ -11,8 +11,11 @@
 #import <Foundation/Foundation.h>
 
 
-@interface CartViewController : UIViewController
+@interface CartViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+@property (strong, nonatomic) NSString *venue;
 - (void)addItemToCart:(Item *)item;
 
 
