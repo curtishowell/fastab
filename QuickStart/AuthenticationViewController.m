@@ -51,14 +51,8 @@
                            // that the user cancelled the dialog
                        } else {
                            NSLog(@"Success Logging in");
-                           
-                           
-                           
-                           
-                           
-                           //[self.azureConnection refreshDataOnSuccess:^{
-                           //}];
-                           
+                                 
+                           [self.azureConnection storeUserCredentials];
                            
                            [self performSegueWithIdentifier:@"AuthToPayment" sender:self];
                            

@@ -30,9 +30,7 @@
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
     BOOL firstTime = [standardUserDefaults boolForKey:@"firstTimeRun"];
-    
-    [NSThread sleepForTimeInterval:2];
-    
+        
     //not first time running
     if(firstTime) {
         //NSLog(@"WE are here 1");

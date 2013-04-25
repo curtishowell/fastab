@@ -37,11 +37,29 @@
                                                     withApplicationKey:@"EEOENdPBCHhkMKyCPkqHYIRHmFZJya73"];
         
         // Add a Mobile Service filter to enable the busy indicator
-        self.client = [newClient clientwithFilter:self];
+        self.client = [newClient clientwithFilter:(id)self];
         
-        //Uncomment line for creating a table to add items
-        // Create an MSTable instance to allow us to work with the TodoItem table
+        //if user has stored authentication creds, load the creds itno the MSClient
+		NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+		
+		NSString *userId = [standardUserDefaults stringForKey:@"userId"];
+		NSString *token = [standardUserDefaults stringForKey:@"token"];
+		
+		if(userId && token) {
+			self.client.currentUser = [[MSUser alloc] initWithUserId:userId];
+			self.client.currentUser.mobileServiceAuthenticationToken = token;
+		}
         
+        //BOOL firstTime = [standardUserDefaults boolForKey:@"firstTimeRun"];
+        //
+        //    //not first time running
+        //    if(firstTime) {
+        //        //NSLog(@"WE are here 1");
+        //        [self performSegueWithIdentifier:@"SkipFirstAuthentication" sender:self];
+        //    } else {
+        //        [standardUserDefaults setBool:YES forKey:@"firstTimeRun"];
+//		[standardUserDefaults setValue:userId forKey:@"userId"];
+//		[standardUserDefaults setValue:token forKey:@"token"];
     }
     
     return self;
@@ -182,6 +200,19 @@ where did this implementation come from? Patrick, did you write this?
          // Let the caller know that we finished
          completion(index);
      }];
+}
+
+//store the userid and auth token in user defaults to be read later to persist auth
+//across sessions and across instances of AzureConnection
+- (void) storeUserCredentials
+{
+	
+	
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [standardUserDefaults setValue:self.client.currentUser.userId forKey:@"userId"];
+    [standardUserDefaults setValue:self.client.currentUser.mobileServiceAuthenticationToken forKey:@"token"];
+
 }
 
 

@@ -33,4 +33,7 @@ typedef void (^BusyUpdateBlock) (BOOL busy);
 
 - (void) addItem:(NSDictionary *) item
       completion:(CompletionWithIndexBlock) completion;
+
+- (void) storeUserCredentials;
+
 @end
