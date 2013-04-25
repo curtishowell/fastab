@@ -44,7 +44,7 @@
 	}
 	
 	[client loginWithProvider:@"facebook"
-				   onController:self
+				 onController:self
 					 animated:YES
 				   completion:^(MSUser *user, NSError *error) {
 					   

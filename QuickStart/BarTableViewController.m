@@ -131,7 +131,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([segue.identifier isEqualToString:@"barsToTypes"]) {
         UITableViewController *drinkTypeTVC = segue.destinationViewController;
-        
+                
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
         NSString *drinkType = selectedCell.textLabel.text;
