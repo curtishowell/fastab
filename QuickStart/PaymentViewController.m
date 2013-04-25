@@ -8,18 +8,25 @@
 
 #import "PaymentViewController.h"
 #import "AzureConnection.h"
-//#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
-
+#import "QuartzCore/QuartzCore.h"
 
 @interface PaymentViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property (strong, nonatomic) AzureConnection *azureConnection;
+
+//activity view properties
+@property (nonatomic, retain) UIActivityIndicatorView * activityView;
+@property (nonatomic, retain) UIView *loadingView;
+@property (nonatomic, retain) UILabel *loadingLabel;
 @end
 
 @implementation PaymentViewController
 
 @synthesize azureConnection;
+@synthesize activityView;
+@synthesize loadingView;
+@synthesize loadingLabel;
 
 - (void)viewDidLoad
 {
@@ -76,19 +83,20 @@
 
 - (IBAction)save:(id)sender
 {
+	
+	
     
-    NSLog(@"saving!");
+    NSLog(@"saving");
     
     //disbale the menu bar items
     self.cancelButton.enabled = NO;
     self.saveButton.enabled = NO;
+	
+	//show activity indicator
+	[self showActivityIndicator];
+	
     
     //send data to our awesomely robust backend servers
-    
-    //disable cancel and save buttons
-    
-    
-    
     [self.stripeView createToken:^(STPToken *token, NSError *error) {
         if (error) {
             // Handle error
@@ -102,7 +110,8 @@
 
 
 - (IBAction)cancel:(id)sender {
-    NSLog(@"canceling!");
+    NSLog(@"canceling");
+    [self performSegueWithIdentifier:@"PaymentToBarList" sender:self];
 }
 
 
@@ -138,6 +147,29 @@
                                             cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
                                             otherButtonTitles:nil];
     [message show];
+}
+
+- (void)showActivityIndicator {
+	
+	loadingView = [[UIView alloc] initWithFrame:CGRectMake(75, 155, 170, 170)];
+	loadingView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+	loadingView.clipsToBounds = YES;
+	loadingView.layer.cornerRadius = 10.0;
+	
+	activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+	activityView.frame = CGRectMake(65, 40, activityView.bounds.size.width, activityView.bounds.size.height);
+    [loadingView addSubview:activityView];
+	
+    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 115, 130, 22)];
+    loadingLabel.backgroundColor = [UIColor clearColor];
+    loadingLabel.textColor = [UIColor whiteColor];
+    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    loadingLabel.textAlignment = UITextAlignmentCenter;
+    loadingLabel.text = @"Saving...";
+    [loadingView addSubview:loadingLabel];
+	
+    [self.view addSubview:loadingView];
+    [activityView startAnimating];
 }
 
 
