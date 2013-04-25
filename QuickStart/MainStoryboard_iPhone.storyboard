@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LlT-TF-AHU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LlT-TF-AHU">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -404,11 +404,7 @@
             </objects>
             <point key="canvasLocation" x="1100" y="3056"/>
         </scene>
-<<<<<<< HEAD
-        <!--Cart View Controller-->
-=======
         <!--Cart View Controller - Checkout-->
->>>>>>> Shopping Cart view complete minus Core Data
         <scene sceneID="hsy-3V-1P8">
             <objects>
                 <viewController id="9u3-C6-lTE" customClass="CartViewController" sceneMemberID="viewController">
@@ -545,6 +541,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Checkout" id="Aow-eI-HdN"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <connections>
                         <outlet property="barLocation" destination="Cvz-EM-GuO" id="uHe-yK-vd4"/>
                         <outlet property="subtotalLabel" destination="BFT-pr-JQV" id="Nsu-jO-2mq"/>
@@ -921,7 +918,8 @@
             <objects>
                 <navigationController id="LlT-TF-AHU" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rm2-fN-6sQ">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="rm2-fN-6sQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -993,6 +991,8 @@
         <class className="PaymentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PaymentViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="save:"/>
                 <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="saveButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="stripeView" candidateClass="STPView"/>
@@ -1017,13 +1017,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
         <segue reference="74Q-sa-k4p"/>
-=======
-        <segue reference="FGZ-NP-AXv"/>
->>>>>>> Shopping Cart view complete minus Core Data
         <segue reference="sqT-L1-UPN"/>
-        <segue reference="jr7-Jm-g9W"/>
         <segue reference="j3d-u8-AC1"/>
+        <segue reference="jr7-Jm-g9W"/>
     </inferredMetricsTieBreakers>
 </document>
