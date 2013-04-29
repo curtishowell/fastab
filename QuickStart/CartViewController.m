@@ -7,8 +7,7 @@
 //
 
 #import "CartViewController.h"
-#import "LineItem.h"
-#import "Item.h"
+#import "ItemInCart.h"
 #import "DrinkTypeTVC.h"
 #import <Foundation/Foundation.h>
 //#import "NSFetchRequest.h"
@@ -20,7 +19,7 @@
 @property (strong, nonatomic) NSDecimalNumber *tip;
 @property (strong, nonatomic) NSDecimalNumber *total;
 
-@property (strong, nonatomic) NSMutableArray *cart; //of LineItems
+@property (strong, nonatomic) NSMutableArray *cart; //of ItemInCart
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subtotalLabel;
@@ -28,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *barLocation;
 @property (weak, nonatomic) IBOutlet UITableView *cartItems;
 
++ (NSManagedObjectContext *)getManagedObjectContext;
 
 @end
 
@@ -161,26 +161,46 @@
     return cell;
 }
 
-- (void)addItemToCart:(Item *)item
+- (void)addItemToCart:(ItemInCart *)item
 {
-    for(LineItem *lineItem in cart) {
-        if(lineItem.ID == item.ID){
-            //item was already in the cart; add 1 to the qty and return
-            lineItem.qty += 1;
-            return;
-        }
+    
+    NSManagedObjectContext *context = [CartViewController getManagedObjectContext];
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES]]; //remove is this is optional- test!
+    
+    //see if that item is already in the cart
+    request.predicate = [NSPredicate predicateWithFormat:@"itemID = %@", item.venueID, item.itemID];
+    
+    NSError *error = nil;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    if (!matches || [matches count] > 1) {
+        //handle error?
+    } else if (![matches count]){
+        //Item doesn't yet exist - add the item to the cart
         
+        ItemInCart *cdItem = [NSEntityDescription insertNewObjectForEntityForName:@"ItemInCart"
+                                                           inManagedObjectContext:context];
+
+        cdItem.itemID = item.itemID;
+        cdItem.itemType = item.itemType;
+        cdItem.name = item.name;
+        cdItem.price = item.price;
+        cdItem.qty = [NSNumber numberWithInt:1];
+        cdItem.venueName = item.venueName;
+        cdItem.venueID = item.venueID;
+        
+    } else {
+        //add 1 to the existingItems's qty
+        ItemInCart *existingItem = [matches lastObject];
+        existingItem.qty = [NSNumber numberWithInt:[existingItem.qty integerValue] + 1]; //make sure this is updating the object in the core data cart
     }
+}
+
++ (NSManagedObjectContext *)getManagedObjectContext {
     
-    //item was not already in the cart, so put the data from the Item into a LineItem and add it to the cart
-    LineItem *newItem = [[LineItem alloc] init];
-    newItem.qty = 1;
-    newItem.ID = item.ID;
-    newItem.name = item.name;
-    newItem.price = item.price;
-    newItem.imageURL = item.imageURL;
-    newItem.itemType = item.itemType;
-    
+    return nil;
 }
 
 - (IBAction)tipChange:(UISegmentedControl *)sender {

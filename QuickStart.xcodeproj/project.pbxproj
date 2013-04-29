@@ -25,6 +25,7 @@
 		03487A0E16117A9B002D0B52 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03487A0C16117A9B002D0B52 /* MainStoryboard_iPad.storyboard */; };
 		03487A1316117C5F002D0B52 /* TodoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03487A1216117C5F002D0B52 /* TodoListController.m */; };
 		039AB33F1614AD7200F0915A /* TodoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 039AB33E1614AD7200F0915A /* TodoService.m */; };
+		41F592F9172F181600D641D6 /* ItemInCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F592F8172F181600D641D6 /* ItemInCart.m */; };
 		490C6CBF17271BE9007EE30B /* CartItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C6CBE17271BE9007EE30B /* CartItems.m */; };
 		490C6CC2172798C8007EE30B /* cartItem.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 490C6CC0172798C8007EE30B /* cartItem.xcdatamodeld */; };
 		490C6CC81727A4A1007EE30B /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C6CC71727A4A0007EE30B /* CoreDataTableViewController.m */; };
@@ -96,10 +97,8 @@
 		E641BDD81722D1FC00B4086D /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E641BD8F1722D1FB00B4086D /* textfield@2x.png */; };
 		E641BDEA1722D1FC00B4086D /* PaymentKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E641BDB31722D1FC00B4086D /* PaymentKit.podspec */; };
 		E641BDEB1722D1FC00B4086D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E641BDB41722D1FC00B4086D /* README.md */; };
-		E6491B601722115C008E2DE6 /* LineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E6491B5F1722115C008E2DE6 /* LineItem.m */; };
 		E64F96BD1722E75C00AD1137 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E641BCDE1722B58E00B4086D /* QuartzCore.framework */; };
 		E698A4D21721D2BB00891A74 /* DrinkTypeTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */; };
-		E698A4D51722010200891A74 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = E698A4D41722010200891A74 /* Item.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +126,8 @@
 		03487A1216117C5F002D0B52 /* TodoListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoListController.m; sourceTree = "<group>"; };
 		039AB33D1614AD7200F0915A /* TodoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoService.h; sourceTree = "<group>"; };
 		039AB33E1614AD7200F0915A /* TodoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoService.m; sourceTree = "<group>"; };
+		41F592F7172F181600D641D6 /* ItemInCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemInCart.h; path = QuickStart/ItemInCart.h; sourceTree = SOURCE_ROOT; };
+		41F592F8172F181600D641D6 /* ItemInCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemInCart.m; path = QuickStart/ItemInCart.m; sourceTree = SOURCE_ROOT; };
 		490C6CBD17271BE9007EE30B /* CartItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartItems.h; path = QuickStart/CartItems.h; sourceTree = SOURCE_ROOT; };
 		490C6CBE17271BE9007EE30B /* CartItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CartItems.m; path = QuickStart/CartItems.m; sourceTree = SOURCE_ROOT; };
 		490C6CC1172798C8007EE30B /* cartItem.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = cartItem.xcdatamodel; sourceTree = "<group>"; };
@@ -224,12 +225,8 @@
 		E641BD8F1722D1FB00B4086D /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
 		E641BDB31722D1FC00B4086D /* PaymentKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PaymentKit.podspec; sourceTree = "<group>"; };
 		E641BDB41722D1FC00B4086D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		E6491B5E1722115C008E2DE6 /* LineItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineItem.h; path = QuickStart/Model/LineItem.h; sourceTree = SOURCE_ROOT; };
-		E6491B5F1722115C008E2DE6 /* LineItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineItem.m; path = QuickStart/Model/LineItem.m; sourceTree = SOURCE_ROOT; };
 		E698A4D01721D2BB00891A74 /* DrinkTypeTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkTypeTVC.h; path = QuickStart/DrinkTypeTVC.h; sourceTree = SOURCE_ROOT; };
 		E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkTypeTVC.m; path = QuickStart/DrinkTypeTVC.m; sourceTree = SOURCE_ROOT; };
-		E698A4D31722010200891A74 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = QuickStart/Model/Item.h; sourceTree = SOURCE_ROOT; };
-		E698A4D41722010200891A74 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = QuickStart/Model/Item.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,10 +472,8 @@
 		E698A4D61722011300891A74 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E698A4D31722010200891A74 /* Item.h */,
-				E698A4D41722010200891A74 /* Item.m */,
-				E6491B5E1722115C008E2DE6 /* LineItem.h */,
-				E6491B5F1722115C008E2DE6 /* LineItem.m */,
+				41F592F7172F181600D641D6 /* ItemInCart.h */,
+				41F592F8172F181600D641D6 /* ItemInCart.m */,
 				490C6CC0172798C8007EE30B /* cartItem.xcdatamodeld */,
 				490C6CC61727A4A0007EE30B /* CoreDataTableViewController.h */,
 				490C6CC71727A4A0007EE30B /* CoreDataTableViewController.m */,
@@ -615,8 +610,6 @@
 				49D491C017173911008647DC /* CartViewController.m in Sources */,
 				49D51B22171B7B23004B81C9 /* ViewOrderViewController.m in Sources */,
 				E698A4D21721D2BB00891A74 /* DrinkTypeTVC.m in Sources */,
-				E698A4D51722010200891A74 /* Item.m in Sources */,
-				E6491B601722115C008E2DE6 /* LineItem.m in Sources */,
 				E641BCDD1722B4E200B4086D /* PaymentViewController.m in Sources */,
 				E641BDB51722D1FC00B4086D /* STPCard.m in Sources */,
 				E641BDB61722D1FC00B4086D /* STPToken.m in Sources */,
@@ -634,6 +627,7 @@
 				490C6CBF17271BE9007EE30B /* CartItems.m in Sources */,
 				490C6CC2172798C8007EE30B /* cartItem.xcdatamodeld in Sources */,
 				490C6CC81727A4A1007EE30B /* CoreDataTableViewController.m in Sources */,
+				41F592F9172F181600D641D6 /* ItemInCart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

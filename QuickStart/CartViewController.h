@@ -7,17 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Item.h"
+#import "ItemInCart.h"
 #import <Foundation/Foundation.h>
 
 
-@interface CartViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface CartViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @property (strong, nonatomic) NSString *venue;
-- (void)addItemToCart:(Item *)item;
 
-
+- (void)addItemToCart:(ItemInCart *)item;
 
 @end

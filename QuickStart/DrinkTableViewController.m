@@ -1,6 +1,7 @@
 #import "DrinkTableViewController.h"
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 #import "AzureConnection.h"
+#import "ItemInCart.h"
 
 
 @interface DrinkTableViewController ()
@@ -80,6 +81,16 @@
                  sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"DCheckout"]) {
+        
+        ItemInCart *item = [[ItemInCart alloc] init];
+        
+        
+        //TODO
+        //add details to item
+        //send item to cart when segueing
+        
+        
+        
         UIViewController *checkout = segue.destinationViewController;
         NSString *venuePlace = self.venue;
         [checkout performSelector:@selector(setVenue:) withObject:venuePlace];
