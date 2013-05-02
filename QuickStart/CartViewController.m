@@ -227,6 +227,9 @@
     NSError *error = nil;
     NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
     
+    
+    //LOOOOOKKKK HEERRREEEEEEE!!!!!!!!!!
+    
     if (!matches || [matches count] > 1) {
         //handle error?
     } else if (![matches count]){
