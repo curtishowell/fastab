@@ -5,7 +5,6 @@
 @interface DrinkTypeTVC ()
 @property (strong, nonatomic) AzureConnection *azureConnection;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableDictionary *drinkTypeMap; //of type NSString to NSNumber
 @end
 
 @implementation DrinkTypeTVC
@@ -18,13 +17,6 @@
         _venueID = [[NSNumber alloc] init];
     }
     return _venueID;
-}
-
-- (NSMutableDictionary *) drinkTypeMap {
-    if(! _drinkTypeMap) {
-        _drinkTypeMap = [[NSMutableDictionary alloc] init];
-    }
-    return _drinkTypeMap;
 }
 
 - (void)viewDidLoad
@@ -70,20 +62,15 @@
     cell.textLabel.text = [item objectForKey:@"name"];
     
     
-    //get the venue name and ID out of the azure item
-    NSString *venueName = [item objectForKey:@"name"];
-    int temp = [[item objectForKey:@"id"] intValue];
-    NSNumber *venueID = [NSNumber numberWithInt:[[item objectForKey:@"id"] intValue]];
+    //get the venue name out of the azure item
+    NSString *drinkTypeName = [item objectForKey:@"name"];
     
     //set cell label
     cell.textLabel.textColor = [UIColor blackColor];
-    cell.textLabel.text = venueName;
+    cell.textLabel.text = drinkTypeName;
     
-    NSString *key = [NSString stringWithFormat:@"%d",indexPath.row];
     
-    //add the cell info to the drinkTypeMap
-    [self.drinkTypeMap setValue:venueID forKey:key];
-    
+    //add the cell info to the drinkTypeMap    
     
     return cell;
 }
@@ -112,35 +99,32 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue
                  sender:(id)sender
 {
-    //NSLog(segue.identifier);
-    //NSLog([NSString stringWithFormat:@"%@", segue.identifier]);
     if ([segue.identifier isEqualToString:@"typesToItems"]) {
         UITableViewController *drinkTypeTVC = segue.destinationViewController;
         
+        //get the NSDictionary item realating to the selected indexPath
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
-        NSString *drinkType = selectedCell.textLabel.text;
+        NSDictionary *item = [self.azureConnection.items objectAtIndex:indexPath.row];
         
-        //key for getting the NSNumber out of the map
-        NSString *key = [NSString stringWithFormat:@"%d",indexPath.row];
-        
-        //get the NSNumber out of the map using key
-        NSNumber *venueID = [self.drinkTypeMap objectForKey:key];
-        
-        int temp = [venueID intValue];
+        //get the values out of the dictionary
+        NSNumber *itemTypeID = [item objectForKey:@"id"];
+        NSString *itemTypeName = [[item objectForKey:@"name"] description];
         
         //set values in the drink type view controller
         [drinkTypeTVC performSelector:@selector(setItemTypeID:)
-                           withObject:venueID];
+                           withObject:itemTypeID];
         [drinkTypeTVC performSelector:@selector(setItemTypeName:)
-                           withObject:drinkType];
-        [drinkTypeTVC performSelector:@selector(setVenue:) withObject:self.venueName];
+                           withObject:itemTypeName];
+        [drinkTypeTVC performSelector:@selector(setVenueName:)
+                           withObject:self.venueName];
+        [drinkTypeTVC performSelector:@selector(setVenueID:)
+                           withObject:self.venueID];
         
     }
     if ([segue.identifier isEqualToString:@"DTypeCheckout"]) {
         UIViewController *checkout = segue.destinationViewController;
-        NSString *venuePlace = self.venueName;
-        [checkout performSelector:@selector(setVenue:) withObject:venuePlace];
+        [checkout performSelector:@selector(setVenueName:) withObject:self.venueName];
+        [checkout performSelector:@selector(setVenueID:) withObject:self.venueID];
     }
 }
 

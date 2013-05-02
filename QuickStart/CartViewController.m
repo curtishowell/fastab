@@ -10,8 +10,6 @@
 #import "ItemInCart.h"
 #import "DrinkTypeTVC.h"
 #import <Foundation/Foundation.h>
-//#import "NSFetchRequest.h"
-//#import "CoreDataTableViewController.h"
 
 @interface CartViewController ()
 
@@ -26,14 +24,14 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipControl;
 @property (weak, nonatomic) IBOutlet UILabel *barLocation;
 @property (weak, nonatomic) IBOutlet UITableView *cartItems;
+@property (nonatomic) BOOL beganUpdates;
 
-+ (NSManagedObjectContext *)getManagedObjectContext;
+- (void)setupManagedDocumentContext;
 
 @end
 
 @implementation CartViewController
 
-@synthesize managedObjectContext;
 @synthesize cart;
 @synthesize tipControl;
 @synthesize tip;
@@ -66,12 +64,54 @@
 //    return _cart;
 //}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if(!self.managedObjectContext) {
+        [self setupManagedDocumentContext];
+    }
+}
+
+- (void)setupManagedDocumentContext {
+    NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentationDirectory inDomains:NSUserDomainMask] lastObject];\
+    url = [url URLByAppendingPathComponent:@"Cart"];
+    UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
+    
+    if(![[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+        [document saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+            if(success) {
+                self.managedObjectContext = document.managedObjectContext;
+            }
+        }];
+    } else if(document.documentState == UIDocumentStateClosed) {
+        [document openWithCompletionHandler:^(BOOL success) {
+            self.managedObjectContext = document.managedObjectContext;
+
+        }];
+    } else {//already open
+        self.managedObjectContext = document.managedObjectContext;
+    }
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     //change the name of the text label *barLocation
-    _barLocation.text = self.venue;
+    _barLocation.text = self.venueName;
     [self initialSetup];
+}
+
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    _managedObjectContext = managedObjectContext;
+    if(managedObjectContext) {
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
+        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+        request.predicate = nil; //TODO: filter to only items for the currently-viewed venue
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    } else {
+        self.fetchedResultsController = nil;
+    }
 }
 
 - (void)initialSetup {
@@ -111,21 +151,32 @@
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+/*implemented in boilerplate code below
+ - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //Used to get the size of the cart so we know how many rows to make
     //NSInteger *size = [cart count];
     
     //Temporarily creating a predetermined amount
     return 3;
-}
+}*/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"drinkItem"];
+    
+    ItemInCart *itemInCart = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    cell.textLabel.text = itemInCart.name; 
+
+ 
+    
+    
     //This will grab the index/row for the NSIndexPath to be used to find the appropriate value in the array of cartItems.
     //NSInteger spot = indexPath.row;
     
-    static NSString *CellIdentifier = @"drinkItem";
+    /*static NSString *CellIdentifier = @"drinkItem";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
@@ -149,7 +200,7 @@
     _subtotalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
     _totalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
     
-    
+    */
     /*
     //Here is a way to add another view that could potentially hold the text for quantity.
     //However, problem that occurred is that once placed, it stays permanenet, and thus when we scroll, it overalaps with the other "quantity" labels that are placed below lower in the list
@@ -161,19 +212,20 @@
     return cell;
 }
 
-- (void)addItemToCart:(ItemInCart *)item
+- (void)addItemToCart:(NSMutableDictionary *)item
 {
     
-    NSManagedObjectContext *context = [CartViewController getManagedObjectContext];
-    
+    //make sure managed document object context is open for writing
+    [self setupManagedDocumentContext];
+        
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES]]; //remove is this is optional- test!
     
     //see if that item is already in the cart
-    request.predicate = [NSPredicate predicateWithFormat:@"itemID = %@", item.venueID, item.itemID];
+    request.predicate = [NSPredicate predicateWithFormat:@"itemID = %@", [item objectForKey:@"itemID"]];
     
     NSError *error = nil;
-    NSArray *matches = [context executeFetchRequest:request error:&error];
+    NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
     
     if (!matches || [matches count] > 1) {
         //handle error?
@@ -181,26 +233,22 @@
         //Item doesn't yet exist - add the item to the cart
         
         ItemInCart *cdItem = [NSEntityDescription insertNewObjectForEntityForName:@"ItemInCart"
-                                                           inManagedObjectContext:context];
+                                                           inManagedObjectContext:self.managedObjectContext];
 
-        cdItem.itemID = item.itemID;
-        cdItem.itemType = item.itemType;
-        cdItem.name = item.name;
-        cdItem.price = item.price;
-        cdItem.qty = [NSNumber numberWithInt:1];
-        cdItem.venueName = item.venueName;
-        cdItem.venueID = item.venueID;
+        cdItem.itemID = [item objectForKey:@"itemID"];
+        cdItem.itemType = [item objectForKey:@"itemTypeID"];
+        cdItem.name = [item objectForKey:@"itemName"];
+        cdItem.price = [item objectForKey:@"price"];
+        cdItem.qty = [item objectForKey:@"qty"];
+        cdItem.venueName = [item objectForKey:@"venueName"];
+        cdItem.venueID = [item objectForKey:@"venueID"];
+        
         
     } else {
         //add 1 to the existingItems's qty
         ItemInCart *existingItem = [matches lastObject];
         existingItem.qty = [NSNumber numberWithInt:[existingItem.qty integerValue] + 1]; //make sure this is updating the object in the core data cart
     }
-}
-
-+ (NSManagedObjectContext *)getManagedObjectContext {
-    
-    return nil;
 }
 
 - (IBAction)tipChange:(UISegmentedControl *)sender {
@@ -276,5 +324,163 @@
  else
  add the line item to the cart
  */
+
+
+
+/*************from CoreDataTableViewController.m*/
+@synthesize fetchedResultsController = _fetchedResultsController;
+@synthesize suspendAutomaticTrackingOfChangesInManagedObjectContext = _suspendAutomaticTrackingOfChangesInManagedObjectContext;
+@synthesize debug = _debug;
+@synthesize beganUpdates = _beganUpdates;
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
+#pragma mark - Fetching
+
+- (void)performFetch
+{
+    if (self.fetchedResultsController) {
+        if (self.fetchedResultsController.fetchRequest.predicate) {
+            if (self.debug) NSLog(@"[%@ %@] fetching %@ with predicate: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), self.fetchedResultsController.fetchRequest.entityName, self.fetchedResultsController.fetchRequest.predicate);
+        } else {
+            if (self.debug) NSLog(@"[%@ %@] fetching all %@ (i.e., no predicate)", NSStringFromClass([self class]), NSStringFromSelector(_cmd), self.fetchedResultsController.fetchRequest.entityName);
+        }
+        NSError *error;
+        [self.fetchedResultsController performFetch:&error];
+        if (error) NSLog(@"[%@ %@] %@ (%@)", NSStringFromClass([self class]), NSStringFromSelector(_cmd), [error localizedDescription], [error localizedFailureReason]);
+    } else {
+        if (self.debug) NSLog(@"[%@ %@] no NSFetchedResultsController (yet?)", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+    }
+    [self.cartItems reloadData];
+}
+
+- (void)setFetchedResultsController:(NSFetchedResultsController *)newfrc
+{
+    NSFetchedResultsController *oldfrc = _fetchedResultsController;
+    if (newfrc != oldfrc) {
+        _fetchedResultsController = newfrc;
+        newfrc.delegate = self;
+        if ((!self.title || [self.title isEqualToString:oldfrc.fetchRequest.entity.name]) && (!self.navigationController || !self.navigationItem.title)) {
+            self.title = newfrc.fetchRequest.entity.name;
+        }
+        if (newfrc) {
+            if (self.debug) NSLog(@"[%@ %@] %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), oldfrc ? @"updated" : @"set");
+            [self performFetch];
+        } else {
+            if (self.debug) NSLog(@"[%@ %@] reset to nil", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+            [self.cartItems reloadData];
+        }
+    }
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+	return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    return [self.fetchedResultsController sectionIndexTitles];
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    if (!self.suspendAutomaticTrackingOfChangesInManagedObjectContext) {
+        [self.cartItems beginUpdates];
+        self.beganUpdates = YES;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller
+  didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+		   atIndex:(NSUInteger)sectionIndex
+	 forChangeType:(NSFetchedResultsChangeType)type
+{
+    if (!self.suspendAutomaticTrackingOfChangesInManagedObjectContext)
+    {
+        switch(type)
+        {
+            case NSFetchedResultsChangeInsert:
+                [self.cartItems insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+                break;
+                
+            case NSFetchedResultsChangeDelete:
+                [self.cartItems deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+                break;
+        }
+    }
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+	   atIndexPath:(NSIndexPath *)indexPath
+	 forChangeType:(NSFetchedResultsChangeType)type
+	  newIndexPath:(NSIndexPath *)newIndexPath
+{
+    if (!self.suspendAutomaticTrackingOfChangesInManagedObjectContext)
+    {
+        switch(type)
+        {
+            case NSFetchedResultsChangeInsert:
+                [self.cartItems insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+                break;
+                
+            case NSFetchedResultsChangeDelete:
+                [self.cartItems deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                break;
+                
+            case NSFetchedResultsChangeUpdate:
+                [self.cartItems reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                break;
+                
+            case NSFetchedResultsChangeMove:
+                [self.cartItems deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [self.cartItems insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+                break;
+        }
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    if (self.beganUpdates) [self.cartItems endUpdates];
+}
+
+- (void)endSuspensionOfUpdatesDueToContextChanges
+{
+    _suspendAutomaticTrackingOfChangesInManagedObjectContext = NO;
+}
+
+- (void)setSuspendAutomaticTrackingOfChangesInManagedObjectContext:(BOOL)suspend
+{
+    if (suspend) {
+        _suspendAutomaticTrackingOfChangesInManagedObjectContext = YES;
+    } else {
+        [self performSelector:@selector(endSuspensionOfUpdatesDueToContextChanges) withObject:0 afterDelay:0];
+    }
+}
 
 @end

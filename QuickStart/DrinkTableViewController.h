@@ -18,6 +18,9 @@
 @property (nonatomic, strong) NSNumber *itemTypeID;
 @property (nonatomic, strong) NSString *itemTypeName;
 
+@property (strong, nonatomic) NSNumber *venueID;
+@property (strong, nonatomic) NSString *venueName;
+
 
 
 @end

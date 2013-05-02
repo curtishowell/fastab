@@ -8,7 +8,6 @@
 
 #import "CoreDataTableViewController.h"
 
-@end
 @interface CoreDataTableViewController()
 @property (nonatomic) BOOL beganUpdates;
 @end
@@ -43,7 +42,7 @@
     } else {
         if (self.debug) NSLog(@"[%@ %@] no NSFetchedResultsController (yet?)", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
     }
-    [self.tableView reloadData];
+    [self.cartItems reloadData];
 }
 
 - (void)setFetchedResultsController:(NSFetchedResultsController *)newfrc
@@ -60,7 +59,7 @@
             [self performFetch];
         } else {
             if (self.debug) NSLog(@"[%@ %@] reset to nil", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
-            [self.tableView reloadData];
+            [self.cartItems reloadData];
         }
     }
 }
@@ -97,7 +96,7 @@
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
     if (!self.suspendAutomaticTrackingOfChangesInManagedObjectContext) {
-        [self.tableView beginUpdates];
+        [self.cartItems beginUpdates];
         self.beganUpdates = YES;
     }
 }
@@ -112,11 +111,11 @@
         switch(type)
         {
             case NSFetchedResultsChangeInsert:
-                [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+                [self.cartItems insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
                 break;
                 
             case NSFetchedResultsChangeDelete:
-                [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+                [self.cartItems deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
                 break;
         }
     }
@@ -134,20 +133,20 @@
         switch(type)
         {
             case NSFetchedResultsChangeInsert:
-                [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [self.cartItems insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
                 break;
                 
             case NSFetchedResultsChangeDelete:
-                [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [self.cartItems deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 break;
                 
             case NSFetchedResultsChangeUpdate:
-                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [self.cartItems reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 break;
                 
             case NSFetchedResultsChangeMove:
-                [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [self.cartItems deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [self.cartItems insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
                 break;
         }
     }
@@ -155,7 +154,7 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    if (self.beganUpdates) [self.tableView endUpdates];
+    if (self.beganUpdates) [self.cartItems endUpdates];
 }
 
 - (void)endSuspensionOfUpdatesDueToContextChanges

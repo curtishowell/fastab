@@ -82,19 +82,43 @@
 {
     if ([segue.identifier isEqualToString:@"DCheckout"]) {
         
-        ItemInCart *item = [[ItemInCart alloc] init];
-        
-        
-        //TODO
-        //add details to item
-        //send item to cart when segueing
-        
-        
-        
         UIViewController *checkout = segue.destinationViewController;
         NSString *venuePlace = self.venue;
         [checkout performSelector:@selector(setVenue:) withObject:venuePlace];
+        
+    } else if ([segue.identifier isEqualToString:@"addDrinkToCart"]) {
+        UITableViewController *cartViewController = segue.destinationViewController;
+        
+        //get the NSDictionary item realating to the selected indexPath
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSDictionary *item = [self.azureConnection.items objectAtIndex:indexPath.row];
+        
+        //get the values out of the dictionary
+        NSNumber *itemID = [item objectForKey:@"id"];
+        NSString *itemName = [[item objectForKey:@"name"] description];
+        NSNumber *price = [NSDecimalNumber decimalNumberWithString:[[item objectForKey:@"price"] description]];
+        
+        NSMutableDictionary *itemDictionary = [[NSMutableDictionary alloc] init];
+        [itemDictionary setObject:itemID forKey:@"itemID"];
+        [itemDictionary setObject:self.itemTypeID forKey:@"itemTypeID"];
+        [itemDictionary setObject:itemName forKey:@"itemName"];
+        [itemDictionary setObject:price forKey:@"price"];
+        [itemDictionary setObject:[NSNumber numberWithInt:1] forKey:@"qty"];
+        [itemDictionary setObject:self.venueName forKey:@"venueName"];
+        [itemDictionary setObject:self.venueID forKey:@"venueID"];
+        
+        
+        //set values in the drink type view controller
+        [cartViewController performSelector:@selector(addItemToCart:)
+                           withObject:itemDictionary];
+        [cartViewController performSelector:@selector(setVenueID:)
+                           withObject:self.venueID];
+        [cartViewController performSelector:@selector(setVenueName:)
+                           withObject:self.venueName];
+
     }
+    
+    
 }
 
 @end
