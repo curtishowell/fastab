@@ -27,6 +27,7 @@
 @property (nonatomic) BOOL beganUpdates;
 
 - (void)setupManagedDocumentContext;
+- (void)addItemToCart;
 
 @end
 
@@ -66,32 +67,44 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     if(!self.managedObjectContext) {
         [self setupManagedDocumentContext];
     }
+    
+    //just to make sure, but should have been setup when the view was loaded
+
+        
 }
 
 - (void)setupManagedDocumentContext {
-    NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentationDirectory inDomains:NSUserDomainMask] lastObject];\
-    url = [url URLByAppendingPathComponent:@"Cart"];
-    UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
-    
-    if(![[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
-        [document saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-            if(success) {
+    if(!self.managedObjectContext){
+        NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+        url = [url URLByAppendingPathComponent:@"Cart"];
+        UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
+        
+        if(![[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+            [document saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+                if(success) {
+                    self.managedObjectContext = document.managedObjectContext;
+                    NSLog(@"successfully set up managed object context");
+                    [self addItemToCart];
+                    
+                }
+            }];
+        } else if(document.documentState == UIDocumentStateClosed) {
+            [document openWithCompletionHandler:^(BOOL success) {
                 self.managedObjectContext = document.managedObjectContext;
-            }
-        }];
-    } else if(document.documentState == UIDocumentStateClosed) {
-        [document openWithCompletionHandler:^(BOOL success) {
+                NSLog(@"successfully set up managed object context");
+                [self addItemToCart];
+                
+            }];
+        } else {//already open
             self.managedObjectContext = document.managedObjectContext;
-
-        }];
-    } else {//already open
-        self.managedObjectContext = document.managedObjectContext;
+            [self addItemToCart];
+        }
     }
 }
-
 
 
 - (void)viewDidLoad
@@ -103,13 +116,14 @@
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
-    _managedObjectContext = managedObjectContext;
-    if(managedObjectContext) {
+    
+    if(managedObjectContext && !_managedObjectContext) {
+        _managedObjectContext = managedObjectContext;
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
-        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES selector:@selector(compare:)]];
         request.predicate = nil; //TODO: filter to only items for the currently-viewed venue
         self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    } else {
+    } else if(!managedObjectContext && _managedObjectContext) {
         self.fetchedResultsController = nil;
     }
 }
@@ -125,30 +139,30 @@
 }
 
 
-- (void)dBConnection {
-    //NSURL *docURL = fileURLWithPath;
-    //UIManagedDocument *tempDocument = [[UIManagedDocument alloc] initWithFileURL:docURL];
-    NSManagedObjectContext *moc = [self managedObjectContext];
-    
-    NSString *aTitle = _barLocation.text;
-    
-    /*
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
- 
-    //NSFetchRequest *request = [[NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
-    //NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@“title” ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-    //request.sortDescriptors = @[sortDescriptor];
- 
-   
-     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"venueName == %@", aTitle];
-    [request setEntity:[NSEntityDescription entityForName:@"ItemInCart" inManagedObjectContext:moc]];
-    [request setPredicate:predicate];
-    
-    NSError *error = nil;
-    cart = [moc executeFetchRequest:request error:&error];
-    */
-}
+//- (void)dBConnection {
+//    //NSURL *docURL = fileURLWithPath;
+//    //UIManagedDocument *tempDocument = [[UIManagedDocument alloc] initWithFileURL:docURL];
+//    NSManagedObjectContext *moc = [self managedObjectContext];
+//    
+//    NSString *aTitle = _barLocation.text;
+//    
+//    /*
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+// 
+//    //NSFetchRequest *request = [[NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
+//    //NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@“title” ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+//    //request.sortDescriptors = @[sortDescriptor];
+// 
+//   
+//     
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"venueName == %@", aTitle];
+//    [request setEntity:[NSEntityDescription entityForName:@"ItemInCart" inManagedObjectContext:moc]];
+//    [request setPredicate:predicate];
+//    
+//    NSError *error = nil;
+//    cart = [moc executeFetchRequest:request error:&error];
+//    */
+//}
 
 
 /*implemented in boilerplate code below
@@ -161,14 +175,19 @@
     return 3;
 }*/
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"drinkItem"];
     
     ItemInCart *itemInCart = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    cell.textLabel.text = itemInCart.name; 
+    NSString *tempItemName = itemInCart.name;
+    NSString *tempItemdesc = [itemInCart.qty stringValue];
+    
+    cell.textLabel.text = itemInCart.name;
+    cell.detailTextLabel.text = [itemInCart.qty stringValue];
 
  
     
@@ -212,45 +231,60 @@
     return cell;
 }
 
-- (void)addItemToCart:(NSMutableDictionary *)item
+- (void)addItemToCart
 {
-    
-    //make sure managed document object context is open for writing
-    [self setupManagedDocumentContext];
+    if(self.tempItem){
         
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES]]; //remove is this is optional- test!
     
-    //see if that item is already in the cart
-    request.predicate = [NSPredicate predicateWithFormat:@"itemID = %@", [item objectForKey:@"itemID"]];
-    
-    NSError *error = nil;
-    NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
-    
-    
-    //LOOOOOKKKK HEERRREEEEEEE!!!!!!!!!!
-    
-    if (!matches || [matches count] > 1) {
-        //handle error?
-    } else if (![matches count]){
-        //Item doesn't yet exist - add the item to the cart
+        NSMutableDictionary *item = self.tempItem;
+        self.tempItem = nil; //so the temp item is only added to the cart once
         
-        ItemInCart *cdItem = [NSEntityDescription insertNewObjectForEntityForName:@"ItemInCart"
-                                                           inManagedObjectContext:self.managedObjectContext];
+        //make sure managed document object context is open for writing
+        
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
+        //request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES]]; //remove is this is optional- test!
+        
+        //see if that item is already in the cart
+        NSLog(@"itemID is %@", [item objectForKey:@"itemID"]);
+        //request.predicate = [NSPredicate predicateWithFormat:@"itemID = %@", [item objectForKey:@"itemID"]];
+        request.predicate = [NSPredicate predicateWithFormat:@"itemID = %d", [[item objectForKey:@"itemID"] intValue]];
+        
+        NSError *error = nil;
+        NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
+        
+        
+        //LOOOOOKKKK HEERRREEEEEEE!!!!!!!!!!
+        
+        if (!matches || [matches count] > 1) {
+            //handle error?
+        } else if (![matches count]){
+            //Item doesn't yet exist - add the item to the cart
+            
+            ItemInCart *cdItem = [NSEntityDescription insertNewObjectForEntityForName:@"ItemInCart"
+                                                               inManagedObjectContext:self.managedObjectContext];
 
-        cdItem.itemID = [item objectForKey:@"itemID"];
-        cdItem.itemType = [item objectForKey:@"itemTypeID"];
-        cdItem.name = [item objectForKey:@"itemName"];
-        cdItem.price = [item objectForKey:@"price"];
-        cdItem.qty = [item objectForKey:@"qty"];
-        cdItem.venueName = [item objectForKey:@"venueName"];
-        cdItem.venueID = [item objectForKey:@"venueID"];
-        
-        
-    } else {
-        //add 1 to the existingItems's qty
-        ItemInCart *existingItem = [matches lastObject];
-        existingItem.qty = [NSNumber numberWithInt:[existingItem.qty integerValue] + 1]; //make sure this is updating the object in the core data cart
+            cdItem.itemID = [item objectForKey:@"itemID"];
+            cdItem.itemType = [item objectForKey:@"itemTypeID"];
+            cdItem.name = [item objectForKey:@"itemName"];
+            cdItem.price = [item objectForKey:@"price"];
+            cdItem.qty = [item objectForKey:@"qty"];
+            cdItem.venueName = [item objectForKey:@"venueName"];
+            cdItem.venueID = [item objectForKey:@"venueID"];
+            
+            int matchesCount = [matches count];
+            
+            //[self.cartItems reloadData];
+            
+            
+        } else {
+            //add 1 to the existingItems's qty
+            ItemInCart *existingItem = [matches lastObject];
+            int existingQty = [existingItem.qty integerValue];
+            int updatedValue = existingQty + 1;
+            existingItem.qty = [NSNumber numberWithInt:updatedValue]; //make sure this is updating the object in the core data cart
+            int temp = [existingItem.qty integerValue];
+            //[self.cartItems reloadData];
+        }
     }
 }
 

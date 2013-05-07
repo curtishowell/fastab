@@ -109,7 +109,7 @@
         
         
         //set values in the drink type view controller
-        [cartViewController performSelector:@selector(addItemToCart:)
+        [cartViewController performSelector:@selector(setTempItem:)
                            withObject:itemDictionary];
         [cartViewController performSelector:@selector(setVenueID:)
                            withObject:self.venueID];

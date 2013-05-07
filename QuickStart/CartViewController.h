@@ -19,10 +19,10 @@
 @property (strong, nonatomic) NSString *venueName;
 @property (strong, nonatomic) NSNumber *venueID;
 
-- (void)addItemToCart:(NSMutableDictionary *)item;
-
 // The controller (this class fetches nothing if this is not set).
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
+@property (strong, nonatomic) NSMutableDictionary *tempItem;
 
 // Causes the fetchedResultsController to refetch the data.
 // You almost certainly never need to call this.

@@ -25,6 +25,7 @@
 		03487A0E16117A9B002D0B52 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03487A0C16117A9B002D0B52 /* MainStoryboard_iPad.storyboard */; };
 		03487A1316117C5F002D0B52 /* TodoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03487A1216117C5F002D0B52 /* TodoListController.m */; };
 		039AB33F1614AD7200F0915A /* TodoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 039AB33E1614AD7200F0915A /* TodoService.m */; };
+		415EE88D1733513500F56B3B /* TestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 415EE88C1733513500F56B3B /* TestingViewController.m */; };
 		41F592F9172F181600D641D6 /* ItemInCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F592F8172F181600D641D6 /* ItemInCart.m */; };
 		490C6CBF17271BE9007EE30B /* CartItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C6CBE17271BE9007EE30B /* CartItems.m */; };
 		490C6CC2172798C8007EE30B /* cartItem.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 490C6CC0172798C8007EE30B /* cartItem.xcdatamodeld */; };
@@ -126,6 +127,8 @@
 		03487A1216117C5F002D0B52 /* TodoListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoListController.m; sourceTree = "<group>"; };
 		039AB33D1614AD7200F0915A /* TodoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoService.h; sourceTree = "<group>"; };
 		039AB33E1614AD7200F0915A /* TodoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoService.m; sourceTree = "<group>"; };
+		415EE88B1733513500F56B3B /* TestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestingViewController.h; path = QuickStart/TestingViewController.h; sourceTree = SOURCE_ROOT; };
+		415EE88C1733513500F56B3B /* TestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestingViewController.m; path = QuickStart/TestingViewController.m; sourceTree = SOURCE_ROOT; };
 		41F592F7172F181600D641D6 /* ItemInCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemInCart.h; path = QuickStart/ItemInCart.h; sourceTree = SOURCE_ROOT; };
 		41F592F8172F181600D641D6 /* ItemInCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemInCart.m; path = QuickStart/ItemInCart.m; sourceTree = SOURCE_ROOT; };
 		490C6CBD17271BE9007EE30B /* CartItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartItems.h; path = QuickStart/CartItems.h; sourceTree = SOURCE_ROOT; };
@@ -280,6 +283,8 @@
 			isa = PBXGroup;
 			children = (
 				03487A0B16117A9B002D0B52 /* MainStoryboard_iPhone.storyboard */,
+				415EE88B1733513500F56B3B /* TestingViewController.h */,
+				415EE88C1733513500F56B3B /* TestingViewController.m */,
 				490C6CBD17271BE9007EE30B /* CartItems.h */,
 				490C6CBE17271BE9007EE30B /* CartItems.m */,
 				E641BCDB1722B4E200B4086D /* PaymentViewController.h */,
@@ -628,6 +633,7 @@
 				490C6CC2172798C8007EE30B /* cartItem.xcdatamodeld in Sources */,
 				490C6CC81727A4A1007EE30B /* CoreDataTableViewController.m in Sources */,
 				41F592F9172F181600D641D6 /* ItemInCart.m in Sources */,
+				415EE88D1733513500F56B3B /* TestingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
