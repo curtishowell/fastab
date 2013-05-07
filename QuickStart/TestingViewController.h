@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemInCart.h"
+#import <Foundation/Foundation.h>
+#import "CoreDataTableViewController.h"
 
 @interface TestingViewController : UIViewController
+
 
 @end

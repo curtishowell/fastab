@@ -26,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *cartItems;
 @property (nonatomic) BOOL beganUpdates;
 
+//temp
+@property (strong, nonatomic) UIManagedDocument *document;
+
 - (void)setupManagedDocumentContext;
 - (void)addItemToCart;
 
@@ -38,7 +41,6 @@
 @synthesize tip;
 @synthesize subtotal;
 @synthesize total;
-
 
 /*
  //Logic for core data (aka what needs to get done for the core data shit)
@@ -68,6 +70,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    //[self setupManagedDocumentContext];
+    
     if(!self.managedObjectContext) {
         [self setupManagedDocumentContext];
     }
@@ -81,27 +85,31 @@
     if(!self.managedObjectContext){
         NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
         url = [url URLByAppendingPathComponent:@"Cart"];
-        UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
+        // UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
+        _document = [[UIManagedDocument alloc] initWithFileURL:url];
         
         if(![[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
-            [document saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+            [_document saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
                 if(success) {
-                    self.managedObjectContext = document.managedObjectContext;
+                    self.managedObjectContext = _document.managedObjectContext;
                     NSLog(@"successfully set up managed object context");
                     [self addItemToCart];
+                    //[self.cartItems reloadData];
                     
                 }
             }];
-        } else if(document.documentState == UIDocumentStateClosed) {
-            [document openWithCompletionHandler:^(BOOL success) {
-                self.managedObjectContext = document.managedObjectContext;
+        } else if(_document.documentState == UIDocumentStateClosed) {
+            [_document openWithCompletionHandler:^(BOOL success) {
+                self.managedObjectContext = _document.managedObjectContext;
                 NSLog(@"successfully set up managed object context");
                 [self addItemToCart];
+                //[self.cartItems reloadData];
                 
             }];
         } else {//already open
-            self.managedObjectContext = document.managedObjectContext;
+            self.managedObjectContext = _document.managedObjectContext;
             [self addItemToCart];
+            //[self.cartItems reloadData];
         }
     }
 }
@@ -233,6 +241,9 @@
 
 - (void)addItemToCart
 {
+    NSManagedObjectContext *moc = self.managedObjectContext;
+    
+    //if there is an object stored in the temp item
     if(self.tempItem){
         
     
@@ -241,16 +252,28 @@
         
         //make sure managed document object context is open for writing
         
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
+        //NSManagedObjectContext *moc = [self managedObjectContext];
+        
+        
+        NSFetchRequest *request= [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"ItemInCart" inManagedObjectContext: moc];
+        [request setEntity:entity];
+        
+        
+        //NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
         //request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES]]; //remove is this is optional- test!
         
         //see if that item is already in the cart
         NSLog(@"itemID is %@", [item objectForKey:@"itemID"]);
+        int temp = [[item objectForKey:@"itemID"] intValue];
+        NSArray *idList = [NSArray arrayWithObjects:[NSNumber numberWithInt:temp], nil];
         //request.predicate = [NSPredicate predicateWithFormat:@"itemID = %@", [item objectForKey:@"itemID"]];
-        request.predicate = [NSPredicate predicateWithFormat:@"itemID = %d", [[item objectForKey:@"itemID"] intValue]];
+        //request.predicate = [NSPredicate predicateWithFormat:@"itemID == %d", [[item objectForKey:@"itemID"] intValue]];
+        request.predicate = [NSPredicate predicateWithFormat:@"itemID IN %@", idList];
         
         NSError *error = nil;
-        NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
+        //self.managedObjectContext
+        NSArray *matches = [moc executeFetchRequest:request error:&error];
         
         
         //LOOOOOKKKK HEERRREEEEEEE!!!!!!!!!!
@@ -260,6 +283,7 @@
         } else if (![matches count]){
             //Item doesn't yet exist - add the item to the cart
             
+            //
             ItemInCart *cdItem = [NSEntityDescription insertNewObjectForEntityForName:@"ItemInCart"
                                                                inManagedObjectContext:self.managedObjectContext];
 
@@ -273,9 +297,6 @@
             
             int matchesCount = [matches count];
             
-            //[self.cartItems reloadData];
-            
-            
         } else {
             //add 1 to the existingItems's qty
             ItemInCart *existingItem = [matches lastObject];
@@ -283,9 +304,31 @@
             int updatedValue = existingQty + 1;
             existingItem.qty = [NSNumber numberWithInt:updatedValue]; //make sure this is updating the object in the core data cart
             int temp = [existingItem.qty integerValue];
-            //[self.cartItems reloadData];
         }
     }
+    
+    //THE MONEY RIGHT HERE!!!!
+    
+    [_document saveToURL:_document.fileURL
+            forSaveOperation:UIDocumentSaveForOverwriting
+           completionHandler:^(BOOL success) {
+               if (success) {
+                   NSLog(@"saved");
+               } else {
+                   NSLog(@"unable to save");
+               }
+           }];
+    
+    /*
+    // NEVER USE THIS THING AGAIN
+    NSError *error = nil;
+    BOOL success = [moc save:&error];
+    if (!success) {
+        // do error handling here.
+        NSLog(@"Boo");
+    }
+    self.managedObjectContext = moc;
+    */
 }
 
 - (IBAction)tipChange:(UISegmentedControl *)sender {
@@ -423,6 +466,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+    //return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

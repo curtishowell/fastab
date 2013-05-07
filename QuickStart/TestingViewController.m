@@ -7,9 +7,11 @@
 //
 
 #import "TestingViewController.h"
+#import "ItemInCart.h"
+#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import <Foundation/Foundation.h>
 
 @interface TestingViewController ()
-
 @end
 
 @implementation TestingViewController
@@ -43,6 +45,7 @@
         [cartViewController performSelector:@selector(setVenueName:)
                                  withObject:@"test venue"];
         
+        
     } else if([segue.identifier isEqualToString:@"item2ToCart"]) {
         
         UITableViewController *cartViewController = segue.destinationViewController;
@@ -66,8 +69,11 @@
         [cartViewController performSelector:@selector(setVenueName:)
                                  withObject:@"test venue"];
         
+        
     }
 }
+
+
 
 
 @end

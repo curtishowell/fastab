@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "CoreDataTableViewController.h"
 
-@interface DrinkTableViewController : UITableViewController
+@interface DrinkTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSArray *drinkTypeListing; //List of drink types per bar
 @property (nonatomic, strong) NSArray *specificDrinks; //List of specific drinks for a type
@@ -21,6 +23,16 @@
 @property (strong, nonatomic) NSNumber *venueID;
 @property (strong, nonatomic) NSString *venueName;
 
+//Temp placing for testing
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSMutableDictionary *tempItem;
+
+- (void)performFetch;
+
+@property (nonatomic) BOOL suspendAutomaticTrackingOfChangesInManagedObjectContext;
+
+@property BOOL debug;
 
 
 @end
