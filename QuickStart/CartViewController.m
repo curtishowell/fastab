@@ -194,10 +194,19 @@
     NSString *tempItemName = itemInCart.name;
     NSString *tempItemdesc = [itemInCart.qty stringValue];
     
+    //Set the labels for each table cell
     cell.textLabel.text = itemInCart.name;
     cell.detailTextLabel.text = [itemInCart.qty stringValue];
 
- 
+    //Setting the subtotal and total prices
+    NSDecimalNumber *drinkRowPrice = itemInCart.price;
+    NSDecimalNumber *drinkRowQuantity = [NSDecimalNumber decimalNumberWithString:[itemInCart.qty stringValue]];
+    NSDecimalNumber *drinkRowTotal = [drinkRowPrice decimalNumberByMultiplyingBy: drinkRowQuantity];
+    NSDecimalNumber *tempTotal = [drinkRowTotal decimalNumberByAdding: total];
+    total = tempTotal;
+    subtotal = tempTotal;
+    _subtotalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
+    _totalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
     
     
     //This will grab the index/row for the NSIndexPath to be used to find the appropriate value in the array of cartItems.
