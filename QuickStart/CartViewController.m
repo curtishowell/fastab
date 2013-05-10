@@ -10,6 +10,7 @@
 #import "ItemInCart.h"
 #import "DrinkTypeTVC.h"
 #import <Foundation/Foundation.h>
+#import "AzureConnection.h"
 
 @interface CartViewController ()
 
@@ -29,6 +30,11 @@
 //temp
 @property (strong, nonatomic) UIManagedDocument *document;
 
+//Azure Connections
+@property (strong, nonatomic) AzureConnection *azureOrders;
+@property (strong, nonatomic) AzureConnection *azureOrderItems;
+
+
 - (void)setupManagedDocumentContext;
 - (void)addItemToCart;
 
@@ -41,31 +47,6 @@
 @synthesize tip;
 @synthesize subtotal;
 @synthesize total;
-
-/*
- //Logic for core data (aka what needs to get done for the core data shit)
- 1) Create the Core Data Model
- 2) Establish a Table for cartItems
- 3) Add in the attributes (item_Name, price, item_Type, Quantity, item_ID)
- 4) Create NSManaged Object out of the table
- 5) Connect the managed object into this file. 
- 6) WORK SOME MAGIC SHIT
-    a) Query the local "database" for the content (array of cartItems)
-    b) In the "cellForRowAtIndexPath" method, will 
-*/
-
-
-
-//- (NSMutableArray *)cart
-//{
-//    if(! _cart){
-//        _cart = [[NSMutableArray alloc] init];
-//        
-//        //put a couple line items in the array
-//        [self fillLineItems];
-//    }
-//    return _cart;
-//}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -129,8 +110,14 @@
         _managedObjectContext = managedObjectContext;
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
         request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES selector:@selector(compare:)]];
-        request.predicate = nil; //TODO: filter to only items for the currently-viewed venue
-        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        
+        request.predicate = [NSPredicate predicateWithFormat:@"venueID = %d", [self.venueID intValue]];
+        //request.predicate = nil; //TODO: filter to only items for the currently-viewed venue
+        
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                            managedObjectContext:managedObjectContext
+                                                                              sectionNameKeyPath:nil
+                                                                                       cacheName:nil];
     } else if(!managedObjectContext && _managedObjectContext) {
         self.fetchedResultsController = nil;
     }
@@ -140,48 +127,14 @@
     //Initializing the subtotal and total content.
     //Change this code later to sum and incorporate the total of items in the cart
     
-    subtotal = [NSDecimalNumber decimalNumberWithString:@"0.00"];
-    total = [NSDecimalNumber decimalNumberWithString:@"0.00"];
+    self.subtotal = [NSDecimalNumber decimalNumberWithString:@"0.00"];
+    self.tip = [NSDecimalNumber decimalNumberWithString:@"0.00"];
+    self.total = [NSDecimalNumber decimalNumberWithString:@"0.00"];
     //_subtotalLabel.text = [NSString stringWithFormat:@"$%@", subtotal];
     //_totalLabel.text = [NSString stringWithFormat:@"$%@", subtotal];
 }
 
 
-//- (void)dBConnection {
-//    //NSURL *docURL = fileURLWithPath;
-//    //UIManagedDocument *tempDocument = [[UIManagedDocument alloc] initWithFileURL:docURL];
-//    NSManagedObjectContext *moc = [self managedObjectContext];
-//    
-//    NSString *aTitle = _barLocation.text;
-//    
-//    /*
-//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-// 
-//    //NSFetchRequest *request = [[NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
-//    //NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@“title” ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-//    //request.sortDescriptors = @[sortDescriptor];
-// 
-//   
-//     
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"venueName == %@", aTitle];
-//    [request setEntity:[NSEntityDescription entityForName:@"ItemInCart" inManagedObjectContext:moc]];
-//    [request setPredicate:predicate];
-//    
-//    NSError *error = nil;
-//    cart = [moc executeFetchRequest:request error:&error];
-//    */
-//}
-
-
-/*implemented in boilerplate code below
- - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    //Used to get the size of the cart so we know how many rows to make
-    //NSInteger *size = [cart count];
-    
-    //Temporarily creating a predetermined amount
-    return 3;
-}*/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -197,8 +150,6 @@
     //Set the labels for each table cell
     cell.textLabel.text = itemInCart.name;
     cell.detailTextLabel.text = [itemInCart.qty stringValue];
-
-    //Setting the subtotal and total prices
     NSDecimalNumber *drinkRowPrice = itemInCart.price;
     NSDecimalNumber *drinkRowQuantity = [NSDecimalNumber decimalNumberWithString:[itemInCart.qty stringValue]];
     NSDecimalNumber *drinkRowTotal = [drinkRowPrice decimalNumberByMultiplyingBy: drinkRowQuantity];
@@ -207,44 +158,7 @@
     subtotal = tempTotal;
     _subtotalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
     _totalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
-    
-    
-    //This will grab the index/row for the NSIndexPath to be used to find the appropriate value in the array of cartItems.
-    //NSInteger spot = indexPath.row;
-    
-    /*static NSString *CellIdentifier = @"drinkItem";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    }
-    
-    cell.textLabel.textColor = [UIColor blackColor];
-    
-    //need to change the string we send in to objectForKey
-    //cell.textLabel.text = [item objectForKey:@"name"];
-    
-    NSInteger middle = cell.frame.size.width / 2;
-    //We change these two quantities to the name and price of the object once we get access to the data model
-    cell.detailTextLabel.text = @"$4.99";
-    cell.textLabel.text = @"Panda (x1)";
-    
-    //We change the price here too
-    NSDecimalNumber *addToTotal = [NSDecimalNumber decimalNumberWithString:@"4.99"];
-    NSDecimalNumber *tempTotal = [addToTotal decimalNumberByAdding: total];
-    total = tempTotal;
-    subtotal = tempTotal;
-    _subtotalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
-    _totalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
-    
-    */
-    /*
-    //Here is a way to add another view that could potentially hold the text for quantity.
-    //However, problem that occurred is that once placed, it stays permanenet, and thus when we scroll, it overalaps with the other "quantity" labels that are placed below lower in the list
-    UILabel *labelOne = [[UILabel alloc]initWithFrame:CGRectMake(middle,cell.textLabel.frame.origin.y , 80, 20)];
-    labelOne.text = @"Left";
-    [cell.contentView addSubview:labelOne];
-    */
-     
+         
     return cell;
 }
 
@@ -318,6 +232,8 @@
     
     //THE MONEY RIGHT HERE!!!!
     
+    //soooooo sexy
+    
     [_document saveToURL:_document.fileURL
             forSaveOperation:UIDocumentSaveForOverwriting
            completionHandler:^(BOOL success) {
@@ -384,6 +300,82 @@
     tipPercentages = @[index0, index1, index2];
     return [tipPercentages objectAtIndex:index];
 }
+
+
+
+
+- (IBAction)sendOrder:(id)sender {
+    
+    //TODO: make sure user is logged in and has a Stripe user ID in their account
+    
+    //TODO: add progress spinning UI
+    
+    
+    // Create the connections to Azure - this creates the Mobile Service client inside the wrapped service
+    self.azureOrders = [[AzureConnection alloc] initWithTableName: @"Order"];
+    self.azureOrderItems = [[AzureConnection alloc] initWithTableName: @"OrderItem"];
+    
+    
+    NSDictionary *order = @{ @"status" : @"placed", @"subtotal" : self.subtotal, @"tip" : self.tip, @"total" : self.total, @"venueID" : self.venueID };
+	
+	UIViewController *viewController = self; //used fore segueing
+	
+    [self.azureOrders addItem:order completion:^(NSUInteger index){
+        
+        //TODO: kill progress and connection UIs
+        
+		NSLog(@"Order successfully created");
+        
+        int orderItemsCount = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+        
+        NSNumber *orderNumber = [[self.azureOrders.items objectAtIndex:index] objectForKey:@"id"];
+        
+        for(int i = 0; i < orderItemsCount; i ++) {
+            
+            
+            
+            NSLog(@"building 1 orderItem");
+            
+            //ItemInCart *itemInCart = [[[self.fetchedResultsController sections] objectAtIndex:0] objectAtIndex:i];
+            
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+            
+            ItemInCart *itemInCart = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            
+            NSDictionary *orderItem = @{ @"orderID" : orderNumber, @"itemID" : itemInCart.itemID, @"qty" : itemInCart.qty, @"price" : itemInCart.price };
+            
+            [self.azureOrderItems addItem:orderItem completion:^(NSUInteger index){
+                NSLog(@"saved 1 orderItem");
+            }];
+            
+        }
+        
+        
+ 
+
+        
+        
+        
+        
+		//when all orderitems have been added successfully, segoe to the waiting for order view
+//		dispatch_async(dispatch_get_main_queue(), ^{
+//			[viewController performSegueWithIdentifier:@"PaymentToBarList" sender:viewController];
+//		});
+        
+        
+    }];
+
+    
+    //TODO: create order
+    
+    //TODO: add orderItems once we have the order #
+    
+    //TODO: success- take to waiting for item page
+    
+
+}
+
+
 
 /*
 - (void) fillLineItems
@@ -475,7 +467,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
-    //return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

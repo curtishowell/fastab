@@ -134,57 +134,6 @@
     
 }
 
-/*
- 
- 
-where did this implementation come from? Patrick, did you write this?
- 
- 
- -(void) addItem:(NSDictionary *)item
-     completion:(CompletionWithIndexBlock)completion
-{
-    // TODO
-    // Insert the item into the TodoItem table and add to the items array on completion
-    [self.table insert:item completion:^(NSDictionary *result, NSError *error) {
-        NSUInteger index = [items count];
-        [(NSMutableArray *)items insertObject:item atIndex:index];
-        
-        [self logErrorIfNotNil:error];
-        BOOL goodRequest = !((error) && (error.code == MSErrorMessageErrorCode));
-        
-        // detect text validation error from service.
-        if (goodRequest) // The service responded appropriately
-        {
-            NSUInteger index = [items count];
-            [(NSMutableArray *)items insertObject:result atIndex:index];
-            
-            // Let the caller know that we finished
-            completion(index);
-        }
-        else{
-            
-            // if there's an error that came from the service
-            // log it, and popup up the returned string.
-            if (error && error.code == MSErrorMessageErrorCode) {
-                NSLog(@"ERROR %@", error);
-                UIAlertView *av =
-                [[UIAlertView alloc]
-                 initWithTitle:@"Request Failed"
-                 message:error.localizedDescription
-                 delegate:nil
-                 cancelButtonTitle:@"OK"
-                 otherButtonTitles:nil
-                 ];
-                [av show];
-            }
-        }
-        
-        
-        // Let the caller know that we finished
-        completion(index);
-        
-    }];
-}*/
 
 -(void)addItem:(NSDictionary *)item
     completion:(CompletionWithIndexBlock)completion

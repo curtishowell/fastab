@@ -1,5 +1,5 @@
 #import "DrinkTypeTVC.h"
-#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+//#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 #import "AzureConnection.h"
 
 @interface DrinkTypeTVC ()

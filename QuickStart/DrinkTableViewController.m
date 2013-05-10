@@ -86,7 +86,11 @@
         
         UIViewController *checkout = segue.destinationViewController;
         NSString *venuePlace = self.venue;
-        [checkout performSelector:@selector(setVenue:) withObject:venuePlace];
+        
+        [checkout performSelector:@selector(setVenueID:)
+                                 withObject:self.venueID];
+        [checkout performSelector:@selector(setVenueName:)
+                                 withObject:self.venueName];
         
     } else if ([segue.identifier isEqualToString:@"addDrinkToCart"]) {
         UITableViewController *cartViewController = segue.destinationViewController;
