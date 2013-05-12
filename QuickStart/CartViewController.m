@@ -286,8 +286,8 @@
                                                                                        raiseOnOverflow:NO
                                                                                       raiseOnUnderflow:NO
                                                                                    raiseOnDivideByZero:NO];
-        tip = [tipPercent decimalNumberByMultiplyingBy:subtotal withBehavior:handler];
-        total = [subtotal decimalNumberByAdding:tip];
+        self.tip = [tipPercent decimalNumberByMultiplyingBy:subtotal withBehavior:handler];
+        self.total = [subtotal decimalNumberByAdding:tip];
         
         //set the tip and total amounts
         NSString* currencyString = [NSNumberFormatter
