@@ -8,7 +8,6 @@
 
 #import "SplashViewController.h"
 #import "AuthenticationViewController.h"
-#import "TodoService.h"
 @interface SplashViewController ()
 
 @end

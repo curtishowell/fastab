@@ -11,6 +11,7 @@
 #import "DrinkTypeTVC.h"
 #import <Foundation/Foundation.h>
 #import "AzureConnection.h"
+#import "QuartzCore/QuartzCore.h"
 
 @interface CartViewController ()
 
@@ -18,12 +19,9 @@
 @property (strong, nonatomic) NSDecimalNumber *tip;
 @property (strong, nonatomic) NSDecimalNumber *total;
 
-@property (strong, nonatomic) NSMutableArray *cart; //of ItemInCart
+//@property (strong, nonatomic) NSMutableArray *cart; //of ItemInCart
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
-@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
-@property (weak, nonatomic) IBOutlet UILabel *subtotalLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipControl;
-@property (weak, nonatomic) IBOutlet UILabel *barLocation;
 @property (weak, nonatomic) IBOutlet UITableView *cartItems;
 @property (nonatomic) BOOL beganUpdates;
 
@@ -34,19 +32,34 @@
 @property (strong, nonatomic) AzureConnection *azureOrders;
 @property (strong, nonatomic) AzureConnection *azureOrderItems;
 
+//activity view properties
+@property (nonatomic, retain) UIActivityIndicatorView * activityView;
+@property (nonatomic, retain) UIView *loadingView;
+@property (nonatomic, retain) UILabel *loadingLabel;
+
+//managed object context
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
 
 - (void)setupManagedDocumentContext;
 - (void)addItemToCart;
+- (void)clearCart;
+- (void)completeOrder;
+- (void)saveManagedObjectContext;
 
 @end
 
 @implementation CartViewController
 
-@synthesize cart;
+//@synthesize cart;
 @synthesize tipControl;
 @synthesize tip;
 @synthesize subtotal;
 @synthesize total;
+@synthesize activityView;
+@synthesize loadingLabel;
+@synthesize loadingView;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -100,7 +113,7 @@
 {
     [super viewDidLoad];
     //change the name of the text label *barLocation
-    _barLocation.text = self.venueName;
+    self.navigationItem.title = self.venueName;
     [self initialSetup];
 }
 
@@ -130,8 +143,6 @@
     self.subtotal = [NSDecimalNumber decimalNumberWithString:@"0.00"];
     self.tip = [NSDecimalNumber decimalNumberWithString:@"0.00"];
     self.total = [NSDecimalNumber decimalNumberWithString:@"0.00"];
-    //_subtotalLabel.text = [NSString stringWithFormat:@"$%@", subtotal];
-    //_totalLabel.text = [NSString stringWithFormat:@"$%@", subtotal];
 }
 
 
@@ -144,20 +155,31 @@
     
     ItemInCart *itemInCart = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    NSString *tempItemName = itemInCart.name;
-    NSString *tempItemdesc = [itemInCart.qty stringValue];
+    //Set the labels for each table cell OLD, NON-CUSTOM CELLS
+    //cell.textLabel.text = itemInCart.name;
+    //cell.detailTextLabel.text = [itemInCart.qty stringValue];
     
-    //Set the labels for each table cell
-    cell.textLabel.text = itemInCart.name;
-    cell.detailTextLabel.text = [itemInCart.qty stringValue];
+    
     NSDecimalNumber *drinkRowPrice = itemInCart.price;
     NSDecimalNumber *drinkRowQuantity = [NSDecimalNumber decimalNumberWithString:[itemInCart.qty stringValue]];
     NSDecimalNumber *drinkRowTotal = [drinkRowPrice decimalNumberByMultiplyingBy: drinkRowQuantity];
     NSDecimalNumber *tempTotal = [drinkRowTotal decimalNumberByAdding: total];
+    
+    
+    //set labels in the cell using the custom cell
+    UILabel *label;
+    label = (UILabel *)[cell viewWithTag:1];
+    label.text = [NSString stringWithFormat:@"%@", itemInCart.name];
+    
+    label = (UILabel *)[cell viewWithTag:2];
+    label.text = [NSString stringWithFormat:@"%@ @ $%@", itemInCart.qty, itemInCart.price];
+    
+    label = (UILabel *)[cell viewWithTag:3];
+    label.text = [NSString stringWithFormat:@"$%@", drinkRowTotal];
+    
     total = tempTotal;
     subtotal = tempTotal;
-    _subtotalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
-    _totalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
+    self.totalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
          
     return cell;
 }
@@ -173,40 +195,28 @@
         NSMutableDictionary *item = self.tempItem;
         self.tempItem = nil; //so the temp item is only added to the cart once
         
-        //make sure managed document object context is open for writing
-        
-        //NSManagedObjectContext *moc = [self managedObjectContext];
-        
         
         NSFetchRequest *request= [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"ItemInCart" inManagedObjectContext: moc];
         [request setEntity:entity];
         
-        
-        //NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemInCart"];
-        //request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES]]; //remove is this is optional- test!
-        
         //see if that item is already in the cart
         NSLog(@"itemID is %@", [item objectForKey:@"itemID"]);
         int temp = [[item objectForKey:@"itemID"] intValue];
         NSArray *idList = [NSArray arrayWithObjects:[NSNumber numberWithInt:temp], nil];
-        //request.predicate = [NSPredicate predicateWithFormat:@"itemID = %@", [item objectForKey:@"itemID"]];
-        //request.predicate = [NSPredicate predicateWithFormat:@"itemID == %d", [[item objectForKey:@"itemID"] intValue]];
+
         request.predicate = [NSPredicate predicateWithFormat:@"itemID IN %@", idList];
         
         NSError *error = nil;
         //self.managedObjectContext
         NSArray *matches = [moc executeFetchRequest:request error:&error];
         
-        
-        //LOOOOOKKKK HEERRREEEEEEE!!!!!!!!!!
-        
+                
         if (!matches || [matches count] > 1) {
             //handle error?
         } else if (![matches count]){
             //Item doesn't yet exist - add the item to the cart
             
-            //
             ItemInCart *cdItem = [NSEntityDescription insertNewObjectForEntityForName:@"ItemInCart"
                                                                inManagedObjectContext:self.managedObjectContext];
 
@@ -218,7 +228,6 @@
             cdItem.venueName = [item objectForKey:@"venueName"];
             cdItem.venueID = [item objectForKey:@"venueID"];
             
-            int matchesCount = [matches count];
             
         } else {
             //add 1 to the existingItems's qty
@@ -226,15 +235,15 @@
             int existingQty = [existingItem.qty integerValue];
             int updatedValue = existingQty + 1;
             existingItem.qty = [NSNumber numberWithInt:updatedValue]; //make sure this is updating the object in the core data cart
-            int temp = [existingItem.qty integerValue];
         }
     }
-    
-    //THE MONEY RIGHT HERE!!!!
-    
-    //soooooo sexy
-    
-    [_document saveToURL:_document.fileURL
+        
+    [self saveManagedObjectContext];
+
+}
+
+- (void)saveManagedObjectContext {
+    [self.document saveToURL:self.document.fileURL
             forSaveOperation:UIDocumentSaveForOverwriting
            completionHandler:^(BOOL success) {
                if (success) {
@@ -243,17 +252,6 @@
                    NSLog(@"unable to save");
                }
            }];
-    
-    /*
-    // NEVER USE THIS THING AGAIN
-    NSError *error = nil;
-    BOOL success = [moc save:&error];
-    if (!success) {
-        // do error handling here.
-        NSLog(@"Boo");
-    }
-    self.managedObjectContext = moc;
-    */
 }
 
 - (IBAction)tipChange:(UISegmentedControl *)sender {
@@ -286,9 +284,7 @@
         total = [subtotal decimalNumberByAdding:tip];
         
         //set the tip and total amounts
-        _subtotalLabel.text = [NSString stringWithFormat:@"$%@", subtotal];
-        _tipLabel.text = [NSString stringWithFormat:@"$%@", tip];
-        _totalLabel.text = [NSString stringWithFormat:@"$%@",total];
+        self.totalLabel.text = [NSString stringWithFormat:@"$%@",total];
     }
 }
 
@@ -297,38 +293,98 @@
     NSDecimalNumber *index0 = [NSDecimalNumber decimalNumberWithString:@"0.0"];
     NSDecimalNumber *index1 = [NSDecimalNumber decimalNumberWithString:@"0.15"];
     NSDecimalNumber *index2 = [NSDecimalNumber decimalNumberWithString:@"0.20"];
-    tipPercentages = @[index0, index1, index2];
+    NSDecimalNumber *index3 = [NSDecimalNumber decimalNumberWithString:@"0.25"];
+    tipPercentages = @[index0, index1, index2, index3];
     return [tipPercentages objectAtIndex:index];
 }
 
-
+- (void)showActivityIndicator {
+	
+	loadingView = [[UIView alloc] initWithFrame:CGRectMake(75, 120, 170, 170)];
+	loadingView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+	loadingView.clipsToBounds = YES;
+	loadingView.layer.cornerRadius = 10.0;
+	
+	activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+	activityView.frame = CGRectMake(65, 40, activityView.bounds.size.width, activityView.bounds.size.height);
+    [loadingView addSubview:activityView];
+	
+    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 115, 130, 22)];
+    loadingLabel.backgroundColor = [UIColor clearColor];
+    loadingLabel.textColor = [UIColor whiteColor];
+    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    loadingLabel.textAlignment = UITextAlignmentCenter;
+    loadingLabel.text = @"Sending...";
+    [loadingView addSubview:loadingLabel];
+	
+    [self.view addSubview:loadingView];
+    [activityView startAnimating];
+}
 
 
 - (IBAction)sendOrder:(id)sender {
     
-    //TODO: make sure user is logged in and has a Stripe user ID in their account
-    
-    //TODO: add progress spinning UI
+    //TODO: make sure user is logged in
     
     
     // Create the connections to Azure - this creates the Mobile Service client inside the wrapped service
     self.azureOrders = [[AzureConnection alloc] initWithTableName: @"Order"];
+    
+    MSClient *azureClient = self.azureOrders.client;
+    
+    if(azureClient.currentUser == nil){
+        
+        [azureClient loginWithProvider:@"facebook"
+                          onController:self
+                              animated:YES
+                            completion:^(MSUser *user, NSError *error) {
+                                
+                                if(!user || error){             //error logging in or user cancelled- recurse to force auth
+                                    
+                                    [self sendOrder:sender];
+                                    return;
+                                    
+                                } else {                        //success logging in
+                                    
+                                    [self.azureOrders storeUserCredentials];
+                                    
+                                    [self completeOrder];
+                                }
+                                
+                            }];
+    } else {
+        [self completeOrder];
+        
+    }
+}
+
+//note- must ensure that the user is authenticated before calling this method
+- (void)completeOrder {
+    
+    [self showActivityIndicator];
+    
     self.azureOrderItems = [[AzureConnection alloc] initWithTableName: @"OrderItem"];
     
     
+    //TODO: make sure user has a Stripe user ID in their account (should be obscured in azure so stripe id isn't flying around). if not, prompt user to add CC
+    
+    
     NSDictionary *order = @{ @"status" : @"placed", @"subtotal" : self.subtotal, @"tip" : self.tip, @"total" : self.total, @"venueID" : self.venueID };
-	
-	UIViewController *viewController = self; //used fore segueing
-	
+    
+    CartViewController *viewController = self; //used fore segueing
+    UIView *loadingAnimation = self.loadingView;
+    
     [self.azureOrders addItem:order completion:^(NSUInteger index){
         
         //TODO: kill progress and connection UIs
         
-		NSLog(@"Order successfully created");
+        NSLog(@"Order successfully created");
         
         int orderItemsCount = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
         
         NSNumber *orderNumber = [[self.azureOrders.items objectAtIndex:index] objectForKey:@"id"];
+        
+        __block int successfulOrderItemCount = 0;
         
         for(int i = 0; i < orderItemsCount; i ++) {
             
@@ -346,66 +402,38 @@
             
             [self.azureOrderItems addItem:orderItem completion:^(NSUInteger index){
                 NSLog(@"saved 1 orderItem");
+                
+                //increment counter
+                successfulOrderItemCount ++;
+                
+                //when the last Azure operation has completed, segue to the next view
+                if(successfulOrderItemCount == orderItemsCount){
+                    
+                    
+                    [viewController clearCart];
+                    
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [loadingAnimation removeFromSuperview];
+                        [viewController performSegueWithIdentifier:@"cartToOrderFulfillment" sender:viewController];
+                    });
+                }
+                
+                
             }];
             
         }
-        
-        
- 
-
-        
-        
-        
-        
-		//when all orderitems have been added successfully, segoe to the waiting for order view
-//		dispatch_async(dispatch_get_main_queue(), ^{
-//			[viewController performSegueWithIdentifier:@"PaymentToBarList" sender:viewController];
-//		});
-        
-        
     }];
 
-    
-    //TODO: create order
-    
-    //TODO: add orderItems once we have the order #
-    
-    //TODO: success- take to waiting for item page
-    
-
 }
 
-
-
-/*
-- (void) fillLineItems
-{
-    LineItem *l1 = [[LineItem alloc] init];
-    l1.ID = 1;
-    l1.name = @"Manny's";
-    l1.price = 5;
-    l1.qty = 1;
+- (void)clearCart {
     
-    LineItem *l2 = [[LineItem alloc] init];
-    l2.ID = 2;
-    l2.name = @"Mack & Jack's";
-    l2.price = 4;
-    l2.qty = 2;
-    
-    
-    [cart addObject:l1];
-    [cart addObject:l2];
+    for(NSManagedObject *item in [[self fetchedResultsController] fetchedObjects]){
+        [self.managedObjectContext deleteObject:item];
+    }
     
 }
-*/
-
-/*logic to add a line item
- if the id exists in the cart
- add the qty to the qty of the correspondig line item in the cart
- else
- add the line item to the cart
- */
-
 
 
 /*************from CoreDataTableViewController.m*/

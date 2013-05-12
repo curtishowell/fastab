@@ -57,13 +57,7 @@
 					   
 					   [self.azureConnection storeUserCredentials];
 					   
-		
-						//user logs in or cancels
-						//[self refresh];
 					}];
-	
-	//don't do anyting else here; if we need more code, do it above the if statement above
-	
 }
 
 - (void) stripeView:(PKView*)view

@@ -116,8 +116,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    
-    
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
@@ -126,8 +124,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     return YES;
 }
 
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"barsToTypes"]) {
         UITableViewController *drinkTypeTVC = segue.destinationViewController;

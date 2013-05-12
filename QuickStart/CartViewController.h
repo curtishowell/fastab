@@ -14,13 +14,12 @@
 
 @interface CartViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 
 @property (strong, nonatomic) NSString *venueName;
 @property (strong, nonatomic) NSNumber *venueID;
 
-// The controller (this class fetches nothing if this is not set).
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
 
 @property (strong, nonatomic) NSMutableDictionary *tempItem;
 

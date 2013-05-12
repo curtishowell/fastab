@@ -23,11 +23,7 @@
 		034879FC16117A73002D0B52 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034879FB16117A73002D0B52 /* Default-568h@2x.png */; };
 		03487A0D16117A9B002D0B52 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03487A0B16117A9B002D0B52 /* MainStoryboard_iPhone.storyboard */; };
 		03487A0E16117A9B002D0B52 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03487A0C16117A9B002D0B52 /* MainStoryboard_iPad.storyboard */; };
-		03487A1316117C5F002D0B52 /* TodoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03487A1216117C5F002D0B52 /* TodoListController.m */; };
-		039AB33F1614AD7200F0915A /* TodoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 039AB33E1614AD7200F0915A /* TodoService.m */; };
-		415EE88D1733513500F56B3B /* TestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 415EE88C1733513500F56B3B /* TestingViewController.m */; };
 		41F592F9172F181600D641D6 /* ItemInCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F592F8172F181600D641D6 /* ItemInCart.m */; };
-		490C6CBF17271BE9007EE30B /* CartItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C6CBE17271BE9007EE30B /* CartItems.m */; };
 		490C6CC2172798C8007EE30B /* cartItem.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 490C6CC0172798C8007EE30B /* cartItem.xcdatamodeld */; };
 		490C6CC81727A4A1007EE30B /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490C6CC71727A4A0007EE30B /* CoreDataTableViewController.m */; };
 		496ECAE71710AB190096B362 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496ECAE61710AB190096B362 /* SplashViewController.m */; };
@@ -37,7 +33,6 @@
 		49BB80901729BDFF00D42142 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BB808F1729BDFF00D42142 /* CoreData.framework */; };
 		49D491BD1714FABC008647DC /* DrinkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D491BC1714FABC008647DC /* DrinkTableViewController.m */; };
 		49D491C017173911008647DC /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D491BF17173911008647DC /* CartViewController.m */; };
-		49D51B22171B7B23004B81C9 /* ViewOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D51B21171B7B23004B81C9 /* ViewOrderViewController.m */; };
 		E641BCDD1722B4E200B4086D /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E641BCDC1722B4E200B4086D /* PaymentViewController.m */; };
 		E641BD121722BE8500B4086D /* amex.png in Resources */ = {isa = PBXBuildFile; fileRef = E641BCF51722BE8500B4086D /* amex.png */; };
 		E641BD131722BE8500B4086D /* amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E641BCF61722BE8500B4086D /* amex@2x.png */; };
@@ -99,6 +94,7 @@
 		E641BDEA1722D1FC00B4086D /* PaymentKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E641BDB31722D1FC00B4086D /* PaymentKit.podspec */; };
 		E641BDEB1722D1FC00B4086D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E641BDB41722D1FC00B4086D /* README.md */; };
 		E64F96BD1722E75C00AD1137 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E641BCDE1722B58E00B4086D /* QuartzCore.framework */; };
+		E68A893B173E94F900C94951 /* OrderFulfillmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68A893A173E94F900C94951 /* OrderFulfillmentViewController.m */; };
 		E698A4D21721D2BB00891A74 /* DrinkTypeTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */; };
 /* End PBXBuildFile section */
 
@@ -123,16 +119,8 @@
 		034879FB16117A73002D0B52 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		03487A0B16117A9B002D0B52 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		03487A0C16117A9B002D0B52 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		03487A1116117C5F002D0B52 /* TodoListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoListController.h; sourceTree = "<group>"; };
-		03487A1216117C5F002D0B52 /* TodoListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoListController.m; sourceTree = "<group>"; };
-		039AB33D1614AD7200F0915A /* TodoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoService.h; sourceTree = "<group>"; };
-		039AB33E1614AD7200F0915A /* TodoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoService.m; sourceTree = "<group>"; };
-		415EE88B1733513500F56B3B /* TestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestingViewController.h; path = QuickStart/TestingViewController.h; sourceTree = SOURCE_ROOT; };
-		415EE88C1733513500F56B3B /* TestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestingViewController.m; path = QuickStart/TestingViewController.m; sourceTree = SOURCE_ROOT; };
 		41F592F7172F181600D641D6 /* ItemInCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemInCart.h; path = QuickStart/ItemInCart.h; sourceTree = SOURCE_ROOT; };
 		41F592F8172F181600D641D6 /* ItemInCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemInCart.m; path = QuickStart/ItemInCart.m; sourceTree = SOURCE_ROOT; };
-		490C6CBD17271BE9007EE30B /* CartItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartItems.h; path = QuickStart/CartItems.h; sourceTree = SOURCE_ROOT; };
-		490C6CBE17271BE9007EE30B /* CartItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CartItems.m; path = QuickStart/CartItems.m; sourceTree = SOURCE_ROOT; };
 		490C6CC1172798C8007EE30B /* cartItem.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = cartItem.xcdatamodel; sourceTree = "<group>"; };
 		490C6CC61727A4A0007EE30B /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = QuickStart/CoreDataTableViewController.h; sourceTree = SOURCE_ROOT; };
 		490C6CC71727A4A0007EE30B /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = QuickStart/CoreDataTableViewController.m; sourceTree = SOURCE_ROOT; };
@@ -149,8 +137,6 @@
 		49D491BC1714FABC008647DC /* DrinkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkTableViewController.m; path = QuickStart/DrinkTableViewController.m; sourceTree = SOURCE_ROOT; };
 		49D491BE17173910008647DC /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartViewController.h; path = QuickStart/CartViewController.h; sourceTree = SOURCE_ROOT; };
 		49D491BF17173911008647DC /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CartViewController.m; path = QuickStart/CartViewController.m; sourceTree = SOURCE_ROOT; };
-		49D51B20171B7B23004B81C9 /* ViewOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewOrderViewController.h; path = QuickStart/ViewOrderViewController.h; sourceTree = SOURCE_ROOT; };
-		49D51B21171B7B23004B81C9 /* ViewOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewOrderViewController.m; path = QuickStart/ViewOrderViewController.m; sourceTree = SOURCE_ROOT; };
 		E641BCDB1722B4E200B4086D /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentViewController.h; path = ../QuickStart/PaymentViewController.h; sourceTree = "<group>"; };
 		E641BCDC1722B4E200B4086D /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentViewController.m; path = ../QuickStart/PaymentViewController.m; sourceTree = "<group>"; usesTabs = 1; };
 		E641BCDE1722B58E00B4086D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -228,6 +214,8 @@
 		E641BD8F1722D1FB00B4086D /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
 		E641BDB31722D1FC00B4086D /* PaymentKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PaymentKit.podspec; sourceTree = "<group>"; };
 		E641BDB41722D1FC00B4086D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		E68A8939173E94F900C94951 /* OrderFulfillmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderFulfillmentViewController.h; path = QuickStart/OrderFulfillmentViewController.h; sourceTree = SOURCE_ROOT; };
+		E68A893A173E94F900C94951 /* OrderFulfillmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderFulfillmentViewController.m; path = QuickStart/OrderFulfillmentViewController.m; sourceTree = SOURCE_ROOT; };
 		E698A4D01721D2BB00891A74 /* DrinkTypeTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkTypeTVC.h; path = QuickStart/DrinkTypeTVC.h; sourceTree = SOURCE_ROOT; };
 		E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkTypeTVC.m; path = QuickStart/DrinkTypeTVC.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -252,7 +240,6 @@
 		034879D616117A73002D0B52 = {
 			isa = PBXGroup;
 			children = (
-				49BB808F1729BDFF00D42142 /* CoreData.framework */,
 				034879EB16117A73002D0B52 /* Quickstart */,
 				034879E416117A73002D0B52 /* Frameworks */,
 				034879E216117A73002D0B52 /* Products */,
@@ -270,6 +257,7 @@
 		034879E416117A73002D0B52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49BB808F1729BDFF00D42142 /* CoreData.framework */,
 				E641BCDE1722B58E00B4086D /* QuartzCore.framework */,
 				03123F19162C9F2F00A86CC5 /* WindowsAzureMobileServices.framework */,
 				034879E516117A73002D0B52 /* UIKit.framework */,
@@ -283,10 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				03487A0B16117A9B002D0B52 /* MainStoryboard_iPhone.storyboard */,
-				415EE88B1733513500F56B3B /* TestingViewController.h */,
-				415EE88C1733513500F56B3B /* TestingViewController.m */,
-				490C6CBD17271BE9007EE30B /* CartItems.h */,
-				490C6CBE17271BE9007EE30B /* CartItems.m */,
 				E641BCDB1722B4E200B4086D /* PaymentViewController.h */,
 				E641BCDC1722B4E200B4086D /* PaymentViewController.m */,
 				496ECAE51710AB190096B362 /* SplashViewController.h */,
@@ -299,19 +283,15 @@
 				E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */,
 				49D491BB1714FABC008647DC /* DrinkTableViewController.h */,
 				49D491BC1714FABC008647DC /* DrinkTableViewController.m */,
-				49D51B20171B7B23004B81C9 /* ViewOrderViewController.h */,
-				49D51B21171B7B23004B81C9 /* ViewOrderViewController.m */,
 				49D491BE17173910008647DC /* CartViewController.h */,
 				49D491BF17173911008647DC /* CartViewController.m */,
 				496ECAE81710B7CC0096B362 /* AuthenticationViewController.h */,
 				496ECAE91710B7CC0096B362 /* AuthenticationViewController.m */,
-				03487A0C16117A9B002D0B52 /* MainStoryboard_iPad.storyboard */,
-				03487A1116117C5F002D0B52 /* TodoListController.h */,
-				03487A1216117C5F002D0B52 /* TodoListController.m */,
+				E68A8939173E94F900C94951 /* OrderFulfillmentViewController.h */,
+				E68A893A173E94F900C94951 /* OrderFulfillmentViewController.m */,
 				496ECAF71710EC290096B362 /* AzureConnection.h */,
 				496ECAF81710EC290096B362 /* AzureConnection.m */,
-				039AB33D1614AD7200F0915A /* TodoService.h */,
-				039AB33E1614AD7200F0915A /* TodoService.m */,
+				03487A0C16117A9B002D0B52 /* MainStoryboard_iPad.storyboard */,
 				E641BD571722D1FB00B4086D /* Stripe */,
 				E698A4D61722011300891A74 /* Model */,
 				E641BCF31722BE8500B4086D /* Resources */,
@@ -605,15 +585,12 @@
 			files = (
 				034879F216117A73002D0B52 /* main.m in Sources */,
 				034879F616117A73002D0B52 /* AppDelegate.m in Sources */,
-				03487A1316117C5F002D0B52 /* TodoListController.m in Sources */,
-				039AB33F1614AD7200F0915A /* TodoService.m in Sources */,
 				496ECAE71710AB190096B362 /* SplashViewController.m in Sources */,
 				496ECAEA1710B7CC0096B362 /* AuthenticationViewController.m in Sources */,
 				496ECAF61710E5620096B362 /* BarTableViewController.m in Sources */,
 				496ECAF91710EC290096B362 /* AzureConnection.m in Sources */,
 				49D491BD1714FABC008647DC /* DrinkTableViewController.m in Sources */,
 				49D491C017173911008647DC /* CartViewController.m in Sources */,
-				49D51B22171B7B23004B81C9 /* ViewOrderViewController.m in Sources */,
 				E698A4D21721D2BB00891A74 /* DrinkTypeTVC.m in Sources */,
 				E641BCDD1722B4E200B4086D /* PaymentViewController.m in Sources */,
 				E641BDB51722D1FC00B4086D /* STPCard.m in Sources */,
@@ -629,11 +606,10 @@
 				E641BDC11722D1FC00B4086D /* PKTextField.m in Sources */,
 				E641BDC21722D1FC00B4086D /* PKUSAddressZip.m in Sources */,
 				E641BDC31722D1FC00B4086D /* PKView.m in Sources */,
-				490C6CBF17271BE9007EE30B /* CartItems.m in Sources */,
 				490C6CC2172798C8007EE30B /* cartItem.xcdatamodeld in Sources */,
 				490C6CC81727A4A1007EE30B /* CoreDataTableViewController.m in Sources */,
 				41F592F9172F181600D641D6 /* ItemInCart.m in Sources */,
-				415EE88D1733513500F56B3B /* TestingViewController.m in Sources */,
+				E68A893B173E94F900C94951 /* OrderFulfillmentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
