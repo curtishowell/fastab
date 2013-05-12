@@ -369,12 +369,12 @@
     //TODO: make sure user has a Stripe user ID in their account (should be obscured in azure so stripe id isn't flying around). if not, prompt user to add CC
     
     
-    NSDictionary *order = @{ @"status" : @"placed", @"subtotal" : self.subtotal, @"tip" : self.tip, @"total" : self.total, @"venueID" : self.venueID };
+    NSDictionary *order = @{ @"status" : @"adding-order-items", @"subtotal" : self.subtotal, @"tip" : self.tip, @"total" : self.total, @"venueID" : self.venueID };
     
     CartViewController *viewController = self; //used fore segueing
     UIView *loadingAnimation = self.loadingView;
     
-    [self.azureOrders addItem:order completion:^(NSUInteger index){
+    [self.azureOrders addItem:order completion:^(NSUInteger orderIndex){
         
         //TODO: kill progress and connection UIs
         
@@ -382,13 +382,11 @@
         
         int orderItemsCount = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
         
-        NSNumber *orderNumber = [[self.azureOrders.items objectAtIndex:index] objectForKey:@"id"];
+        NSNumber *orderNumber = [[self.azureOrders.items objectAtIndex:orderIndex] objectForKey:@"id"];
         
         __block int successfulOrderItemCount = 0;
         
         for(int i = 0; i < orderItemsCount; i ++) {
-            
-            
             
             NSLog(@"building 1 orderItem");
             
@@ -400,26 +398,28 @@
             
             NSDictionary *orderItem = @{ @"orderID" : orderNumber, @"itemID" : itemInCart.itemID, @"qty" : itemInCart.qty, @"price" : itemInCart.price };
             
-            [self.azureOrderItems addItem:orderItem completion:^(NSUInteger index){
+            [self.azureOrderItems addItem:orderItem completion:^(NSUInteger orderItemIndex){
                 NSLog(@"saved 1 orderItem");
                 
                 //increment counter
                 successfulOrderItemCount ++;
                 
-                //when the last Azure operation has completed, segue to the next view
+                //when the last Azure operation has completed, update the status of the order then segue to the next view
                 if(successfulOrderItemCount == orderItemsCount){
                     
+                    NSDictionary *original = [viewController.azureOrders.items objectAtIndex:orderIndex];
+                    NSMutableDictionary *modified = [original mutableCopy];
                     
-                    [viewController clearCart];
+                    [modified setObject:@"payment-needs-processing" forKey:@"status"];
                     
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [loadingAnimation removeFromSuperview];
-                        [viewController performSegueWithIdentifier:@"cartToOrderFulfillment" sender:viewController];
-                    });
+                    [self.azureOrders modifyItem:modified original:original completion:^(NSUInteger index) {
+                        [viewController clearCart];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [loadingAnimation removeFromSuperview];
+                            [viewController performSegueWithIdentifier:@"cartToOrderFulfillment" sender:viewController];
+                        });
+                    }];
                 }
-                
-                
             }];
             
         }

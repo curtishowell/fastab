@@ -15,6 +15,7 @@ typedef void (^CompletionBlock) ();
 typedef void (^CompletionWithIndexBlock) (NSUInteger index);
 typedef void (^BusyUpdateBlock) (BOOL busy);
 
+
 @interface AzureConnection : NSObject
 //@property (nonatomic, strong)   MSTable *barListing;
 @property (nonatomic, strong)   NSArray *items;
@@ -31,9 +32,16 @@ typedef void (^BusyUpdateBlock) (BOOL busy);
 
 - (AzureConnection *) initWithTableName: (NSString *) tableName;
 
+//add item
 - (void) addItem:(NSDictionary *) item
       completion:(CompletionWithIndexBlock) completion;
 
+//modify item
+-(void)modifyItem:(NSDictionary *)item
+         original:(NSDictionary *)original
+       completion:(CompletionWithIndexBlock)completion;
+
+//save credentials because azure for some reason does not do this automatically
 - (void) storeUserCredentials;
 
 @end

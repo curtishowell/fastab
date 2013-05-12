@@ -160,8 +160,31 @@
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
     [standardUserDefaults setValue:self.client.currentUser.userId forKey:@"userId"];
+    
+    //TODO: store this token in the os x keychain instead of userdefaults
     [standardUserDefaults setValue:self.client.currentUser.mobileServiceAuthenticationToken forKey:@"token"];
 
+}
+
+-(void)modifyItem:(NSDictionary *)item
+         original:(NSDictionary *)original
+       completion:(CompletionWithIndexBlock)completion
+{
+    // Cast the public items property to the mutable type (it was created as mutable)
+    NSMutableArray *mutableItems = (NSMutableArray *) items;
+    
+    // Replace the original in the items array
+    NSUInteger index = [items indexOfObjectIdenticalTo:original];
+    [mutableItems replaceObjectAtIndex:index withObject:item];
+    
+    // Update the item in the TodoItem table and remove from the items array on completion
+    [self.table update:item completion:^(NSDictionary *item, NSError *error) {
+        
+        [self logErrorIfNotNil:error];
+        
+        // Let the caller know that we have finished
+        completion(index);
+    }];
 }
 
 
