@@ -141,8 +141,10 @@
     //Change this code later to sum and incorporate the total of items in the cart
     
     self.subtotal = [NSDecimalNumber decimalNumberWithString:@"0.00"];
-    self.tip = [NSDecimalNumber decimalNumberWithString:@"0.00"];
+    //self.tip = [NSDecimalNumber decimalNumberWithString:@"0.00"];
     self.total = [NSDecimalNumber decimalNumberWithString:@"0.00"];
+    [self setTipAndTotal];
+    
 }
 
 
@@ -171,15 +173,23 @@
     label = (UILabel *)[cell viewWithTag:1];
     label.text = [NSString stringWithFormat:@"%@", itemInCart.name];
     
+    
+    NSString *unitPrice = [NSNumberFormatter
+                                localizedStringFromNumber:itemInCart.price
+                                numberStyle:NSNumberFormatterCurrencyStyle];
     label = (UILabel *)[cell viewWithTag:2];
-    label.text = [NSString stringWithFormat:@"%@ @ $%@", itemInCart.qty, itemInCart.price];
+    label.text = [NSString stringWithFormat:@"%@ @ %@", itemInCart.qty, unitPrice];
     
+    NSString *lineItemTotal = [NSNumberFormatter
+                                localizedStringFromNumber:drinkRowTotal
+                                numberStyle:NSNumberFormatterCurrencyStyle];
     label = (UILabel *)[cell viewWithTag:3];
-    label.text = [NSString stringWithFormat:@"$%@", drinkRowTotal];
+    label.text = [NSString stringWithFormat:@"%@", lineItemTotal];
     
-    total = tempTotal;
-    subtotal = tempTotal;
+    self.subtotal = tempTotal;
     self.totalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
+    
+    [self setTipAndTotal];
          
     return cell;
 }
@@ -239,7 +249,7 @@
     }
         
     [self saveManagedObjectContext];
-
+    
 }
 
 - (void)saveManagedObjectContext {
@@ -255,20 +265,16 @@
 }
 
 - (IBAction)tipChange:(UISegmentedControl *)sender {
-    tipControl = sender;
+    //tipControl = sender;
     [self setTipAndTotal];
 }
 
 - (void) setTipAndTotal {
     // user has selected a pre-defined tip amount
-    // currently the segmented control has only 3 choices
+    // currently the segmented control has only 4 choices
     // Can add in the custom element later on
-    if(tipControl.selectedSegmentIndex < 3){
+    if(tipControl.selectedSegmentIndex < 4){
         
-        //temp!
-        //this will be commented out later when we figure out how to total
-        //up the content in the shopping cart
-        //subtotal = [NSDecimalNumber decimalNumberWithString:@"4.69"];
         
         NSInteger *index = tipControl.selectedSegmentIndex;
         NSDecimalNumber *tipPercent = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%@",[self tipPercentages:(NSInteger)index]]];
@@ -284,7 +290,11 @@
         total = [subtotal decimalNumberByAdding:tip];
         
         //set the tip and total amounts
-        self.totalLabel.text = [NSString stringWithFormat:@"$%@",total];
+        NSString* currencyString = [NSNumberFormatter
+                                    localizedStringFromNumber:total
+                                    numberStyle:NSNumberFormatterCurrencyStyle];
+        
+        self.totalLabel.text = [NSString stringWithFormat:@"%@",currencyString];
     }
 }
 
