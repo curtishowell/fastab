@@ -43,7 +43,8 @@
     return [self.azureConnection.items count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"drinkItem";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -52,9 +53,16 @@
     }
     
     NSDictionary *item = [self.azureConnection.items objectAtIndex:indexPath.row];
-    cell.textLabel.textColor = [UIColor blackColor];
-    //need to change the string we send in to objectForKey
+
     cell.textLabel.text = [item objectForKey:@"name"];
+    
+    NSString *itemPriceString = [[item objectForKey:@"price"] stringValue];
+    
+    NSDecimalNumber *itemPrice = [NSDecimalNumber decimalNumberWithString:itemPriceString];
+    NSString* currencyString = [NSNumberFormatter
+                                localizedStringFromNumber:itemPrice
+                                numberStyle:NSNumberFormatterCurrencyStyle];
+    cell.detailTextLabel.text = currencyString;
     
     return cell;
 }
@@ -232,21 +240,14 @@
             cdItem.price = [_item objectForKey:@"price"];
             cdItem.qty = [_item objectForKey:@"qty"];
             cdItem.venueName = [_item objectForKey:@"venueName"];
-            cdItem.venueID = [_item objectForKey:@"venueID"];
-            
-            int matchesCount = [matches count];
-            
-            //[self.cartItems reloadData];
-            
+            cdItem.venueID = [_item objectForKey:@"venueID"];                        
             
         } else {
             //add 1 to the existingItems's qty
             ItemInCart *existingItem = [matches lastObject];
             int existingQty = [existingItem.qty integerValue];
             int updatedValue = existingQty + 1;
-            existingItem.qty = [NSNumber numberWithInt:updatedValue]; //make sure this is updating the object in the core data cart
-            int temp = [existingItem.qty integerValue];
-            //[self.cartItems reloadData];
+            existingItem.qty = [NSNumber numberWithInt:updatedValue]; 
         }
     }
     NSError *error = nil;

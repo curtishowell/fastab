@@ -47,6 +47,7 @@
 - (void)clearCart;
 - (void)completeOrder;
 - (void)saveManagedObjectContext;
+- (void)calculateSubtotal;
 
 @end
 
@@ -88,7 +89,6 @@
                     self.managedObjectContext = _document.managedObjectContext;
                     NSLog(@"successfully set up managed object context");
                     [self addItemToCart];
-                    //[self.cartItems reloadData];
                     
                 }
             }];
@@ -97,13 +97,11 @@
                 self.managedObjectContext = _document.managedObjectContext;
                 NSLog(@"successfully set up managed object context");
                 [self addItemToCart];
-                //[self.cartItems reloadData];
                 
             }];
         } else {//already open
             self.managedObjectContext = _document.managedObjectContext;
             [self addItemToCart];
-            //[self.cartItems reloadData];
         }
     }
 }
@@ -140,9 +138,7 @@
     //Initializing the subtotal and total content.
     //Change this code later to sum and incorporate the total of items in the cart
     
-    self.subtotal = [NSDecimalNumber decimalNumberWithString:@"0.00"];
-    //self.tip = [NSDecimalNumber decimalNumberWithString:@"0.00"];
-    self.total = [NSDecimalNumber decimalNumberWithString:@"0.00"];
+//    self.subtotal = [NSDecimalNumber decimalNumberWithString:@"0.00"];
     [self setTipAndTotal];
     
 }
@@ -165,7 +161,7 @@
     NSDecimalNumber *drinkRowPrice = itemInCart.price;
     NSDecimalNumber *drinkRowQuantity = [NSDecimalNumber decimalNumberWithString:[itemInCart.qty stringValue]];
     NSDecimalNumber *drinkRowTotal = [drinkRowPrice decimalNumberByMultiplyingBy: drinkRowQuantity];
-    NSDecimalNumber *tempTotal = [drinkRowTotal decimalNumberByAdding: total];
+//    NSDecimalNumber *tempTotal = [drinkRowTotal decimalNumberByAdding: total];
     
     
     //set labels in the cell using the custom cell
@@ -186,8 +182,8 @@
     label = (UILabel *)[cell viewWithTag:3];
     label.text = [NSString stringWithFormat:@"%@", lineItemTotal];
     
-    self.subtotal = tempTotal;
-    self.totalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
+//    self.subtotal = tempTotal;
+//    self.totalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
     
     [self setTipAndTotal];
          
@@ -244,7 +240,7 @@
             ItemInCart *existingItem = [matches lastObject];
             int existingQty = [existingItem.qty integerValue];
             int updatedValue = existingQty + 1;
-            existingItem.qty = [NSNumber numberWithInt:updatedValue]; //make sure this is updating the object in the core data cart
+            existingItem.qty = [NSNumber numberWithInt:updatedValue];
         }
     }
         
@@ -275,6 +271,8 @@
     // Can add in the custom element later on
     if(tipControl.selectedSegmentIndex < 4){
         
+        [self calculateSubtotal];
+        
         
         NSInteger *index = tipControl.selectedSegmentIndex;
         NSDecimalNumber *tipPercent = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%@",[self tipPercentages:(NSInteger)index]]];
@@ -287,7 +285,7 @@
                                                                                       raiseOnUnderflow:NO
                                                                                    raiseOnDivideByZero:NO];
         self.tip = [tipPercent decimalNumberByMultiplyingBy:subtotal withBehavior:handler];
-        self.total = [subtotal decimalNumberByAdding:tip];
+        self.total = [subtotal decimalNumberByAdding:self.tip];
         
         //set the tip and total amounts
         NSString* currencyString = [NSNumberFormatter
@@ -296,6 +294,19 @@
         
         self.totalLabel.text = [NSString stringWithFormat:@"%@",currencyString];
     }
+}
+
+- (void)calculateSubtotal {
+    
+    NSDecimalNumber *tempSubtotal = [NSDecimalNumber decimalNumberWithString:@"0.0"];
+    for(ItemInCart *item in [[self fetchedResultsController] fetchedObjects]){
+        NSDecimalNumber *itemPrice = item.price;
+        NSDecimalNumber *itemQty = [NSDecimalNumber decimalNumberWithString: [item.qty stringValue]];
+        NSDecimalNumber *lineItemSubtotal = [itemPrice decimalNumberByMultiplyingBy:itemQty];
+        tempSubtotal = [tempSubtotal decimalNumberByAdding:lineItemSubtotal];
+    }
+    
+    self.subtotal = tempSubtotal;
 }
 
 - (NSArray *)tipPercentages:(NSInteger *)index {
@@ -442,7 +453,9 @@
     for(NSManagedObject *item in [[self fetchedResultsController] fetchedObjects]){
         [self.managedObjectContext deleteObject:item];
     }
-    
+    [self saveManagedObjectContext];
+    [self setTipAndTotal];
+    [self.tipControl setSelectedSegmentIndex:2];
 }
 
 
