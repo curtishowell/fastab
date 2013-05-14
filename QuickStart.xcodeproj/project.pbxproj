@@ -93,6 +93,12 @@
 		E641BDD81722D1FC00B4086D /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E641BD8F1722D1FB00B4086D /* textfield@2x.png */; };
 		E641BDEA1722D1FC00B4086D /* PaymentKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E641BDB31722D1FC00B4086D /* PaymentKit.podspec */; };
 		E641BDEB1722D1FC00B4086D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E641BDB41722D1FC00B4086D /* README.md */; };
+		E64808AE1742B32600EEF727 /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E64808AD1742B32600EEF727 /* right-arrow.png */; };
+		E64808B11742B71800EEF727 /* FastabNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E64808B01742B71800EEF727 /* FastabNavBar.m */; };
+		E64A06801742A58E00FD02AD /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E64A067C1742A58E00FD02AD /* 1.jpg */; };
+		E64A06811742A58E00FD02AD /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E64A067D1742A58E00FD02AD /* 2.jpg */; };
+		E64A06821742A58E00FD02AD /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E64A067E1742A58E00FD02AD /* 3.jpg */; };
+		E64A06831742A58E00FD02AD /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E64A067F1742A58E00FD02AD /* 4.jpg */; };
 		E64F96BD1722E75C00AD1137 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E641BCDE1722B58E00B4086D /* QuartzCore.framework */; };
 		E68A893B173E94F900C94951 /* OrderFulfillmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68A893A173E94F900C94951 /* OrderFulfillmentViewController.m */; };
 		E698A4D21721D2BB00891A74 /* DrinkTypeTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E698A4D11721D2BB00891A74 /* DrinkTypeTVC.m */; };
@@ -214,6 +220,13 @@
 		E641BD8F1722D1FB00B4086D /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
 		E641BDB31722D1FC00B4086D /* PaymentKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PaymentKit.podspec; sourceTree = "<group>"; };
 		E641BDB41722D1FC00B4086D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		E64808AD1742B32600EEF727 /* right-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-arrow.png"; sourceTree = "<group>"; };
+		E64808AF1742B71800EEF727 /* FastabNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FastabNavBar.h; path = QuickStart/FastabNavBar.h; sourceTree = SOURCE_ROOT; };
+		E64808B01742B71800EEF727 /* FastabNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FastabNavBar.m; path = QuickStart/FastabNavBar.m; sourceTree = SOURCE_ROOT; };
+		E64A067C1742A58E00FD02AD /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		E64A067D1742A58E00FD02AD /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		E64A067E1742A58E00FD02AD /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		E64A067F1742A58E00FD02AD /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
 		E68A8939173E94F900C94951 /* OrderFulfillmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderFulfillmentViewController.h; path = QuickStart/OrderFulfillmentViewController.h; sourceTree = SOURCE_ROOT; };
 		E68A893A173E94F900C94951 /* OrderFulfillmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderFulfillmentViewController.m; path = QuickStart/OrderFulfillmentViewController.m; sourceTree = SOURCE_ROOT; };
 		E698A4D01721D2BB00891A74 /* DrinkTypeTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkTypeTVC.h; path = QuickStart/DrinkTypeTVC.h; sourceTree = SOURCE_ROOT; };
@@ -289,6 +302,8 @@
 				496ECAE91710B7CC0096B362 /* AuthenticationViewController.m */,
 				E68A8939173E94F900C94951 /* OrderFulfillmentViewController.h */,
 				E68A893A173E94F900C94951 /* OrderFulfillmentViewController.m */,
+				E64808AF1742B71800EEF727 /* FastabNavBar.h */,
+				E64808B01742B71800EEF727 /* FastabNavBar.m */,
 				496ECAF71710EC290096B362 /* AzureConnection.h */,
 				496ECAF81710EC290096B362 /* AzureConnection.m */,
 				03487A0C16117A9B002D0B52 /* MainStoryboard_iPad.storyboard */,
@@ -303,6 +318,11 @@
 		034879EC16117A73002D0B52 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E64A067C1742A58E00FD02AD /* 1.jpg */,
+				E64A067D1742A58E00FD02AD /* 2.jpg */,
+				E64A067E1742A58E00FD02AD /* 3.jpg */,
+				E64A067F1742A58E00FD02AD /* 4.jpg */,
+				E64808AD1742B32600EEF727 /* right-arrow.png */,
 				03445791162BA91800947C1D /* connected57.png */,
 				03445792162BA91800947C1D /* connected72.png */,
 				03445793162BA91800947C1D /* connected114.png */,
@@ -573,6 +593,11 @@
 				E641BDD81722D1FC00B4086D /* textfield@2x.png in Resources */,
 				E641BDEA1722D1FC00B4086D /* PaymentKit.podspec in Resources */,
 				E641BDEB1722D1FC00B4086D /* README.md in Resources */,
+				E64A06801742A58E00FD02AD /* 1.jpg in Resources */,
+				E64A06811742A58E00FD02AD /* 2.jpg in Resources */,
+				E64A06821742A58E00FD02AD /* 3.jpg in Resources */,
+				E64A06831742A58E00FD02AD /* 4.jpg in Resources */,
+				E64808AE1742B32600EEF727 /* right-arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +635,7 @@
 				490C6CC81727A4A1007EE30B /* CoreDataTableViewController.m in Sources */,
 				41F592F9172F181600D641D6 /* ItemInCart.m in Sources */,
 				E68A893B173E94F900C94951 /* OrderFulfillmentViewController.m in Sources */,
+				E64808B11742B71800EEF727 /* FastabNavBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

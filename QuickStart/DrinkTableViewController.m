@@ -132,8 +132,6 @@
         [cartViewController performSelector:@selector(setVenueName:)
                            withObject:self.venueName];
         
-        //[self setupManagedDocumentContext];
-
     }
     
     

@@ -10,6 +10,7 @@
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 #import "AzureConnection.h"
 #import "DrinkTypeTVC.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface BarTableViewController ()
 @property (strong, nonatomic) AzureConnection *azureConnection;
@@ -48,6 +49,12 @@
     
     //hide back button
     self.navigationItem.hidesBackButton = YES;
+    
+    //set background color of the tableview to gray
+    UIColor *bgColor = [[UIColor alloc] initWithRed:0.22 green:0.22 blue:0.22 alpha:1.0];
+    self.tableView.backgroundColor = bgColor;
+    
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 }
 
 #pragma mark - Table view data source
@@ -67,18 +74,11 @@
 }
 
 
-- (NSString *)titleForRow:(NSUInteger) row
-{
-    //put the code to get the titles of bars for the stuff
-    //once this is implemented uncomment the following areas: (#1, #2)
-}
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"toDrinkList";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
@@ -88,12 +88,36 @@
     
     //get the venue name and ID out of the azure item
     NSString *venueName = [item objectForKey:@"name"];
-    int temp = [[item objectForKey:@"id"] intValue];
     NSNumber *venueID = [NSNumber numberWithInt:[[item objectForKey:@"id"] intValue]];
     
     //set cell label
-    cell.textLabel.textColor = [UIColor blackColor];
-    cell.textLabel.text = venueName;
+    //cell.textLabel.textColor = [UIColor blackColor];
+//    cell.textLabel.text = venueName;
+    
+    
+    NSString *fileName = [NSString stringWithFormat: @"%d.jpg", indexPath.row + 1];
+    
+    //UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+    UIImage *image = [UIImage imageNamed:fileName];
+    //self.imgView.image = [UIImage imageWithContentsOfFile:path];
+    
+    //set properties of uiimageview
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:1];
+    imageView.image = image;
+    [imageView.layer setBorderColor: [[UIColor grayColor] CGColor]];
+    [imageView.layer setBorderWidth: 1.5];
+    [imageView.layer setShadowColor:[[UIColor whiteColor] CGColor]];
+    //[imageView.layer setShadowOffset:5.0];
+    
+    UILabel *label;
+    label = (UILabel *)[cell viewWithTag:2];
+    label.text = [NSString stringWithFormat:@"%@", venueName];
+    
+    label = (UILabel *)[cell viewWithTag:3];
+    label.text = [NSString stringWithFormat:@"%@", [item objectForKey:@"address"]];
+    
+    label = (UILabel *)[cell viewWithTag:4];
+    label.text = [NSString stringWithFormat:@"%@, %@", [item objectForKey:@"city"], [item objectForKey:@"state"]];
     
     NSString *key = [NSString stringWithFormat:@"%d",indexPath.row];
 
@@ -103,20 +127,11 @@
     return cell;
 }
 
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView
-didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    
 }
+
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
 {
@@ -129,24 +144,20 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([segue.identifier isEqualToString:@"barsToTypes"]) {
         UITableViewController *drinkTypeTVC = segue.destinationViewController;
-                
+        
+        //get the NSDictionary item realating to the selected indexPath
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
-        NSString *drinkType = selectedCell.textLabel.text;
+        NSDictionary *item = [self.azureConnection.items objectAtIndex:indexPath.row];
         
-        //key for getting the NSNumber out of the map
-        NSString *key = [NSString stringWithFormat:@"%d",indexPath.row];
-        
-        //get the NSNumber out of the map using key
-        NSNumber *venueID = [self.drinkTypeMap objectForKey:key];
-        
-        int temp = [venueID intValue];
+        //get the values out of the dictionary
+        NSNumber *itemID = [item objectForKey:@"id"];
+        NSString *itemName = [[item objectForKey:@"name"] description];
         
         //set values in the drink type view controller
         [drinkTypeTVC performSelector:@selector(setVenueID:)
-                           withObject:venueID];
+                           withObject:itemID];
         [drinkTypeTVC performSelector:@selector(setVenueName:)
-                           withObject:drinkType];
+                           withObject:itemName];
         
     }
 }
