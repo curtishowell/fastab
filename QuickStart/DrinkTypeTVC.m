@@ -112,7 +112,7 @@
     if ([segue.identifier isEqualToString:@"typesToItems"]) {
         UITableViewController *drinkTypeTVC = segue.destinationViewController;
         
-        //get the NSDictionary item realating to the selected indexPath
+        //get the item item realating to the selected indexPath
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDictionary *item = [self.azureConnection.items objectAtIndex:indexPath.row];
         

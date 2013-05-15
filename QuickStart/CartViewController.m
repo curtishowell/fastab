@@ -12,6 +12,8 @@
 #import <Foundation/Foundation.h>
 #import "AzureConnection.h"
 #import "QuartzCore/QuartzCore.h"
+#import "ActionSheetPicker.h"
+#import "ActionSheetStringPicker.h"
 
 @interface CartViewController ()
 
@@ -19,7 +21,6 @@
 @property (strong, nonatomic) NSDecimalNumber *tip;
 @property (strong, nonatomic) NSDecimalNumber *total;
 
-//@property (strong, nonatomic) NSMutableArray *cart; //of ItemInCart
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipControl;
 @property (weak, nonatomic) IBOutlet UITableView *cartItems;
@@ -135,10 +136,7 @@
 }
 
 - (void)initialSetup {
-    //Initializing the subtotal and total content.
-    //Change this code later to sum and incorporate the total of items in the cart
-    
-//    self.subtotal = [NSDecimalNumber decimalNumberWithString:@"0.00"];
+
     [self setTipAndTotal];
     
 }
@@ -189,6 +187,44 @@
          
     return cell;
 }
+
+- (void)setItemQty:(NSArray *)itemAndQty
+{
+    NSLog(@"setting item and qty");
+    NSNumber *newQty = itemAndQty[0];
+    ItemInCart *item = itemAndQty[1];
+    
+    item.qty = newQty;
+    
+    [self saveManagedObjectContext];
+    //also update subtotal and tip
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIView *sender = self.view;
+    
+    ActionStringCancelBlock cancel = ^(ActionSheetStringPicker *picker) {
+        NSLog(@"Block Picker Canceled");
+    };
+    NSArray *numbers = [NSArray arrayWithObjects:@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20", nil];
+    
+    //get qty and item name out of
+    ItemInCart *selectedItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSNumber *currentQty = selectedItem.qty;
+    NSString *itemName = selectedItem.name;
+    NSString *prompt = [NSString stringWithFormat:@"# of %@", itemName];
+    
+    ActionStringDoneBlock done = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+//        if ([sender respondsToSelector:@selector(setItemQty:)]) {
+            NSNumber *newQty = [NSNumber numberWithInt:selectedIndex];
+            NSArray *itemAndQty = [NSArray arrayWithObjects:newQty, selectedItem, nil];
+            [self performSelector:@selector(setItemQty:) withObject:itemAndQty];
+//        }
+    };
+    
+    [ActionSheetStringPicker showPickerWithTitle:prompt rows:numbers initialSelection:[currentQty integerValue] doneBlock:done cancelBlock:cancel origin:sender];
+}
+
 
 - (void)addItemToCart
 {
