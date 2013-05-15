@@ -54,7 +54,7 @@
     UIColor *bgColor = [[UIColor alloc] initWithRed:0.22 green:0.22 blue:0.22 alpha:1.0];
     self.tableView.backgroundColor = bgColor;
     
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    //self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 }
 
 #pragma mark - Table view data source

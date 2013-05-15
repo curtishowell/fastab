@@ -33,6 +33,10 @@
     //set title in the nav bar
     //self.navigationItem.title = @"best name ever";
     self.navigationItem.title = self.itemTypeName;
+    
+    //set background color of the tableview to gray
+    UIColor *bgColor = [[UIColor alloc] initWithRed:0.22 green:0.22 blue:0.22 alpha:1.0];
+    self.tableView.backgroundColor = bgColor;
 
 }
 

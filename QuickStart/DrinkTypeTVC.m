@@ -36,6 +36,10 @@
     //set title in the nav bar
     self.navigationItem.title = self.venueName;
     
+    //set background color of the tableview to gray
+    UIColor *bgColor = [[UIColor alloc] initWithRed:0.22 green:0.22 blue:0.22 alpha:1.0];
+    self.tableView.backgroundColor = bgColor;
+    
 }
 
 #pragma mark - Table view data source
@@ -57,17 +61,23 @@
     }
     
     NSDictionary *item = [self.azureConnection.items objectAtIndex:indexPath.row];
-    cell.textLabel.textColor = [UIColor blackColor];
+    //cell.textLabel.textColor = [UIColor blackColor];
     //need to change the string we send in to objectForKey
-    cell.textLabel.text = [item objectForKey:@"name"];
+    //cell.textLabel.text = [item objectForKey:@"name"];
+    
+    NSString *drinkTypeName = [item objectForKey:@"name"];
+    
+    UILabel *label;
+    label = (UILabel *)[cell viewWithTag:1];
+    label.text = [NSString stringWithFormat:@"%@", drinkTypeName];
     
     
     //get the venue name out of the azure item
-    NSString *drinkTypeName = [item objectForKey:@"name"];
+//    NSString *drinkTypeName = [item objectForKey:@"name"];
     
     //set cell label
-    cell.textLabel.textColor = [UIColor blackColor];
-    cell.textLabel.text = drinkTypeName;
+//    cell.textLabel.textColor = [UIColor blackColor];
+//    cell.textLabel.text = drinkTypeName;
     
     
     //add the cell info to the drinkTypeMap    

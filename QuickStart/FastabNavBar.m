@@ -16,7 +16,7 @@
     //this shit's now working, idk why: http://stackoverflow.com/questions/7497255/draw-and-fill-a-rectangle-in-iphone
     
 //    CGContextRef context = UIGraphicsGetCurrentContext();
-//    CGFloat grayColor = 200/255;
+//    CGFloat grayColor = 5/255;
 //    CGContextSetRGBFillColor(context, grayColor, grayColor, grayColor, 1.0);
 //    CGContextFillRect(context, rect);
 }
