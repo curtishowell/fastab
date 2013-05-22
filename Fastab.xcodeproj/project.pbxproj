@@ -689,6 +689,7 @@
 		E6FA0F3B174D334E00EEDA40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -697,6 +698,7 @@
 				GCC_PREFIX_HEADER = "Fastab/Fastab-Prefix.pch";
 				INFOPLIST_FILE = "Fastab/Fastab-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0D337767-1AA2-48F2-944E-86749642D4BC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
