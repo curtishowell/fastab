@@ -7,6 +7,16 @@
 //
 
 #import "AppDelegate.h"
+#import "AzureConnection.h"
+
+
+@interface AppDelegate ()
+
+@property (strong, nonatomic) AzureConnection *azureConnection;
+@property (strong, nonatomic) NSString *deviceToken;
+
+@end
+
 
 @implementation AppDelegate
 
@@ -20,6 +30,12 @@
 //    // Override point for customization after application launch.
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
+    
+    
+    // Register for remote notifications
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+    UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];    
+    
     return YES;
     
 }
@@ -146,5 +162,67 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - added by Patrick & Curtis
+
+
+
+// Instance method to register deviceToken in Devices table.
+// Called in AppDelegate.m when APNS registration succeeds.
+- (void)registerDeviceToken:(NSString *)deviceToken
+{
+    NSDictionary *device = @{ @"deviceToken" : deviceToken };
+    self.azureConnection = [[AzureConnection alloc] initWithTableName: @"Devices"];
+    
+    [self.azureConnection addItem:device completion:^(NSUInteger index){
+        
+    }];
+    
+}
+
+// We have registered, so now store the device token (as a string) on the AppDelegate instance
+// taking care to remove the angle brackets first.
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    
+    // Register the APNS deviceToken with the Mobile Service Devices table.
+    NSCharacterSet *angleBrackets = [NSCharacterSet characterSetWithCharactersInString:@"<>"];
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:angleBrackets];
+    
+    [self registerDeviceToken:token];
+}
+
+// Handle any failure to register. In this case we set the deviceToken to an empty
+// string to prevent the insert from failing.
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:
+(NSError *)error {
+    NSLog(@"Failed to register for remote notifications: %@", error);
+    self.deviceToken = @"";
+}
+
+// Because toast alerts don't work when the app is running, the app handles them.
+// This uses the userInfo in the payload to display a UIAlertView.
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:
+(NSDictionary *)userInfo {
+    NSLog(@"%@", userInfo);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification" message:
+                          [userInfo objectForKey:@"inAppMessage"] delegate:nil cancelButtonTitle:
+                          @"OK" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+
 
 @end
