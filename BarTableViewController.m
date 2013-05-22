@@ -14,28 +14,28 @@
 
 @interface BarTableViewController ()
 @property (strong, nonatomic) AzureConnection *azureConnection;
-//@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableDictionary *drinkTypeMap; //of type NSString to NSNumber
+
+//activity view properties
+@property (nonatomic, retain) UIActivityIndicatorView * activityView;
+@property (nonatomic, retain) UIView *loadingView;
+@property (nonatomic, retain) UILabel *loadingLabel;
 @end
 
 @implementation BarTableViewController
 @synthesize azureConnection;
 @synthesize tableView;
-
-
-- (NSMutableDictionary *) drinkTypeMap {
-    if(! _drinkTypeMap) {
-        _drinkTypeMap = [[NSMutableDictionary alloc] init];
-    }
-    return _drinkTypeMap;
-}
+@synthesize activityView;
+@synthesize loadingView;
+@synthesize loadingLabel;
 
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self showActivityIndicator];
     
     // Create the connection to Azure - this creates the Mobile Service client inside the wrapped service
     self.azureConnection = [[AzureConnection alloc] initWithTableName: @"Venue"];
@@ -45,6 +45,7 @@
     
     [self.azureConnection refreshDataOnSuccess:^{
         [self.tableView reloadData];
+        [self.loadingView removeFromSuperview];
     } withPredicate:predicate];
     
     //hide back button
@@ -54,18 +55,9 @@
     UIColor *bgColor = [[UIColor alloc] initWithRed:0.22 green:0.22 blue:0.22 alpha:1.0];
     self.tableView.backgroundColor = bgColor;
     
-    //self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 }
 
 #pragma mark - Table view data source
-
-//Since we only have 1 Section, We do not implement the method below!
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-//    return 0;
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
@@ -79,27 +71,17 @@
 {
     static NSString *CellIdentifier = @"toDrinkList";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
     
     //get the item from Azure
     NSDictionary *item = [self.azureConnection.items objectAtIndex:indexPath.row];
     
     //get the venue name and ID out of the azure item
     NSString *venueName = [item objectForKey:@"name"];
-    NSNumber *venueID = [NSNumber numberWithInt:[[item objectForKey:@"id"] intValue]];
-    
-    //set cell label
-    //cell.textLabel.textColor = [UIColor blackColor];
-//    cell.textLabel.text = venueName;
     
     
     NSString *fileName = [NSString stringWithFormat: @"%d.jpg", indexPath.row + 1];
     
-    //UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
     UIImage *image = [UIImage imageNamed:fileName];
-    //self.imgView.image = [UIImage imageWithContentsOfFile:path];
     
     //set properties of uiimageview
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:1];
@@ -107,7 +89,6 @@
     [imageView.layer setBorderColor: [[UIColor grayColor] CGColor]];
     [imageView.layer setBorderWidth: 1.5];
     [imageView.layer setShadowColor:[[UIColor whiteColor] CGColor]];
-    //[imageView.layer setShadowOffset:5.0];
     
     UILabel *label;
     label = (UILabel *)[cell viewWithTag:2];
@@ -119,17 +100,35 @@
     label = (UILabel *)[cell viewWithTag:4];
     label.text = [NSString stringWithFormat:@"%@, %@", [item objectForKey:@"city"], [item objectForKey:@"state"]];
     
-    NSString *key = [NSString stringWithFormat:@"%d",indexPath.row];
-
-    //add the cell info to the drinkTypeMap
-    [self.drinkTypeMap setValue:venueID forKey:key];
-    
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//}
+
+- (void)showActivityIndicator {
+	
+	loadingView = [[UIView alloc] initWithFrame:CGRectMake(75, 120, 170, 170)];
+	loadingView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+	loadingView.clipsToBounds = YES;
+	loadingView.layer.cornerRadius = 10.0;
+	
+	activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+	activityView.frame = CGRectMake(65, 40, activityView.bounds.size.width, activityView.bounds.size.height);
+    [loadingView addSubview:activityView];
+	
+    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 115, 130, 22)];
+    loadingLabel.backgroundColor = [UIColor clearColor];
+    loadingLabel.textColor = [UIColor whiteColor];
+    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    loadingLabel.textAlignment = UITextAlignmentCenter;
+    loadingLabel.text = @"Loading...";
+    [loadingView addSubview:loadingLabel];
+	
+    [self.view addSubview:loadingView];
+    [activityView startAnimating];
 }
 
 

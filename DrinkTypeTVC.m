@@ -1,16 +1,27 @@
 #import "DrinkTypeTVC.h"
 //#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 #import "AzureConnection.h"
+#import <QuartzCore/QuartzCore.h>
+
+
 
 @interface DrinkTypeTVC ()
 @property (strong, nonatomic) AzureConnection *azureConnection;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+//activity view properties
+@property (nonatomic, retain) UIActivityIndicatorView * activityView;
+@property (nonatomic, retain) UIView *loadingView;
+@property (nonatomic, retain) UILabel *loadingLabel;
 @end
 
 @implementation DrinkTypeTVC
 
 @synthesize azureConnection;
 @synthesize venueName;
+@synthesize activityView;
+@synthesize loadingView;
+@synthesize loadingLabel;
 
 - (NSNumber *)venueID {
     if(!_venueID){
@@ -23,6 +34,8 @@
 {
     [super viewDidLoad];
     
+    [self showActivityIndicator];
+    
     // Create the connection to Azure - this creates the Mobile Service client inside the wrapped service
     self.azureConnection = [[AzureConnection alloc] initWithTableName: @"ItemType"];
     
@@ -31,6 +44,7 @@
     
     [self.azureConnection refreshDataOnSuccess:^{
         [self.tableView reloadData];
+        [self.loadingView removeFromSuperview];
     } withPredicate:predicate];
     
     //set title in the nav bar
@@ -103,6 +117,29 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)showActivityIndicator {
+	
+	loadingView = [[UIView alloc] initWithFrame:CGRectMake(75, 120, 170, 170)];
+	loadingView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+	loadingView.clipsToBounds = YES;
+	loadingView.layer.cornerRadius = 10.0;
+	
+	activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+	activityView.frame = CGRectMake(65, 40, activityView.bounds.size.width, activityView.bounds.size.height);
+    [loadingView addSubview:activityView];
+	
+    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 115, 130, 22)];
+    loadingLabel.backgroundColor = [UIColor clearColor];
+    loadingLabel.textColor = [UIColor whiteColor];
+    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    loadingLabel.textAlignment = UITextAlignmentCenter;
+    loadingLabel.text = @"Loading...";
+    [loadingView addSubview:loadingLabel];
+	
+    [self.view addSubview:loadingView];
+    [activityView startAnimating];
 }
 
 

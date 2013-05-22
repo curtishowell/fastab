@@ -145,7 +145,7 @@
 
 - (void)showActivityIndicator {
 	
-	loadingView = [[UIView alloc] initWithFrame:CGRectMake(75, 155, 170, 170)];
+	loadingView = [[UIView alloc] initWithFrame:CGRectMake(75, 120, 170, 170)];
 	loadingView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
 	loadingView.clipsToBounds = YES;
 	loadingView.layer.cornerRadius = 10.0;

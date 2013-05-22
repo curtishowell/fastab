@@ -1,9 +1,9 @@
-﻿//
-//  main.m
-//  Quickstart
 //
-//  Created by Jonjo TWIST on 9/24/12.
-//  Copyright (c) 2012 Windows Azure. All rights reserved.
+//  main.m
+//  Fastab
+//
+//  Created by Curtis Howell on 5/22/13.
+//  Copyright (c) 2013 Curtis Howell. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

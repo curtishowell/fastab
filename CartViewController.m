@@ -179,10 +179,7 @@
                                 numberStyle:NSNumberFormatterCurrencyStyle];
     label = (UILabel *)[cell viewWithTag:3];
     label.text = [NSString stringWithFormat:@"%@", lineItemTotal];
-    
-//    self.subtotal = tempTotal;
-//    self.totalLabel.text = [NSString stringWithFormat:@"$%@", tempTotal];
-    
+
     [self setTipAndTotal];
          
     return cell;
@@ -200,6 +197,7 @@
     //also update subtotal and tip
 }
 
+//user clicks on a line item in the cart to adjust the quantity
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIView *sender = self.view;
     
@@ -215,11 +213,9 @@
     NSString *prompt = [NSString stringWithFormat:@"# of %@", itemName];
     
     ActionStringDoneBlock done = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-//        if ([sender respondsToSelector:@selector(setItemQty:)]) {
-            NSNumber *newQty = [NSNumber numberWithInt:selectedIndex];
-            NSArray *itemAndQty = [NSArray arrayWithObjects:newQty, selectedItem, nil];
-            [self performSelector:@selector(setItemQty:) withObject:itemAndQty];
-//        }
+        NSNumber *newQty = [NSNumber numberWithInt:selectedIndex];
+        NSArray *itemAndQty = [NSArray arrayWithObjects:newQty, selectedItem, nil];
+        [self performSelector:@selector(setItemQty:) withObject:itemAndQty];
     };
     
     [ActionSheetStringPicker showPickerWithTitle:prompt rows:numbers initialSelection:[currentQty integerValue] doneBlock:done cancelBlock:cancel origin:sender];
@@ -458,7 +454,7 @@
             [self.azureOrderItems addItem:orderItem completion:^(NSUInteger orderItemIndex){
                 NSLog(@"saved 1 orderItem");
                 
-                //increment counter
+                //increment countergi
                 successfulOrderItemCount ++;
                 
                 //when the last Azure operation has completed, update the status of the order then segue to the next view
@@ -473,6 +469,7 @@
                         [viewController clearCart];
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [loadingAnimation removeFromSuperview];
+                            [self.navigationController setNavigationBarHidden:YES animated:YES];
                             [viewController performSegueWithIdentifier:@"cartToOrderFulfillment" sender:viewController];
                         });
                     }];
