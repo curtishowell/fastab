@@ -11,7 +11,6 @@
 		E6FA0F1E174D334D00EEDA40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1D174D334D00EEDA40 /* Foundation.framework */; };
 		E6FA0F20174D334D00EEDA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1F174D334D00EEDA40 /* CoreGraphics.framework */; };
 		E6FA0F22174D334D00EEDA40 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F21174D334D00EEDA40 /* CoreData.framework */; };
-		E6FA0F28174D334E00EEDA40 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F26174D334D00EEDA40 /* InfoPlist.strings */; };
 		E6FA0F2A174D334E00EEDA40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F29174D334E00EEDA40 /* main.m */; };
 		E6FA0F2E174D334E00EEDA40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F2D174D334E00EEDA40 /* AppDelegate.m */; };
 		E6FA0F30174D334E00EEDA40 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F2F174D334E00EEDA40 /* Default.png */; };
@@ -99,7 +98,6 @@
 		E6FA0F1F174D334D00EEDA40 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E6FA0F21174D334D00EEDA40 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E6FA0F25174D334D00EEDA40 /* Fastab-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Fastab-Info.plist"; sourceTree = "<group>"; };
-		E6FA0F27174D334D00EEDA40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E6FA0F29174D334E00EEDA40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E6FA0F2B174D334E00EEDA40 /* Fastab-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fastab-Prefix.pch"; sourceTree = "<group>"; };
 		E6FA0F2C174D334E00EEDA40 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -317,7 +315,6 @@
 				E6FA0F3F174D33B400EEDA40 /* ActionSheetPicker.h */,
 				E6FA0F40174D33B400EEDA40 /* Pickers */,
 				E6FA0F25174D334D00EEDA40 /* Fastab-Info.plist */,
-				E6FA0F26174D334D00EEDA40 /* InfoPlist.strings */,
 				E6FA0F29174D334E00EEDA40 /* main.m */,
 				E6FA0F2B174D334E00EEDA40 /* Fastab-Prefix.pch */,
 				E6FA0F2F174D334E00EEDA40 /* Default.png */,
@@ -530,7 +527,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6FA0F28174D334E00EEDA40 /* InfoPlist.strings in Resources */,
 				E6FA0F30174D334E00EEDA40 /* Default.png in Resources */,
 				E6FA0F32174D334E00EEDA40 /* Default@2x.png in Resources */,
 				E6FA0F34174D334E00EEDA40 /* Default-568h@2x.png in Resources */,
@@ -623,14 +619,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E6FA0F26174D334D00EEDA40 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E6FA0F27174D334D00EEDA40 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		E6FA103C174D351B00EEDA40 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
