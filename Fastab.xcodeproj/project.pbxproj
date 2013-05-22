@@ -698,7 +698,7 @@
 				GCC_PREFIX_HEADER = "Fastab/Fastab-Prefix.pch";
 				INFOPLIST_FILE = "Fastab/Fastab-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0D337767-1AA2-48F2-944E-86749642D4BC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC2FBD3A-7483-48CF-9D9D-96203A3EF79B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
