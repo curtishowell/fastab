@@ -10,9 +10,25 @@
 
 @interface OrderFulfillmentViewController ()
 
+//- (void)receivedNotification;
+
 @end
 
 @implementation OrderFulfillmentViewController
+
+- (void)viewDidLoad {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification) name:@"receivedNotification" object:nil];
+
+}
+
+
+- (void)receivedNotification {
+    
+}
+
+
+
 
 
 @end

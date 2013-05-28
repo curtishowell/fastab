@@ -216,11 +216,30 @@
 // This uses the userInfo in the payload to display a UIAlertView.
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:
 (NSDictionary *)userInfo {
+    
     NSLog(@"%@", userInfo);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification" message:
-                          [userInfo objectForKey:@"inAppMessage"] delegate:nil cancelButtonTitle:
-                          @"OK" otherButtonTitles:nil, nil];
-    [alert show];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"receivedNotification" object:nil];
+    
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//    {
+//        // The device is an iPad
+//        NSLog(@"device is an iPad");
+//    }
+//    else
+//    {
+//        // The device is an iPhone or iPod touch
+//        NSLog(@"device is not an iPad");
+//
+//    }
+    
+    
+    
+    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification" message:
+//                          [userInfo objectForKey:@"inAppMessage"] delegate:nil cancelButtonTitle:
+//                          @"OK" otherButtonTitles:nil, nil];
+//    [alert show];
 }
 
 

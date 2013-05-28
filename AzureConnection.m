@@ -168,6 +168,20 @@
 
 }
 
+- (void)removeUserCredentials
+{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [standardUserDefaults removeObjectForKey:@"userId"];
+    [standardUserDefaults removeObjectForKey:@"userToken"];
+    [standardUserDefaults synchronize];
+    
+    //just for testing to make sure the values were cleared out
+    NSString *userId = [standardUserDefaults stringForKey:@"userId"];
+    NSString *token = [standardUserDefaults stringForKey:@"userToken"];
+    
+}
+
 -(void)modifyItem:(NSDictionary *)item
          original:(NSDictionary *)original
        completion:(CompletionWithIndexBlock)completion

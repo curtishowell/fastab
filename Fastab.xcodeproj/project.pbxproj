@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E69220281755313F007C287E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E69220251755313F007C287E /* FirstViewController.m */; };
+		E69220291755313F007C287E /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E69220271755313F007C287E /* SecondViewController.m */; };
+		E692202F17553163007C287E /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = E692202B17553163007C287E /* first.png */; };
+		E692203017553163007C287E /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E692202C17553163007C287E /* first@2x.png */; };
+		E692203117553163007C287E /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = E692202D17553163007C287E /* second.png */; };
+		E692203217553163007C287E /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E692202E17553163007C287E /* second@2x.png */; };
+		E692203417553176007C287E /* FastabTerminal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E692203317553176007C287E /* FastabTerminal.storyboard */; };
 		E6FA0F1C174D334D00EEDA40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1B174D334D00EEDA40 /* UIKit.framework */; };
 		E6FA0F1E174D334D00EEDA40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1D174D334D00EEDA40 /* Foundation.framework */; };
 		E6FA0F20174D334D00EEDA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1F174D334D00EEDA40 /* CoreGraphics.framework */; };
@@ -31,7 +38,6 @@
 		E6FA0FE4174D343200EEDA40 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F5D174D343100EEDA40 /* AuthenticationViewController.m */; };
 		E6FA0FE5174D343200EEDA40 /* AzureConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F5F174D343100EEDA40 /* AzureConnection.m */; };
 		E6FA0FE6174D343200EEDA40 /* BarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F61174D343100EEDA40 /* BarTableViewController.m */; };
-		E6FA0FE7174D343200EEDA40 /* BarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F63174D343100EEDA40 /* BarViewController.m */; };
 		E6FA0FE8174D343200EEDA40 /* cartItem.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F64174D343100EEDA40 /* cartItem.xcdatamodeld */; };
 		E6FA0FE9174D343200EEDA40 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F67174D343100EEDA40 /* CartViewController.m */; };
 		E6FA0FEA174D343200EEDA40 /* checkout-button.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F68174D343100EEDA40 /* checkout-button.png */; };
@@ -44,7 +50,7 @@
 		E6FA0FF4174D343200EEDA40 /* DrinkTypeTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F75174D343100EEDA40 /* DrinkTypeTVC.m */; };
 		E6FA0FF5174D343200EEDA40 /* FastabNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F77174D343100EEDA40 /* FastabNavBar.m */; };
 		E6FA0FF6174D343200EEDA40 /* ItemInCart.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F79174D343100EEDA40 /* ItemInCart.m */; };
-		E6FA0FF9174D343200EEDA40 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F7C174D343100EEDA40 /* MainStoryboard_iPhone.storyboard */; };
+		E6FA0FF9174D343200EEDA40 /* Fastab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F7C174D343100EEDA40 /* Fastab.storyboard */; };
 		E6FA0FFA174D343200EEDA40 /* OrderFulfillmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F7E174D343100EEDA40 /* OrderFulfillmentViewController.m */; };
 		E6FA0FFB174D343200EEDA40 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F80174D343100EEDA40 /* PaymentViewController.m */; };
 		E6FA1012174D343200EEDA40 /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F9A174D343100EEDA40 /* right-arrow.png */; };
@@ -92,6 +98,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E69220241755313F007C287E /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		E69220251755313F007C287E /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		E69220261755313F007C287E /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		E69220271755313F007C287E /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		E692202B17553163007C287E /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		E692202C17553163007C287E /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		E692202D17553163007C287E /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		E692202E17553163007C287E /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		E692203317553176007C287E /* FastabTerminal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FastabTerminal.storyboard; sourceTree = "<group>"; };
 		E6FA0F18174D334D00EEDA40 /* Fastab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fastab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6FA0F1B174D334D00EEDA40 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E6FA0F1D174D334D00EEDA40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -131,8 +146,6 @@
 		E6FA0F5F174D343100EEDA40 /* AzureConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AzureConnection.m; path = ../AzureConnection.m; sourceTree = "<group>"; };
 		E6FA0F60174D343100EEDA40 /* BarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarTableViewController.h; path = ../BarTableViewController.h; sourceTree = "<group>"; };
 		E6FA0F61174D343100EEDA40 /* BarTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarTableViewController.m; path = ../BarTableViewController.m; sourceTree = "<group>"; };
-		E6FA0F62174D343100EEDA40 /* BarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarViewController.h; path = ../BarViewController.h; sourceTree = "<group>"; };
-		E6FA0F63174D343100EEDA40 /* BarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarViewController.m; path = ../BarViewController.m; sourceTree = "<group>"; };
 		E6FA0F65174D343100EEDA40 /* cartItem.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = cartItem.xcdatamodel; sourceTree = "<group>"; };
 		E6FA0F66174D343100EEDA40 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartViewController.h; path = ../CartViewController.h; sourceTree = "<group>"; };
 		E6FA0F67174D343100EEDA40 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CartViewController.m; path = ../CartViewController.m; sourceTree = "<group>"; };
@@ -143,9 +156,6 @@
 		E6FA0F6C174D343100EEDA40 /* connected144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = connected144.png; path = ../connected144.png; sourceTree = "<group>"; };
 		E6FA0F6D174D343100EEDA40 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = ../CoreDataTableViewController.h; sourceTree = "<group>"; };
 		E6FA0F6E174D343100EEDA40 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = ../CoreDataTableViewController.m; sourceTree = "<group>"; };
-		E6FA0F6F174D343100EEDA40 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
-		E6FA0F70174D343100EEDA40 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
-		E6FA0F71174D343100EEDA40 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		E6FA0F72174D343100EEDA40 /* DrinkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkTableViewController.h; path = ../DrinkTableViewController.h; sourceTree = "<group>"; };
 		E6FA0F73174D343100EEDA40 /* DrinkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkTableViewController.m; path = ../DrinkTableViewController.m; sourceTree = "<group>"; };
 		E6FA0F74174D343100EEDA40 /* DrinkTypeTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkTypeTVC.h; path = ../DrinkTypeTVC.h; sourceTree = "<group>"; };
@@ -154,7 +164,7 @@
 		E6FA0F77174D343100EEDA40 /* FastabNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastabNavBar.m; sourceTree = SOURCE_ROOT; };
 		E6FA0F78174D343100EEDA40 /* ItemInCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemInCart.h; path = ../ItemInCart.h; sourceTree = "<group>"; };
 		E6FA0F79174D343100EEDA40 /* ItemInCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemInCart.m; path = ../ItemInCart.m; sourceTree = "<group>"; };
-		E6FA0F7C174D343100EEDA40 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard_iPhone.storyboard; path = ../MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		E6FA0F7C174D343100EEDA40 /* Fastab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Fastab.storyboard; path = ../Fastab.storyboard; sourceTree = "<group>"; };
 		E6FA0F7D174D343100EEDA40 /* OrderFulfillmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderFulfillmentViewController.h; path = ../OrderFulfillmentViewController.h; sourceTree = "<group>"; };
 		E6FA0F7E174D343100EEDA40 /* OrderFulfillmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderFulfillmentViewController.m; path = ../OrderFulfillmentViewController.m; sourceTree = "<group>"; };
 		E6FA0F7F174D343100EEDA40 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentViewController.h; path = ../PaymentViewController.h; sourceTree = "<group>"; };
@@ -237,9 +247,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E692202A1755314B007C287E /* Fastab Terminal */ = {
+			isa = PBXGroup;
+			children = (
+				E692203317553176007C287E /* FastabTerminal.storyboard */,
+				E692202B17553163007C287E /* first.png */,
+				E692202C17553163007C287E /* first@2x.png */,
+				E692202D17553163007C287E /* second.png */,
+				E692202E17553163007C287E /* second@2x.png */,
+				E69220241755313F007C287E /* FirstViewController.h */,
+				E69220251755313F007C287E /* FirstViewController.m */,
+				E69220261755313F007C287E /* SecondViewController.h */,
+				E69220271755313F007C287E /* SecondViewController.m */,
+			);
+			name = "Fastab Terminal";
+			path = Fastab;
+			sourceTree = "<group>";
+		};
 		E6FA0F0F174D334D00EEDA40 = {
 			isa = PBXGroup;
 			children = (
+				E692202A1755314B007C287E /* Fastab Terminal */,
 				E6FA0F23174D334D00EEDA40 /* Fastab */,
 				E6FA0F1A174D334D00EEDA40 /* Frameworks */,
 				E6FA0F19174D334D00EEDA40 /* Products */,
@@ -270,15 +298,13 @@
 		E6FA0F23174D334D00EEDA40 /* Fastab */ = {
 			isa = PBXGroup;
 			children = (
-				E6FA0F7C174D343100EEDA40 /* MainStoryboard_iPhone.storyboard */,
+				E6FA0F7C174D343100EEDA40 /* Fastab.storyboard */,
 				E6FA0F5C174D343100EEDA40 /* AuthenticationViewController.h */,
 				E6FA0F5D174D343100EEDA40 /* AuthenticationViewController.m */,
 				E6FA0F5E174D343100EEDA40 /* AzureConnection.h */,
 				E6FA0F5F174D343100EEDA40 /* AzureConnection.m */,
 				E6FA0F60174D343100EEDA40 /* BarTableViewController.h */,
 				E6FA0F61174D343100EEDA40 /* BarTableViewController.m */,
-				E6FA0F62174D343100EEDA40 /* BarViewController.h */,
-				E6FA0F63174D343100EEDA40 /* BarViewController.m */,
 				E6FA0F64174D343100EEDA40 /* cartItem.xcdatamodeld */,
 				E6FA0F66174D343100EEDA40 /* CartViewController.h */,
 				E6FA0F67174D343100EEDA40 /* CartViewController.m */,
@@ -355,9 +381,6 @@
 				E6FA0F6A174D343100EEDA40 /* connected72.png */,
 				E6FA0F6B174D343100EEDA40 /* connected114.png */,
 				E6FA0F6C174D343100EEDA40 /* connected144.png */,
-				E6FA0F6F174D343100EEDA40 /* Default-568h@2x.png */,
-				E6FA0F70174D343100EEDA40 /* Default.png */,
-				E6FA0F71174D343100EEDA40 /* Default@2x.png */,
 				E6FA0F56174D343100EEDA40 /* 1.jpg */,
 				E6FA0F57174D343100EEDA40 /* 2.jpg */,
 				E6FA0F58174D343100EEDA40 /* 3.jpg */,
@@ -539,7 +562,7 @@
 				E6FA0FEC174D343200EEDA40 /* connected72.png in Resources */,
 				E6FA0FED174D343200EEDA40 /* connected114.png in Resources */,
 				E6FA0FEE174D343200EEDA40 /* connected144.png in Resources */,
-				E6FA0FF9174D343200EEDA40 /* MainStoryboard_iPhone.storyboard in Resources */,
+				E6FA0FF9174D343200EEDA40 /* Fastab.storyboard in Resources */,
 				E6FA1012174D343200EEDA40 /* right-arrow.png in Resources */,
 				E6FA103A174D343200EEDA40 /* USA.png in Resources */,
 				E6FA103E174D351B00EEDA40 /* InfoPlist.strings in Resources */,
@@ -568,6 +591,11 @@
 				E6FA109D174D395900EEDA40 /* textfield@2x.png in Resources */,
 				E6FA109E174D395900EEDA40 /* PaymentKit.podspec in Resources */,
 				E6FA109F174D395900EEDA40 /* README.md in Resources */,
+				E692202F17553163007C287E /* first.png in Resources */,
+				E692203017553163007C287E /* first@2x.png in Resources */,
+				E692203117553163007C287E /* second.png in Resources */,
+				E692203217553163007C287E /* second@2x.png in Resources */,
+				E692203417553176007C287E /* FastabTerminal.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,7 +617,6 @@
 				E6FA0FE4174D343200EEDA40 /* AuthenticationViewController.m in Sources */,
 				E6FA0FE5174D343200EEDA40 /* AzureConnection.m in Sources */,
 				E6FA0FE6174D343200EEDA40 /* BarTableViewController.m in Sources */,
-				E6FA0FE7174D343200EEDA40 /* BarViewController.m in Sources */,
 				E6FA0FE8174D343200EEDA40 /* cartItem.xcdatamodeld in Sources */,
 				E6FA0FE9174D343200EEDA40 /* CartViewController.m in Sources */,
 				E6FA0FEF174D343200EEDA40 /* CoreDataTableViewController.m in Sources */,
@@ -613,6 +640,8 @@
 				E6FA1086174D395900EEDA40 /* PKTextField.m in Sources */,
 				E6FA1087174D395900EEDA40 /* PKUSAddressZip.m in Sources */,
 				E6FA1088174D395900EEDA40 /* PKView.m in Sources */,
+				E69220281755313F007C287E /* FirstViewController.m in Sources */,
+				E69220291755313F007C287E /* SecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,6 +718,7 @@
 		E6FA0F3B174D334E00EEDA40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -697,8 +727,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fastab/Fastab-Prefix.pch";
 				INFOPLIST_FILE = "Fastab/Fastab-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "EC2FBD3A-7483-48CF-9D9D-96203A3EF79B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC2FBD3A-7483-48CF-9D9D-96203A3EF79B";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -713,7 +746,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fastab/Fastab-Prefix.pch";
 				INFOPLIST_FILE = "Fastab/Fastab-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

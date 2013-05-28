@@ -43,5 +43,6 @@ typedef void (^BusyUpdateBlock) (BOOL busy);
 
 //save credentials because azure for some reason does not do this automatically
 - (void) storeUserCredentials;
+- (void)removeUserCredentials;
 
 @end
