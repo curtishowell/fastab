@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *keyWord;
 @property (weak, nonatomic) IBOutlet UILabel *pickUpMessage;
 @property (weak, nonatomic) IBOutlet UILabel *toPickupSubtitle;
+//- (void)receivedNotification;
 
 @end
 
@@ -136,5 +137,21 @@ Else //Assuming that the order is completed
     or figure a way to display that view controller instead
         //Prefer to do the latter way so it will help avoid stacking too many view controllers in memory
 */
+/*from head
+
+- (void)viewDidLoad {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification) name:@"receivedNotification" object:nil];
+
+}*/
+
+
+- (void)receivedNotification {
+    
+}
+
+
+
+
 
 @end
