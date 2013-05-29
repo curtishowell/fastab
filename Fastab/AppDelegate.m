@@ -231,7 +231,7 @@
     
     //OrderFulfillmentViewController *temp = [[OrderFulfillmentViewController alloc]init];
     //[temp connectToAzure];
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadAppDelegateTable" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadAppDelegateTable" object:nil];
     
 //end from head
     

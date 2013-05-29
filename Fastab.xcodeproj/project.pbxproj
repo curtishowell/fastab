@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
 		49B11DD31751539A00481DC2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B11DD21751539A00481DC2 /* AudioToolbox.framework */; };
 		49C009391756A49E00FC8217 /* fb-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C009371756A49E00FC8217 /* fb-login.png */; };
 		49C0093A1756A49E00FC8217 /* skip-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C009381756A49E00FC8217 /* skip-login.png */; };
-=======
 		E69220281755313F007C287E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E69220251755313F007C287E /* FirstViewController.m */; };
 		E69220291755313F007C287E /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E69220271755313F007C287E /* SecondViewController.m */; };
 		E692202F17553163007C287E /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = E692202B17553163007C287E /* first.png */; };
@@ -19,7 +17,6 @@
 		E692203117553163007C287E /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = E692202D17553163007C287E /* second.png */; };
 		E692203217553163007C287E /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E692202E17553163007C287E /* second@2x.png */; };
 		E692203417553176007C287E /* FastabTerminal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E692203317553176007C287E /* FastabTerminal.storyboard */; };
->>>>>>> 482068f7f06d5dd99ac505842a7ab5332a26c2e4
 		E6FA0F1C174D334D00EEDA40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1B174D334D00EEDA40 /* UIKit.framework */; };
 		E6FA0F1E174D334D00EEDA40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1D174D334D00EEDA40 /* Foundation.framework */; };
 		E6FA0F20174D334D00EEDA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1F174D334D00EEDA40 /* CoreGraphics.framework */; };
@@ -104,11 +101,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-<<<<<<< HEAD
 		49B11DD21751539A00481DC2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		49C009371756A49E00FC8217 /* fb-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb-login.png"; path = "../Fastab/fb-login.png"; sourceTree = "<group>"; };
 		49C009381756A49E00FC8217 /* skip-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "skip-login.png"; path = "../Fastab/skip-login.png"; sourceTree = "<group>"; };
-=======
 		E69220241755313F007C287E /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		E69220251755313F007C287E /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		E69220261755313F007C287E /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
@@ -118,7 +113,6 @@
 		E692202D17553163007C287E /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		E692202E17553163007C287E /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		E692203317553176007C287E /* FastabTerminal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FastabTerminal.storyboard; sourceTree = "<group>"; };
->>>>>>> 482068f7f06d5dd99ac505842a7ab5332a26c2e4
 		E6FA0F18174D334D00EEDA40 /* Fastab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fastab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6FA0F1B174D334D00EEDA40 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E6FA0F1D174D334D00EEDA40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -607,16 +601,13 @@
 				E6FA109D174D395900EEDA40 /* textfield@2x.png in Resources */,
 				E6FA109E174D395900EEDA40 /* PaymentKit.podspec in Resources */,
 				E6FA109F174D395900EEDA40 /* README.md in Resources */,
-<<<<<<< HEAD
 				49C009391756A49E00FC8217 /* fb-login.png in Resources */,
 				49C0093A1756A49E00FC8217 /* skip-login.png in Resources */,
-=======
 				E692202F17553163007C287E /* first.png in Resources */,
 				E692203017553163007C287E /* first@2x.png in Resources */,
 				E692203117553163007C287E /* second.png in Resources */,
 				E692203217553163007C287E /* second@2x.png in Resources */,
 				E692203417553176007C287E /* FastabTerminal.storyboard in Resources */,
->>>>>>> 482068f7f06d5dd99ac505842a7ab5332a26c2e4
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,12 +730,8 @@
 		E6FA0F3B174D334E00EEDA40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-<<<<<<< HEAD
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
-=======
 				CODE_SIGN_IDENTITY = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
->>>>>>> 482068f7f06d5dd99ac505842a7ab5332a26c2e4
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -754,7 +741,7 @@
 				INFOPLIST_FILE = "Fastab/Fastab-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EC2FBD3A-7483-48CF-9D9D-96203A3EF79B";
+				PROVISIONING_PROFILE = "33AC83B9-90CD-441B-8555-A9F98C50B708";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC2FBD3A-7483-48CF-9D9D-96203A3EF79B";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
