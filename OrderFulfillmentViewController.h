@@ -10,4 +10,8 @@
 
 @interface OrderFulfillmentViewController : UIViewController
 
+@property (strong, nonatomic) NSNumber *orderNum;
+
+- (void)connectToAzure;
+
 @end

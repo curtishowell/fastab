@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LlT-TF-AHU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LlT-TF-AHU">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -322,31 +322,141 @@
         <scene sceneID="l47-ld-IZB">
             <objects>
                 <viewController id="Bco-MU-gUH" customClass="OrderFulfillmentViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hW8-Bz-OsP">
+                    <view key="view" contentMode="scaleToFill" id="Xlq-Q2-XHY">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Your order is being crafted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L78-QU-FF8">
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Your Order is Being Crafted" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLR-0T-WKl">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="TtO-DP-krc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Please wait patiently- we'll notify you when it's ready" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="248" translatesAutoresizingMaskIntoConstraints="NO" id="mZq-fO-Xta">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="mFW-WY-qcE">
+                                <attributedString key="attributedText">
+                                    <fragment content="Please wait for your special ">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="keyword">
+                                        <attributes>
+                                            <color key="NSColor" red="0.14671796564802575" green="1" blue="0.16648947891862631" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" to appear once you order is ready for pickup">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Keyword" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdo-0B-Wqr">
+                                <color key="backgroundColor" red="0.2661335151" green="1" blue="0.21597647859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="101" id="6xt-1p-BxG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Ef9-w1-dqv">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="Gor-80-HAk"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Please use your ">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="0.97530864197530864" blue="0.97530864197530864" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="keyword">
+                                        <attributes>
+                                            <color key="NSColor" red="0.26613351513554395" green="1" blue="0.21597647855271906" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" to pickup your order at the bar">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="0.97530864197530864" blue="0.97530864197530864" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="ffZ-lL-Da7">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="OHd-bw-qNX"/>
+                                    <constraint firstAttribute="height" constant="70" id="PRA-yz-DPe"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Your ">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="keyword">
+                                        <attributes>
+                                            <color key="NSColor" red="0.21408397475086227" green="1" blue="0.16076620250087148" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" is">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.2156862745" green="0.2156862745" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="mZq-fO-Xta" firstAttribute="top" secondItem="hW8-Bz-OsP" secondAttribute="top" constant="218" id="RmW-YQ-d8v"/>
-                            <constraint firstItem="mZq-fO-Xta" firstAttribute="centerX" secondItem="hW8-Bz-OsP" secondAttribute="centerX" type="default" id="ZAe-cx-rbf"/>
-                            <constraint firstItem="L78-QU-FF8" firstAttribute="top" secondItem="hW8-Bz-OsP" secondAttribute="top" constant="126" id="bb7-1o-JoM"/>
-                            <constraint firstItem="L78-QU-FF8" firstAttribute="centerX" secondItem="mZq-fO-Xta" secondAttribute="centerX" type="default" id="fMP-pH-MMi"/>
+                            <constraint firstItem="ffZ-lL-Da7" firstAttribute="leading" secondItem="Xlq-Q2-XHY" secondAttribute="leading" constant="10" id="00R-02-8pY"/>
+                            <constraint firstAttribute="trailing" secondItem="Ef9-w1-dqv" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="351-D0-1vm"/>
+                            <constraint firstItem="mFW-WY-qcE" firstAttribute="leading" secondItem="Xlq-Q2-XHY" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="7HH-DD-RG1"/>
+                            <constraint firstAttribute="trailing" secondItem="CLR-0T-WKl" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="9p2-tE-tMb"/>
+                            <constraint firstItem="zdo-0B-Wqr" firstAttribute="leading" secondItem="Xlq-Q2-XHY" secondAttribute="leading" type="default" id="ERc-91-uMP"/>
+                            <constraint firstItem="CLR-0T-WKl" firstAttribute="top" secondItem="Xlq-Q2-XHY" secondAttribute="top" constant="20" symbolic="YES" type="default" id="F1F-5X-TIG"/>
+                            <constraint firstItem="Ef9-w1-dqv" firstAttribute="leading" secondItem="Xlq-Q2-XHY" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Q59-GT-JI1"/>
+                            <constraint firstItem="mFW-WY-qcE" firstAttribute="top" secondItem="CLR-0T-WKl" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="UBe-sM-iyP"/>
+                            <constraint firstItem="ffZ-lL-Da7" firstAttribute="top" secondItem="CLR-0T-WKl" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Z0E-dz-gmS"/>
+                            <constraint firstItem="CLR-0T-WKl" firstAttribute="leading" secondItem="Xlq-Q2-XHY" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="fGJ-ef-Ict"/>
+                            <constraint firstItem="Ef9-w1-dqv" firstAttribute="top" secondItem="zdo-0B-Wqr" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="jh4-zq-QUg"/>
+                            <constraint firstItem="ffZ-lL-Da7" firstAttribute="baseline" secondItem="mFW-WY-qcE" secondAttribute="baseline" type="default" id="qmF-FA-y9C"/>
+                            <constraint firstItem="zdo-0B-Wqr" firstAttribute="top" secondItem="Xlq-Q2-XHY" secondAttribute="top" constant="152" id="srJ-bh-18g"/>
+                            <constraint firstItem="zdo-0B-Wqr" firstAttribute="trailing" secondItem="Xlq-Q2-XHY" secondAttribute="trailing" type="default" id="tLD-bs-AAn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yEo-01-FPh"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="keyWord" destination="zdo-0B-Wqr" id="Xwn-GI-pRK"/>
+                        <outlet property="pickUpMessage" destination="Ef9-w1-dqv" id="82X-QH-MtS"/>
+                        <outlet property="subtitleLabel" destination="mFW-WY-qcE" id="SK0-Zv-pHO"/>
+                        <outlet property="titleLabel" destination="CLR-0T-WKl" id="jXR-4T-PhV"/>
+                        <outlet property="toPickupSubtitle" destination="ffZ-lL-Da7" id="ZyF-Mh-3tc"/>
+                        <segue destination="PLf-HO-6As" kind="push" identifier="backToBars" id="Vw7-HJ-tLy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iTW-tJ-qWc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -418,8 +528,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ml1-eS-NmL">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="JhW-ul-wEx"/>
+                                    <constraint firstAttribute="width" constant="224" id="VGW-UO-0b2"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Log in with Facebook">
+                                <state key="normal" backgroundImage="fb-login.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -431,8 +545,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRB-Zt-kTX">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="gFK-bx-U0r"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Skip">
+                                <state key="normal" backgroundImage="skip-login.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -443,13 +560,21 @@
                                     <action selector="skipToBars:" destination="Agd-OB-hoX" eventType="touchUpInside" id="bKh-dC-ek0"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="fastab" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quo-Ve-5uk">
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="50"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.2156862745" green="0.2156862745" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="ZRB-Zt-kTX" firstAttribute="centerX" secondItem="9pR-IZ-JmU" secondAttribute="centerX" type="default" id="9cX-J0-hW5"/>
-                            <constraint firstItem="Ml1-eS-NmL" firstAttribute="top" secondItem="9pR-IZ-JmU" secondAttribute="top" constant="151" id="JpY-rY-utB"/>
-                            <constraint firstAttribute="bottom" secondItem="ZRB-Zt-kTX" secondAttribute="bottom" constant="160" id="OU8-4o-ujn"/>
-                            <constraint firstItem="Ml1-eS-NmL" firstAttribute="centerX" secondItem="ZRB-Zt-kTX" secondAttribute="centerX" type="default" id="ket-80-u4d"/>
+                            <constraint firstItem="ZRB-Zt-kTX" firstAttribute="trailing" secondItem="Ml1-eS-NmL" secondAttribute="trailing" type="default" id="Cyf-sY-45Y"/>
+                            <constraint firstAttribute="bottom" secondItem="Ml1-eS-NmL" secondAttribute="bottom" constant="99" id="QzV-FX-DoL"/>
+                            <constraint firstItem="quo-Ve-5uk" firstAttribute="top" secondItem="9pR-IZ-JmU" secondAttribute="top" constant="53" id="S07-09-EZp"/>
+                            <constraint firstItem="ZRB-Zt-kTX" firstAttribute="leading" secondItem="Ml1-eS-NmL" secondAttribute="leading" type="default" id="Vi3-B7-3he"/>
+                            <constraint firstItem="quo-Ve-5uk" firstAttribute="centerX" secondItem="Ml1-eS-NmL" secondAttribute="centerX" type="default" id="mQh-xZ-Fgl"/>
+                            <constraint firstItem="quo-Ve-5uk" firstAttribute="centerX" secondItem="9pR-IZ-JmU" secondAttribute="centerX" type="default" id="tap-X7-WGJ"/>
+                            <constraint firstAttribute="bottom" secondItem="ZRB-Zt-kTX" secondAttribute="bottom" constant="41" id="xyO-Bp-x56"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iaL-9d-w6I"/>
@@ -517,15 +642,89 @@
     </scenes>
     <resources>
         <image name="checkout-button.png" width="422" height="73"/>
+        <image name="fb-login.png" width="350" height="66"/>
         <image name="right-arrow.png" width="24" height="33"/>
+        <image name="skip-login.png" width="356" height="72"/>
     </resources>
+    <classes>
+        <class className="AuthenticationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AuthenticationViewController.h"/>
+        </class>
+        <class className="BarTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BarTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="CartViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CartViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cartItems" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tipControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="totalLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DrinkTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DrinkTableViewController.h"/>
+        </class>
+        <class className="DrinkTypeTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DrinkTypeTVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="OrderFulfillmentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OrderFulfillmentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="keyWord" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pickUpMessage" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toPickupSubtitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PKTextField" superclassName="UITextField">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PKTextField.h"/>
+        </class>
+        <class className="PKView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PKView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cardCVCField" candidateClass="PKTextField"/>
+                <relationship kind="outlet" name="cardExpiryField" candidateClass="PKTextField"/>
+                <relationship kind="outlet" name="cardNumberField" candidateClass="PKTextField"/>
+                <relationship kind="outlet" name="clipView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="innerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="placeholderView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="PaymentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PaymentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="saveButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="stripeView" candidateClass="STPView"/>
+            </relationships>
+        </class>
+        <class className="STPView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/STPView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="paymentView" candidateClass="PKView"/>
+            </relationships>
+        </class>
+        <class className="SplashViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="8SP-c4-CQs"/>
+        <segue reference="FGZ-NP-AXv"/>
         <segue reference="voc-Bt-LX9"/>
     </inferredMetricsTieBreakers>
 </document>

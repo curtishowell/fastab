@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AzureConnection.h"
+#import "OrderFulfillmentViewController.h"
 
 
 @interface AppDelegate ()
@@ -217,10 +218,18 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:
 (NSDictionary *)userInfo {
     NSLog(@"%@", userInfo);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification" message:
-                          [userInfo objectForKey:@"inAppMessage"] delegate:nil cancelButtonTitle:
-                          @"OK" otherButtonTitles:nil, nil];
-    [alert show];
+    //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification" message:
+    //                      [userInfo objectForKey:@"inAppMessage"] delegate:nil cancelButtonTitle:
+    //                      @"OK" otherButtonTitles:nil, nil];
+    //[alert show];
+    
+    //Call the method the order fulfillment view controller to change the text
+    //Maybe pass along the information used in the alert???
+    
+    //OrderFulfillmentViewController *temp = [[OrderFulfillmentViewController alloc]init];
+    //[temp connectToAzure];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadAppDelegateTable" object:nil];
+    
 }
 
 

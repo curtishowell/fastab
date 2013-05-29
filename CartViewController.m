@@ -14,6 +14,7 @@
 #import "QuartzCore/QuartzCore.h"
 #import "ActionSheetPicker.h"
 #import "ActionSheetStringPicker.h"
+#import "OrderFulfillmentViewController.h"
 
 @interface CartViewController ()
 
@@ -25,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipControl;
 @property (weak, nonatomic) IBOutlet UITableView *cartItems;
 @property (nonatomic) BOOL beganUpdates;
+@property (strong, nonatomic) NSNumber *orderNumbo;
 
 //temp
 @property (strong, nonatomic) UIManagedDocument *document;
@@ -437,6 +439,11 @@
         
         NSNumber *orderNumber = [[self.azureOrders.items objectAtIndex:orderIndex] objectForKey:@"id"];
         
+        //Pass along the order number to the OrderFulfillmentViewController
+        //NEED TO DO STUFF HERE! **Patrick 5/23
+        self.orderNumbo = orderNumber;
+        
+        
         __block int successfulOrderItemCount = 0;
         
         for(int i = 0; i < orderItemsCount; i ++) {
@@ -479,6 +486,19 @@
         }
     }];
 
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"cartToOrderFulfillment"]) {
+        UIViewController *fulfillOrder = segue.destinationViewController;
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        [standardUserDefaults setValue:self.orderNumbo forKey:@"orderNumber"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [fulfillOrder performSelector:@selector(setOrderNum:)
+                           withObject:self.orderNumbo];
+    }
 }
 
 - (void)clearCart {
