@@ -143,9 +143,15 @@
     
     //Azure: To Pick Up
     predicate = [NSPredicate predicateWithFormat:@"status == 'ready-for-pickup'"];
+//    [self.azurePickUp refreshDataOnSuccess:^{
+//        [self.toPickUpList reloadData];
+//    } withPredicate:predicate];
+    
     [self.azurePickUp refreshDataOnSuccess:^{
         [self.toPickUpList reloadData];
-    } withPredicate:predicate];
+    } withPredicate:predicate sortAscendingBy:@"keyword"];
+    
+    
 }
 
 - (void)drawlabel:(NSString *)string atRect:(CGRect)rect withColor:(UIColor *)color onView:(UIView *)view withAlignment:(NSTextAlignment)alignment {
