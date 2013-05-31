@@ -8,6 +8,7 @@
 
 #import "AzureConnection.h"
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "AppDelegate.h"
 
 @interface AzureConnection()
 
@@ -133,9 +134,7 @@
         // Let the caller know that we finished
         completion();
     }];
-    
 }
-
 
 -(void)addItem:(NSDictionary *)item
     completion:(CompletionWithIndexBlock)completion
@@ -158,13 +157,27 @@
 - (void) storeUserCredentials
 {
 	
-	
+	//store user details locally in nsUserDefaults
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
-    [standardUserDefaults setValue:self.client.currentUser.userId forKey:@"userId"];
+    NSString *userId = self.client.currentUser.userId;
+    [standardUserDefaults setValue:userId forKey:@"userId"];
     
     //TODO: store this token in the os x keychain instead of userdefaults
     [standardUserDefaults setValue:self.client.currentUser.mobileServiceAuthenticationToken forKey:@"token"];
+    
+    
+    
+    
+    //store the device key and user acct info in Azure
+    NSString *deviceToken = [(AppDelegate *)[[UIApplication sharedApplication] delegate] deviceToken];
+    NSDictionary *device = @{ @"deviceToken" : deviceToken, @"userId" : userId };
+     
+    AzureConnection *azureConnection = [[AzureConnection alloc] initWithTableName: @"Devices"];
+    
+    [azureConnection addItem:device completion:^(NSUInteger index){
+        
+    }];
 
 }
 
@@ -176,9 +189,9 @@
     [standardUserDefaults removeObjectForKey:@"userToken"];
     [standardUserDefaults synchronize];
     
-    //just for testing to make sure the values were cleared out
-    NSString *userId = [standardUserDefaults stringForKey:@"userId"];
-    NSString *token = [standardUserDefaults stringForKey:@"userToken"];
+//    //just for testing to make sure the values were cleared out
+//    NSString *userId = [standardUserDefaults stringForKey:@"userId"];
+//    NSString *token = [standardUserDefaults stringForKey:@"userToken"];
     
 }
 

@@ -14,7 +14,6 @@
 @interface AppDelegate ()
 
 @property (strong, nonatomic) AzureConnection *azureConnection;
-@property (strong, nonatomic) NSString *deviceToken;
 
 @end
 
@@ -165,17 +164,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 #pragma mark - added by Patrick & Curtis
 
 
@@ -184,13 +172,28 @@
 // Called in AppDelegate.m when APNS registration succeeds.
 - (void)registerDeviceToken:(NSString *)deviceToken
 {
-    NSDictionary *device = @{ @"deviceToken" : deviceToken };
-    self.azureConnection = [[AzureConnection alloc] initWithTableName: @"Devices"];
     
-    [self.azureConnection addItem:device completion:^(NSUInteger index){
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        // The device is an iPad
+        NSDictionary *device = @{ @"deviceToken" : deviceToken };
+        AzureConnection *azureConn = [[AzureConnection alloc] initWithTableName: @"Console"];
         
-    }];
-    
+        [azureConn addItem:device completion:^(NSUInteger index){
+            
+        }];
+    } else {
+        // The device is an iPhone or iPod touch
+        
+        
+        //instead, store the device token when the user logs in so we have their account identifier
+        /*
+        NSDictionary *device = @{ @"deviceToken" : deviceToken };
+        self.azureConnection = [[AzureConnection alloc] initWithTableName: @"Devices"];
+        
+        [self.azureConnection addItem:device completion:^(NSUInteger index){
+            
+        }];*/
+    }
 }
 
 // We have registered, so now store the device token (as a string) on the AppDelegate instance
@@ -201,6 +204,7 @@
     // Register the APNS deviceToken with the Mobile Service Devices table.
     NSCharacterSet *angleBrackets = [NSCharacterSet characterSetWithCharactersInString:@"<>"];
     NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:angleBrackets];
+    self.deviceToken = token;
     
     [self registerDeviceToken:token];
 }
@@ -218,22 +222,8 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:
 (NSDictionary *)userInfo {
     
-    NSLog(@"%@", userInfo);
-
-//from head
-    //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification" message:
-    //                      [userInfo objectForKey:@"inAppMessage"] delegate:nil cancelButtonTitle:
-    //                      @"OK" otherButtonTitles:nil, nil];
-    //[alert show];
-    
-    //Call the method the order fulfillment view controller to change the text
-    //Maybe pass along the information used in the alert???
-    
-    //OrderFulfillmentViewController *temp = [[OrderFulfillmentViewController alloc]init];
-    //[temp connectToAzure];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadAppDelegateTable" object:nil];
     
-//end from head
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"receivedNotification" object:nil];
     
@@ -248,14 +238,6 @@
 //        NSLog(@"device is not an iPad");
 //
 //    }
-    
-    
-    
-    
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification" message:
-//                          [userInfo objectForKey:@"inAppMessage"] delegate:nil cancelButtonTitle:
-//                          @"OK" otherButtonTitles:nil, nil];
-//    [alert show];
 }
 
 

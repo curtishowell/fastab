@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *keyWord;
 @property (weak, nonatomic) IBOutlet UILabel *pickUpMessage;
 @property (weak, nonatomic) IBOutlet UILabel *toPickupSubtitle;
-//- (void)receivedNotification;
+@property (weak, nonatomic) IBOutlet UIImageView *keywordBG;
 
 @end
 
@@ -97,6 +97,7 @@
         [toPickupSubtitle setHidden:NO];
         [keyWord setHidden:NO];
         [pickUpMessage setHidden:NO];
+        [self.keywordBG setHidden:NO];
         NSString *magicWord = [order objectForKey:@"keyword"];
         [keyWord setText:magicWord];
         

@@ -382,7 +382,6 @@
 -(void)deleteToMakeDrink: (UITableViewCell*) cell viewToChange:(UITableView *)view listToChange:(NSMutableArray *)list
 {
     [view beginUpdates];
-    NSString *orderInfo = cell.textLabel.text;
     NSIndexPath *indexPath= [view indexPathForCell:cell];
     NSArray *paths = [NSArray arrayWithObject:indexPath];
     [view deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
