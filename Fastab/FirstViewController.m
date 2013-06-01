@@ -331,7 +331,6 @@
             [self addDrinkPickUp:cell atPath:path];
         }
     } else if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
-        /*
         NSIndexPath *path;
         if (cell.superview == self.toPickUpList) {
             path = [self.toPickUpList indexPathForCell:cell];
@@ -340,7 +339,6 @@
         }
         [self cancelDrink:cell atPath:path];
          
-         */
 //        if ([_pickUpItems containsObject:orderName]) {
 //            [self addDrinkPickUp: cell viewToChange:_toMakeList listToChange:_makeItems];
 //            [self deleteToMakeDrink: cell viewToChange:_toPickUpList listToChange:_pickUpItems];
@@ -351,21 +349,38 @@
 -(void)cancelDrink:(UITableViewCell *)cell atPath:(NSIndexPath *)path {
     NSMutableDictionary *original;
     NSMutableDictionary *modified;
-    original = [self.azureMake.items objectAtIndex:path.row];
-    modified = [original mutableCopy];
-    [modified setObject:@"cancelled" forKey:@"status"];
-    [original removeObjectForKey:@"orderItems"];
-    [modified removeObjectForKey:@"orderItems"];
+    if (cell.superview == self.toMakeList) {
+        original = [self.azureMake.items objectAtIndex:path.row];
+        modified = [original mutableCopy];
+        [modified setObject:@"cancelled" forKey:@"status"];
+        [original removeObjectForKey:@"orderItems"];
+        [modified removeObjectForKey:@"orderItems"];
+        [self.azureMake modifyItem:modified original:original completion:^(NSUInteger index) {
+            
+            
+            //        [self.toPickUpList reloadData];
+            //        [self.toMakeList reloadData];
+            
+            [self refreshTables];
+            
+        }];
+    } else {
+        original = [self.azurePickUp.items objectAtIndex:path.row];
+        modified = [original mutableCopy];
+        [modified setObject:@"cancelled" forKey:@"status"];
+        [original removeObjectForKey:@"orderItems"];
+        [modified removeObjectForKey:@"orderItems"];
+        [self.azurePickUp modifyItem:modified original:original completion:^(NSUInteger index) {
+            
+            
+            //        [self.toPickUpList reloadData];
+            //        [self.toMakeList reloadData];
+            
+            [self refreshTables];
+            
+        }];
+    }
     
-    [self.azureMake modifyItem:modified original:original completion:^(NSUInteger index) {
-        
-        
-        //        [self.toPickUpList reloadData];
-        //        [self.toMakeList reloadData];
-        
-        [self refreshTables];
-        
-    }];
 }
 
 -(void)addDrinkPickUp:(UITableViewCell *)cell atPath:(NSIndexPath *)path
