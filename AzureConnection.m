@@ -136,6 +136,24 @@
     }];
 }
 
+- (void)refreshDataOnSuccess:(CompletionBlock)completion
+               withPredicate:(NSPredicate *)predicate
+             sortAscendingBy:(NSString *)sortString
+{
+    
+    MSQuery *query = [[MSQuery alloc] initWithTable:self.table withPredicate:predicate];
+    [query orderByAscending:sortString];
+    [query readWithCompletion:^(NSArray *results, NSInteger totalCount, NSError *error) {
+        
+        [self logErrorIfNotNil:error];
+        
+        self.items = [results mutableCopy];
+        
+        completion();
+    }];
+    
+}
+
 -(void)addItem:(NSDictionary *)item
     completion:(CompletionWithIndexBlock)completion
 {

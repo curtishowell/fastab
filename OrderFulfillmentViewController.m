@@ -45,10 +45,12 @@
     self.azureOrder = [[AzureConnection alloc] initWithTableName: @"Order"];
     //orderNum = [NSNumber numberWithInt:[orderNum intValue] - 1];
     
+    /*
     if (self.orderNum == nil) {
         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
         self.orderNum = [NSNumber numberWithInt:[standardUserDefaults integerForKey:@"orderNumber"]];
     }
+     */
     
     int orderNumber = [self.orderNum  intValue];
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"id == %d", orderNumber];
@@ -63,6 +65,7 @@
 }
 
 - (void)reloadViewData {
+    NSLog(@"Reloading OrderFulFillment Page");
     self.azureOrder = [[AzureConnection alloc] initWithTableName: @"Order"];
     //orderNum = [NSNumber numberWithInt:[orderNum intValue] - 1];
     
@@ -92,6 +95,7 @@
         NSLog(@"an order has been placed");
         
     } else if ([status isEqual: @"ready-for-pickup"]) {
+        NSLog(@"BOO!");
         [titleLabel setText:@"Your order is ready for pickup!"];
         [subtitleLabel setHidden:YES];
         [toPickupSubtitle setHidden:NO];
@@ -103,10 +107,12 @@
         
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
         
-    } else {    // assuming the status is equal to "picked-up"
+    } else if ([status isEqual:@"picked-up"]) {    // assuming the status is equal to "picked-up"
         NSLog(@"the order has been picked up");
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         [self performSegueWithIdentifier:@"backToBars" sender:self];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        //[[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"ReloadAppDelegateTable"];
     }
 }
 

@@ -41,6 +41,11 @@ typedef void (^BusyUpdateBlock) (BOOL busy);
          original:(NSDictionary *)original
        completion:(CompletionWithIndexBlock)completion;
 
+
+- (void)refreshDataOnSuccess:(CompletionBlock)completion
+               withPredicate:(NSPredicate *)predicate
+             sortAscendingBy:(NSString *)sortString;
+
 //save credentials because azure for some reason does not do this automatically
 - (void) storeUserCredentials;
 - (void)removeUserCredentials;

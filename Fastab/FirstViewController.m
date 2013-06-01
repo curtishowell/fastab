@@ -143,9 +143,15 @@
     
     //Azure: To Pick Up
     predicate = [NSPredicate predicateWithFormat:@"status == 'ready-for-pickup'"];
+//    [self.azurePickUp refreshDataOnSuccess:^{
+//        [self.toPickUpList reloadData];
+//    } withPredicate:predicate];
+    
     [self.azurePickUp refreshDataOnSuccess:^{
         [self.toPickUpList reloadData];
-    } withPredicate:predicate];
+    } withPredicate:predicate sortAscendingBy:@"keyword"];
+    
+    
 }
 
 - (void)drawlabel:(NSString *)string atRect:(CGRect)rect withColor:(UIColor *)color onView:(UIView *)view withAlignment:(NSTextAlignment)alignment {
@@ -325,11 +331,41 @@
             [self addDrinkPickUp:cell atPath:path];
         }
     } else if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        /*
+        NSIndexPath *path;
+        if (cell.superview == self.toPickUpList) {
+            path = [self.toPickUpList indexPathForCell:cell];
+        } else {    //assuming swipe from the toMakeList
+            path = [self.toMakeList indexPathForCell:cell];
+        }
+        [self cancelDrink:cell atPath:path];
+         
+         */
 //        if ([_pickUpItems containsObject:orderName]) {
 //            [self addDrinkPickUp: cell viewToChange:_toMakeList listToChange:_makeItems];
 //            [self deleteToMakeDrink: cell viewToChange:_toPickUpList listToChange:_pickUpItems];
 //        }
     }
+}
+
+-(void)cancelDrink:(UITableViewCell *)cell atPath:(NSIndexPath *)path {
+    NSMutableDictionary *original;
+    NSMutableDictionary *modified;
+    original = [self.azureMake.items objectAtIndex:path.row];
+    modified = [original mutableCopy];
+    [modified setObject:@"cancelled" forKey:@"status"];
+    [original removeObjectForKey:@"orderItems"];
+    [modified removeObjectForKey:@"orderItems"];
+    
+    [self.azureMake modifyItem:modified original:original completion:^(NSUInteger index) {
+        
+        
+        //        [self.toPickUpList reloadData];
+        //        [self.toMakeList reloadData];
+        
+        [self refreshTables];
+        
+    }];
 }
 
 -(void)addDrinkPickUp:(UITableViewCell *)cell atPath:(NSIndexPath *)path
@@ -354,7 +390,7 @@
             
             //        [self.toPickUpList reloadData];
             //        [self.toMakeList reloadData];
-            
+            NSLog(@"Modfied Status");
             [self refreshTables];
             
         }];
