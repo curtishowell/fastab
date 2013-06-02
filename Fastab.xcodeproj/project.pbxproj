@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		498688C31759683700267327 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498688C21759683700267327 /* ThirdViewController.m */; };
 		49B11DD31751539A00481DC2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B11DD21751539A00481DC2 /* AudioToolbox.framework */; };
 		49C009391756A49E00FC8217 /* fb-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C009371756A49E00FC8217 /* fb-login.png */; };
 		49C0093A1756A49E00FC8217 /* skip-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C009381756A49E00FC8217 /* skip-login.png */; };
@@ -103,6 +104,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		498688C11759683700267327 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		498688C21759683700267327 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		49B11DD21751539A00481DC2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		49C009371756A49E00FC8217 /* fb-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb-login.png"; path = "../Fastab/fb-login.png"; sourceTree = "<group>"; };
 		49C009381756A49E00FC8217 /* skip-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "skip-login.png"; path = "../Fastab/skip-login.png"; sourceTree = "<group>"; };
@@ -270,6 +273,8 @@
 				E69220251755313F007C287E /* FirstViewController.m */,
 				E69220261755313F007C287E /* SecondViewController.h */,
 				E69220271755313F007C287E /* SecondViewController.m */,
+				498688C11759683700267327 /* ThirdViewController.h */,
+				498688C21759683700267327 /* ThirdViewController.m */,
 			);
 			name = "Fastab Terminal";
 			path = Fastab;
@@ -671,6 +676,7 @@
 				E6FA1088174D395900EEDA40 /* PKView.m in Sources */,
 				E69220281755313F007C287E /* FirstViewController.m in Sources */,
 				E69220291755313F007C287E /* SecondViewController.m in Sources */,
+				498688C31759683700267327 /* ThirdViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -747,8 +753,8 @@
 		E6FA0F3B174D334E00EEDA40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -768,7 +774,7 @@
 		E6FA0F3C174D334E00EEDA40 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
