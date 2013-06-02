@@ -20,6 +20,8 @@
 		E692203117553163007C287E /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = E692202D17553163007C287E /* second.png */; };
 		E692203217553163007C287E /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E692202E17553163007C287E /* second@2x.png */; };
 		E692203417553176007C287E /* FastabTerminal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E692203317553176007C287E /* FastabTerminal.storyboard */; };
+		E6C4D991175AF1BC00A31918 /* fastabiphoneicon114.png in Resources */ = {isa = PBXBuildFile; fileRef = E6C4D990175AF1BC00A31918 /* fastabiphoneicon114.png */; };
+		E6C4D993175AF25600A31918 /* fastabiphoneicon57.png in Resources */ = {isa = PBXBuildFile; fileRef = E6C4D992175AF25600A31918 /* fastabiphoneicon57.png */; };
 		E6FA0F1C174D334D00EEDA40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1B174D334D00EEDA40 /* UIKit.framework */; };
 		E6FA0F1E174D334D00EEDA40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1D174D334D00EEDA40 /* Foundation.framework */; };
 		E6FA0F20174D334D00EEDA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1F174D334D00EEDA40 /* CoreGraphics.framework */; };
@@ -120,6 +122,8 @@
 		E692202D17553163007C287E /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		E692202E17553163007C287E /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		E692203317553176007C287E /* FastabTerminal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FastabTerminal.storyboard; sourceTree = "<group>"; };
+		E6C4D990175AF1BC00A31918 /* fastabiphoneicon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fastabiphoneicon114.png; sourceTree = "<group>"; };
+		E6C4D992175AF25600A31918 /* fastabiphoneicon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fastabiphoneicon57.png; sourceTree = "<group>"; };
 		E6FA0F18174D334D00EEDA40 /* Fastab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fastab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6FA0F1B174D334D00EEDA40 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E6FA0F1D174D334D00EEDA40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -295,6 +299,8 @@
 		E6FA0F0F174D334D00EEDA40 = {
 			isa = PBXGroup;
 			children = (
+				E6C4D992175AF25600A31918 /* fastabiphoneicon57.png */,
+				E6C4D990175AF1BC00A31918 /* fastabiphoneicon114.png */,
 				E69DC8131757D13700E6949C /* Shared */,
 				E692202A1755314B007C287E /* Fastab Terminal */,
 				E6FA0F23174D334D00EEDA40 /* Fastab */,
@@ -630,6 +636,8 @@
 				E692203417553176007C287E /* FastabTerminal.storyboard in Resources */,
 				E64F12EA1757EA6F0039CD1C /* keyword-bg.png in Resources */,
 				E64F12EC1757EEB70039CD1C /* green-disclosure.png in Resources */,
+				E6C4D991175AF1BC00A31918 /* fastabiphoneicon114.png in Resources */,
+				E6C4D993175AF25600A31918 /* fastabiphoneicon57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,8 +761,8 @@
 		E6FA0F3B174D334E00EEDA40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -765,7 +773,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "EC2FBD3A-7483-48CF-9D9D-96203A3EF79B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "33AC83B9-90CD-441B-8555-A9F98C50B708";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC2FBD3A-7483-48CF-9D9D-96203A3EF79B";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -774,7 +782,7 @@
 		E6FA0F3C174D334E00EEDA40 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
