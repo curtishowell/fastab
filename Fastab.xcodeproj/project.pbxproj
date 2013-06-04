@@ -22,11 +22,11 @@
 		E6EEBF23175D0953007600B1 /* skip button.png in Resources */ = {isa = PBXBuildFile; fileRef = E6EEBF22175D0953007600B1 /* skip button.png */; };
 		E6EEBF29175D4090007600B1 /* barview2.png in Resources */ = {isa = PBXBuildFile; fileRef = E6EEBF28175D4090007600B1 /* barview2.png */; };
 		E6EEBF2F175D77FA007600B1 /* barbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = E6EEBF2E175D77FA007600B1 /* barbackground.png */; };
-		E6EEBF31175D7FBF007600B1 /* textback.png in Resources */ = {isa = PBXBuildFile; fileRef = E6EEBF30175D7FBF007600B1 /* textback.png */; };
 		E6EEBF33175D920E007600B1 /* checkout button.png in Resources */ = {isa = PBXBuildFile; fileRef = E6EEBF32175D920E007600B1 /* checkout button.png */; };
 		E6EEBF35175D9984007600B1 /* fastab_icon_114.png in Resources */ = {isa = PBXBuildFile; fileRef = E6EEBF34175D9984007600B1 /* fastab_icon_114.png */; };
 		E6EEBF37175D998F007600B1 /* fastab_icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = E6EEBF36175D998F007600B1 /* fastab_icon_57.png */; };
 		E6EEBF3A175D99D0007600B1 /* fastablaunch.png in Resources */ = {isa = PBXBuildFile; fileRef = E6EEBF39175D99D0007600B1 /* fastablaunch.png */; };
+		E6EEBF3E175DBDE9007600B1 /* checkoutheader.png in Resources */ = {isa = PBXBuildFile; fileRef = E6EEBF3D175DBDE9007600B1 /* checkoutheader.png */; };
 		E6FA0F1C174D334D00EEDA40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1B174D334D00EEDA40 /* UIKit.framework */; };
 		E6FA0F1E174D334D00EEDA40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1D174D334D00EEDA40 /* Foundation.framework */; };
 		E6FA0F20174D334D00EEDA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F1F174D334D00EEDA40 /* CoreGraphics.framework */; };
@@ -125,11 +125,11 @@
 		E6EEBF22175D0953007600B1 /* skip button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skip button.png"; sourceTree = "<group>"; };
 		E6EEBF28175D4090007600B1 /* barview2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barview2.png; sourceTree = "<group>"; };
 		E6EEBF2E175D77FA007600B1 /* barbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barbackground.png; sourceTree = "<group>"; };
-		E6EEBF30175D7FBF007600B1 /* textback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textback.png; sourceTree = "<group>"; };
 		E6EEBF32175D920E007600B1 /* checkout button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkout button.png"; sourceTree = "<group>"; };
 		E6EEBF34175D9984007600B1 /* fastab_icon_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fastab_icon_114.png; path = ../fastab_icon_114.png; sourceTree = "<group>"; };
 		E6EEBF36175D998F007600B1 /* fastab_icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fastab_icon_57.png; path = ../fastab_icon_57.png; sourceTree = "<group>"; };
 		E6EEBF39175D99D0007600B1 /* fastablaunch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fastablaunch.png; sourceTree = "<group>"; };
+		E6EEBF3D175DBDE9007600B1 /* checkoutheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkoutheader.png; sourceTree = "<group>"; };
 		E6FA0F18174D334D00EEDA40 /* Fastab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fastab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6FA0F1B174D334D00EEDA40 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E6FA0F1D174D334D00EEDA40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -416,9 +416,9 @@
 		E6FA0F83174D343100EEDA40 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E6EEBF3D175DBDE9007600B1 /* checkoutheader.png */,
 				E6EEBF39175D99D0007600B1 /* fastablaunch.png */,
 				E6EEBF32175D920E007600B1 /* checkout button.png */,
-				E6EEBF30175D7FBF007600B1 /* textback.png */,
 				E6EEBF2E175D77FA007600B1 /* barbackground.png */,
 				E6EEBF28175D4090007600B1 /* barview2.png */,
 				E64F12E91757EA6F0039CD1C /* keyword-bg.png */,
@@ -645,11 +645,11 @@
 				E6EEBF23175D0953007600B1 /* skip button.png in Resources */,
 				E6EEBF29175D4090007600B1 /* barview2.png in Resources */,
 				E6EEBF2F175D77FA007600B1 /* barbackground.png in Resources */,
-				E6EEBF31175D7FBF007600B1 /* textback.png in Resources */,
 				E6EEBF33175D920E007600B1 /* checkout button.png in Resources */,
 				E6EEBF35175D9984007600B1 /* fastab_icon_114.png in Resources */,
 				E6EEBF37175D998F007600B1 /* fastab_icon_57.png in Resources */,
 				E6EEBF3A175D99D0007600B1 /* fastablaunch.png in Resources */,
+				E6EEBF3E175DBDE9007600B1 /* checkoutheader.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

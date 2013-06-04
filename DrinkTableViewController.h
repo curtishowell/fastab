@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "CoreDataTableViewController.h"
 
-@interface DrinkTableViewController : UITableViewController /*<NSFetchedResultsControllerDelegate>*/
+@interface DrinkTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *drinkTypeListing; //List of drink types per bar
 @property (nonatomic, strong) NSArray *specificDrinks; //List of specific drinks for a type

@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSDecimalNumber *total;
 
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipControl;
 @property (weak, nonatomic) IBOutlet UITableView *cartItems;
 @property (nonatomic) BOOL beganUpdates;
@@ -121,7 +122,22 @@
     [self initialSetup];
     
     //set header bar label
-    self.barNameLabel.text = [NSString stringWithFormat:@"checkout @ %@", self.venueName];
+    self.barNameLabel.text = self.venueName;
+    
+    //horizontal dividing lines
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(26, 315, self.view.bounds.size.width - 52, 2)];
+    lineView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:lineView];
+    
+    lineView = [[UIView alloc] initWithFrame:CGRectMake(26, 400, self.view.bounds.size.width - 52, 2)];
+    lineView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:lineView];
+    
+    
+    
+//    lineView = [[UIView alloc] initWithFrame:CGRectMake(10, 348, self.view.bounds.size.width - 20, 2)];
+//    lineView.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:lineView];
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
@@ -328,11 +344,16 @@
         self.total = [subtotal decimalNumberByAdding:self.tip];
         
         //set the tip and total amounts
-        NSString* currencyString = [NSNumberFormatter
-                                    localizedStringFromNumber:total
+        NSString* totalString = [NSNumberFormatter
+                                    localizedStringFromNumber:self.total
                                     numberStyle:NSNumberFormatterCurrencyStyle];
         
-        self.totalLabel.text = [NSString stringWithFormat:@"%@",currencyString];
+        NSString* tipString = [NSNumberFormatter
+                                 localizedStringFromNumber:self.tip
+                                 numberStyle:NSNumberFormatterCurrencyStyle];
+        
+        self.totalLabel.text = [NSString stringWithFormat:@"%@",totalString];
+        self.tipLabel.text = [NSString stringWithFormat:@"%@",tipString];
     }
 }
 
