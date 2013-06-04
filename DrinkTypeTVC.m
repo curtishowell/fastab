@@ -32,6 +32,12 @@
     return _venueID;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -28,7 +28,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSMutableDictionary *tempItem;
 
-- (void)performFetch;
+//- (void)performFetch;
 
 @property (nonatomic) BOOL suspendAutomaticTrackingOfChangesInManagedObjectContext;
 

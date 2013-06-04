@@ -404,9 +404,15 @@
 }
 
 
-- (IBAction)sendOrder:(id)sender {
+- (IBAction)sendOrder:(UIButton *)sender {
     
-    //TODO: make sure user is logged in
+    //disable all buttons
+    self.tipControl.enabled = NO;
+    sender.enabled = NO;
+    self.navigationController.navigationItem.backBarButtonItem.enabled = NO;
+    self.navigationController.navigationItem.hidesBackButton = YES;    
+    
+    //TODO: make sure user has a cc after ensuring they log in
     
     
     // Create the connections to Azure - this creates the Mobile Service client inside the wrapped service
