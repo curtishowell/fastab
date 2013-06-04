@@ -7,12 +7,14 @@
 
 @interface DrinkTypeTVC ()
 @property (strong, nonatomic) AzureConnection *azureConnection;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+//@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 //activity view properties
 @property (nonatomic, retain) UIActivityIndicatorView * activityView;
 @property (nonatomic, retain) UIView *loadingView;
 @property (nonatomic, retain) UILabel *loadingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *barName;
 @end
 
 @implementation DrinkTypeTVC
@@ -36,6 +38,9 @@
     
     [self showActivityIndicator];
     
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
     // Create the connection to Azure - this creates the Mobile Service client inside the wrapped service
     self.azureConnection = [[AzureConnection alloc] initWithTableName: @"ItemType"];
     
@@ -48,11 +53,17 @@
     } withPredicate:predicate];
     
     //set title in the nav bar
-    self.navigationItem.title = self.venueName;
+    //self.navigationItem.title = self.venueName;
+    self.barName.text = self.venueName;
+    
     
     //set background color of the tableview to gray
     UIColor *bgColor = [[UIColor alloc] initWithRed:0.22 green:0.22 blue:0.22 alpha:1.0];
     self.tableView.backgroundColor = bgColor;
+    
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
+    barButton.title = self.venueName;
+    self.navigationItem.backBarButtonItem = barButton;
     
 }
 

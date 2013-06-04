@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *pickUpMessage;
 @property (weak, nonatomic) IBOutlet UILabel *toPickupSubtitle;
 @property (weak, nonatomic) IBOutlet UIImageView *keywordBG;
+@property (weak, nonatomic) IBOutlet UILabel *barName;
 
 @end
 
@@ -38,6 +39,9 @@
     [super viewDidLoad];
     NSLog(@"This order number is%@", orderNum);
     [self connectToAzure];
+    
+    //set header venue name
+    self.barName.text = self.venueName;
 }
 
 - (void)connectToAzure

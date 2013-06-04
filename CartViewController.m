@@ -44,6 +44,9 @@
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
+//header bar name
+@property (weak, nonatomic) IBOutlet UILabel *barNameLabel;
+
 
 - (void)setupManagedDocumentContext;
 - (void)addItemToCart;
@@ -114,8 +117,11 @@
 {
     [super viewDidLoad];
     //change the name of the text label *barLocation
-    self.navigationItem.title = self.venueName;
+    //self.navigationItem.title = self.venueName;
     [self initialSetup];
+    
+    //set header bar label
+    self.barNameLabel.text = [NSString stringWithFormat:@"checkout @ %@", self.venueName];
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
@@ -496,6 +502,11 @@
         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
         [standardUserDefaults setValue:self.orderNumbo forKey:@"orderNumber"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [fulfillOrder performSelector:@selector(setVenueName:)
+                           withObject:self.venueName];
+        [fulfillOrder performSelector:@selector(setVenueID:)
+                           withObject:self.venueID];
         [fulfillOrder performSelector:@selector(setOrderNum:)
                            withObject:self.orderNumbo];
     }

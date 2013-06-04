@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-
-@interface DrinkTypeTVC : UITableViewController
+@interface DrinkTypeTVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSNumber *venueID;
 @property (strong, nonatomic) NSString *venueName;

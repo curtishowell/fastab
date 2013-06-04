@@ -14,8 +14,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>fastabiphoneicon114.png</string>
-				<string>fastabiphoneicon57.png</string>
+				<string>fastab_icon_114.png</string>
+				<string>fastab_icon_57.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>

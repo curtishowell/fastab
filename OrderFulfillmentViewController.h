@@ -12,6 +12,9 @@
 
 @property (strong, nonatomic) NSNumber *orderNum;
 
+@property (strong, nonatomic) NSNumber *venueID;
+@property (strong, nonatomic) NSString *venueName;
+
 - (void)connectToAzure;
 
 @end
