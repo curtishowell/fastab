@@ -46,10 +46,10 @@
 		E6FA0F53174D33B400EEDA40 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F4B174D33B400EEDA40 /* ActionSheetStringPicker.m */; };
 		E6FA0F54174D33B400EEDA40 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F4D174D33B400EEDA40 /* DistancePickerView.m */; };
 		E6FA0F55174D33B400EEDA40 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA0F4E174D33B400EEDA40 /* WindowsAzureMobileServices.framework */; };
-		E6FA0FDF174D343200EEDA40 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F56174D343100EEDA40 /* 1.jpg */; };
-		E6FA0FE0174D343200EEDA40 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F57174D343100EEDA40 /* 2.jpg */; };
-		E6FA0FE1174D343200EEDA40 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F58174D343100EEDA40 /* 3.jpg */; };
-		E6FA0FE2174D343200EEDA40 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F59174D343100EEDA40 /* 4.jpg */; };
+		E6FA0FDF174D343200EEDA40 /* grimms.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F56174D343100EEDA40 /* grimms.jpg */; };
+		E6FA0FE0174D343200EEDA40 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F57174D343100EEDA40 /* 1.jpg */; };
+		E6FA0FE1174D343200EEDA40 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F58174D343100EEDA40 /* 2.jpg */; };
+		E6FA0FE2174D343200EEDA40 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E6FA0F59174D343100EEDA40 /* 3.jpg */; };
 		E6FA0FE4174D343200EEDA40 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F5D174D343100EEDA40 /* AuthenticationViewController.m */; };
 		E6FA0FE5174D343200EEDA40 /* AzureConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F5F174D343100EEDA40 /* AzureConnection.m */; };
 		E6FA0FE6174D343200EEDA40 /* BarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FA0F61174D343100EEDA40 /* BarTableViewController.m */; };
@@ -163,10 +163,10 @@
 		E6FA0F4C174D33B400EEDA40 /* DistancePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistancePickerView.h; sourceTree = "<group>"; };
 		E6FA0F4D174D33B400EEDA40 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
 		E6FA0F4E174D33B400EEDA40 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
-		E6FA0F56174D343100EEDA40 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1.jpg; path = ../1.jpg; sourceTree = "<group>"; };
-		E6FA0F57174D343100EEDA40 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 2.jpg; path = ../2.jpg; sourceTree = "<group>"; };
-		E6FA0F58174D343100EEDA40 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 3.jpg; path = ../3.jpg; sourceTree = "<group>"; };
-		E6FA0F59174D343100EEDA40 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 4.jpg; path = ../4.jpg; sourceTree = "<group>"; };
+		E6FA0F56174D343100EEDA40 /* grimms.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grimms.jpg; path = ../grimms.jpg; sourceTree = "<group>"; };
+		E6FA0F57174D343100EEDA40 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1.jpg; path = ../1.jpg; sourceTree = "<group>"; };
+		E6FA0F58174D343100EEDA40 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 2.jpg; path = ../2.jpg; sourceTree = "<group>"; };
+		E6FA0F59174D343100EEDA40 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 3.jpg; path = ../3.jpg; sourceTree = "<group>"; };
 		E6FA0F5C174D343100EEDA40 /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthenticationViewController.h; path = ../AuthenticationViewController.h; sourceTree = "<group>"; };
 		E6FA0F5D174D343100EEDA40 /* AuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthenticationViewController.m; path = ../AuthenticationViewController.m; sourceTree = "<group>"; };
 		E6FA0F5E174D343100EEDA40 /* AzureConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AzureConnection.h; path = ../AzureConnection.h; sourceTree = "<group>"; };
@@ -434,10 +434,10 @@
 				E6EEBF20175D0928007600B1 /* fb button.png */,
 				E6EEBF22175D0953007600B1 /* skip button.png */,
 				E6FA0F68174D343100EEDA40 /* checkout-button.png */,
-				E6FA0F56174D343100EEDA40 /* 1.jpg */,
-				E6FA0F57174D343100EEDA40 /* 2.jpg */,
-				E6FA0F58174D343100EEDA40 /* 3.jpg */,
-				E6FA0F59174D343100EEDA40 /* 4.jpg */,
+				E6FA0F56174D343100EEDA40 /* grimms.jpg */,
+				E6FA0F57174D343100EEDA40 /* 1.jpg */,
+				E6FA0F58174D343100EEDA40 /* 2.jpg */,
+				E6FA0F59174D343100EEDA40 /* 3.jpg */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -606,10 +606,10 @@
 				E6FA0F30174D334E00EEDA40 /* Default.png in Resources */,
 				E6FA0F32174D334E00EEDA40 /* Default@2x.png in Resources */,
 				E6FA0F34174D334E00EEDA40 /* Default-568h@2x.png in Resources */,
-				E6FA0FDF174D343200EEDA40 /* 1.jpg in Resources */,
-				E6FA0FE0174D343200EEDA40 /* 2.jpg in Resources */,
-				E6FA0FE1174D343200EEDA40 /* 3.jpg in Resources */,
-				E6FA0FE2174D343200EEDA40 /* 4.jpg in Resources */,
+				E6FA0FDF174D343200EEDA40 /* grimms.jpg in Resources */,
+				E6FA0FE0174D343200EEDA40 /* 1.jpg in Resources */,
+				E6FA0FE1174D343200EEDA40 /* 2.jpg in Resources */,
+				E6FA0FE2174D343200EEDA40 /* 3.jpg in Resources */,
 				E6FA0FEA174D343200EEDA40 /* checkout-button.png in Resources */,
 				E6FA0FF9174D343200EEDA40 /* Fastab.storyboard in Resources */,
 				E6FA1012174D343200EEDA40 /* right-arrow.png in Resources */,
@@ -781,8 +781,8 @@
 		E6FA0F3B174D334E00EEDA40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -802,8 +802,8 @@
 		E6FA0F3C174D334E00EEDA40 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
