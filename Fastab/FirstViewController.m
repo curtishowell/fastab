@@ -135,14 +135,14 @@
 - (void)refreshTables {
 
     //Azure: To Make
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"status == 'orderPlaced'"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"status == 'orderPlaced' AND venueID == 3"];
     [self.azureMake refreshDataOnSuccess:^{
         //[self build]
         [self.toMakeList reloadData];
     } withPredicate:predicate];
     
     //Azure: To Pick Up
-    predicate = [NSPredicate predicateWithFormat:@"status == 'ready-for-pickup'"];
+    predicate = [NSPredicate predicateWithFormat:@"status == 'ready-for-pickup' AND venueID == 3"];
 //    [self.azurePickUp refreshDataOnSuccess:^{
 //        [self.toPickUpList reloadData];
 //    } withPredicate:predicate];

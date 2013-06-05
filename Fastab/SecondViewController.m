@@ -58,7 +58,7 @@
 - (void)refreshTables {
     
     //Azure: Picked-up
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"status == 'picked-up'"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"status == 'picked-up' AND venueID == 3"];
     [self.azureComplete refreshDataOnSuccess:^{
         //[self build]
         [self.completedOrderTable reloadData];

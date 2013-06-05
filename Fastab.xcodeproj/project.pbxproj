@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		498688C31759683700267327 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498688C21759683700267327 /* ThirdViewController.m */; };
 		49B11DD31751539A00481DC2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B11DD21751539A00481DC2 /* AudioToolbox.framework */; };
+		E60CEEF5175EE3B400EA3816 /* green-disclosure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E60CEEF4175EE3B400EA3816 /* green-disclosure@2x.png */; };
+		E60CEEF7175EEB8200EA3816 /* checkoutbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E60CEEF6175EEB8200EA3816 /* checkoutbutton@2x.png */; };
 		E64F12EA1757EA6F0039CD1C /* keyword-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E64F12E91757EA6F0039CD1C /* keyword-bg.png */; };
 		E64F12EC1757EEB70039CD1C /* green-disclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = E64F12EB1757EEB70039CD1C /* green-disclosure.png */; };
 		E69220281755313F007C287E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E69220251755313F007C287E /* FirstViewController.m */; };
@@ -110,6 +112,8 @@
 		498688C11759683700267327 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
 		498688C21759683700267327 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		49B11DD21751539A00481DC2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E60CEEF4175EE3B400EA3816 /* green-disclosure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-disclosure@2x.png"; sourceTree = "<group>"; };
+		E60CEEF6175EEB8200EA3816 /* checkoutbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkoutbutton@2x.png"; sourceTree = "<group>"; };
 		E64F12E91757EA6F0039CD1C /* keyword-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keyword-bg.png"; sourceTree = "<group>"; };
 		E64F12EB1757EEB70039CD1C /* green-disclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-disclosure.png"; sourceTree = "<group>"; };
 		E69220241755313F007C287E /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
@@ -416,6 +420,8 @@
 		E6FA0F83174D343100EEDA40 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E60CEEF6175EEB8200EA3816 /* checkoutbutton@2x.png */,
+				E60CEEF4175EE3B400EA3816 /* green-disclosure@2x.png */,
 				E6EEBF3D175DBDE9007600B1 /* checkoutheader.png */,
 				E6EEBF39175D99D0007600B1 /* fastablaunch.png */,
 				E6EEBF32175D920E007600B1 /* checkout button.png */,
@@ -650,6 +656,8 @@
 				E6EEBF37175D998F007600B1 /* fastab_icon_57.png in Resources */,
 				E6EEBF3A175D99D0007600B1 /* fastablaunch.png in Resources */,
 				E6EEBF3E175DBDE9007600B1 /* checkoutheader.png in Resources */,
+				E60CEEF5175EE3B400EA3816 /* green-disclosure@2x.png in Resources */,
+				E60CEEF7175EEB8200EA3816 /* checkoutbutton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,8 +792,8 @@
 				INFOPLIST_FILE = "Fastab/Fastab-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EC2FBD3A-7483-48CF-9D9D-96203A3EF79B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC2FBD3A-7483-48CF-9D9D-96203A3EF79B";
+				PROVISIONING_PROFILE = "78FA6A36-F110-41DF-B825-13380A658C92";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "78FA6A36-F110-41DF-B825-13380A658C92";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -804,7 +812,7 @@
 				INFOPLIST_FILE = "Fastab/Fastab-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EC2FBD3A-7483-48CF-9D9D-96203A3EF79B";
+				PROVISIONING_PROFILE = "78FA6A36-F110-41DF-B825-13380A658C92";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

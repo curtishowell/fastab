@@ -58,7 +58,7 @@
 - (void)refreshTables {
     
     //Azure: Picked-up
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"status == 'cancelled'"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"status == 'cancelled' AND venueID == 3"];
     [self.azureComplete refreshDataOnSuccess:^{
         //[self build]
         [self.cancelledOrderTable reloadData];
