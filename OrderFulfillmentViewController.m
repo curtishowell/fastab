@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *pickUpMessage;
 @property (weak, nonatomic) IBOutlet UILabel *toPickupSubtitle;
 @property (weak, nonatomic) IBOutlet UIImageView *keywordBG;
-@property (weak, nonatomic) IBOutlet UILabel *barName;
+@property (weak, nonatomic) IBOutlet UILabel *readyForPickup;
 
 @end
 
@@ -39,9 +39,6 @@
     [super viewDidLoad];
     NSLog(@"This order number is%@", orderNum);
     [self connectToAzure];
-    
-    //set header venue name
-    self.barName.text = self.venueName;
 }
 
 - (void)connectToAzure
@@ -100,7 +97,8 @@
         
     } else if ([status isEqual: @"ready-for-pickup"]) {
         NSLog(@"BOO!");
-        [titleLabel setText:@"Your order is ready for pickup!"];
+        //[titleLabel setText:@"Your order is ready for pickup!"];
+        [titleLabel setHidden:YES];
         [subtitleLabel setHidden:YES];
         [toPickupSubtitle setHidden:NO];
         [keyWord setHidden:NO];
@@ -108,6 +106,7 @@
         [self.keywordBG setHidden:NO];
         NSString *magicWord = [order objectForKey:@"keyword"];
         [keyWord setText:magicWord];
+        [self.readyForPickup setHidden:NO];
         
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
         
