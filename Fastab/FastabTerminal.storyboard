@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="ku6-g4-APF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="ku6-g4-APF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -92,6 +92,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Order Queue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NrJ-Cc-i72">
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="178" id="I3l-BF-7Md"/>
                                 </constraints>
@@ -100,6 +101,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pick-Up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkZ-1Y-ttF">
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="Ccs-YV-JMZ"/>
                                     <constraint firstAttribute="width" constant="106" id="aZQ-Ok-JoN"/>
@@ -108,6 +110,12 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AUV-a1-oQv">
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Wfa-Zc-Mt3" appends="YES" id="zQF-hd-Fsa"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -123,9 +131,13 @@
                             <constraint firstItem="MkZ-1Y-ttF" firstAttribute="baseline" secondItem="cFo-32-ENE" secondAttribute="baseline" type="default" id="Ue4-aC-kXf"/>
                             <constraint firstAttribute="trailing" secondItem="cFo-32-ENE" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="YWj-QV-C8w"/>
                             <constraint firstItem="NrJ-Cc-i72" firstAttribute="baseline" secondItem="or2-cF-TIu" secondAttribute="baseline" type="default" id="ZT9-Bj-lpP"/>
+                            <constraint firstItem="AUV-a1-oQv" firstAttribute="top" secondItem="17" secondAttribute="top" constant="-20" id="bWt-et-GEB"/>
+                            <constraint firstAttribute="bottom" secondItem="AUV-a1-oQv" secondAttribute="bottom" constant="651" id="jxf-sY-aep"/>
                             <constraint firstItem="vVp-Do-Da9" firstAttribute="top" secondItem="cFo-32-ENE" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="lYs-hj-5lk"/>
                             <constraint firstItem="VMr-IR-nVU" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="oDQ-jH-hB9"/>
+                            <constraint firstItem="AUV-a1-oQv" firstAttribute="trailing" secondItem="17" secondAttribute="trailing" type="default" id="oed-im-QDu"/>
                             <constraint firstItem="vVp-Do-Da9" firstAttribute="bottom" secondItem="17" secondAttribute="bottom" type="default" id="pOF-0g-8wi"/>
+                            <constraint firstItem="AUV-a1-oQv" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="sb6-8J-dNY"/>
                             <constraint firstItem="vVp-Do-Da9" firstAttribute="top" secondItem="VMr-IR-nVU" secondAttribute="top" type="default" id="uDf-Yz-Vdp"/>
                             <constraint firstItem="NrJ-Cc-i72" firstAttribute="top" secondItem="17" secondAttribute="top" type="default" id="wKc-RH-ibW"/>
                             <constraint firstItem="NrJ-Cc-i72" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="186" id="zOZ-Tl-Fue"/>
@@ -141,6 +153,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Wfa-Zc-Mt3">
+                    <connections>
+                        <action selector="headerBarTap:" destination="2" id="hPF-zR-bxE"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3937" y="68"/>
         </scene>
@@ -163,7 +180,7 @@
                                 <attributedString key="userComments">
                                     <fragment content="Completed Orders">
                                         <attributes>
-                                            <font key="NSFont" metaFont="smallSystem"/>
+                                            <font key="NSFont" metaFont="toolTip"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>

@@ -132,6 +132,12 @@
     }
 }
 
+- (IBAction)headerBarTap:(id)sender {
+    [self refreshTables];
+}
+
+
+
 - (void)refreshTables {
 
     //Azure: To Make

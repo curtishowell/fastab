@@ -118,6 +118,9 @@
         //[[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"ReloadAppDelegateTable"];
     }
 }
+- (IBAction)tapToRefresh:(id)sender {
+    [self reloadViewData];
+}
 
 /*
 Methods to Make:
