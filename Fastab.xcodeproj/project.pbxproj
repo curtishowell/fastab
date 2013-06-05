@@ -781,8 +781,8 @@
 		E6FA0F3B174D334E00EEDA40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -802,8 +802,8 @@
 		E6FA0F3C174D334E00EEDA40 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Curtis Howell (E47XM6N8R9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Siu (FAX2RS23H5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
