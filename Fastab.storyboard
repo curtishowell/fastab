@@ -584,7 +584,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="EZh-oi-CnX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -602,8 +602,8 @@
                                 <constraints>
                                     <constraint firstItem="iac-f3-hGg" firstAttribute="leading" secondItem="57i-SD-5p2" secondAttribute="leading" constant="12" id="7DR-hG-TI3"/>
                                     <constraint firstItem="iac-f3-hGg" firstAttribute="top" secondItem="57i-SD-5p2" secondAttribute="top" constant="5" id="7co-zm-b1v"/>
+                                    <constraint firstItem="9Ow-d2-MYB" firstAttribute="top" secondItem="57i-SD-5p2" secondAttribute="top" constant="18" id="ChE-8f-leB"/>
                                     <constraint firstAttribute="height" constant="52" type="user" id="QiN-rb-Tfw"/>
-                                    <constraint firstItem="9Ow-d2-MYB" firstAttribute="top" secondItem="57i-SD-5p2" secondAttribute="top" constant="16" id="afc-iw-WnT"/>
                                     <constraint firstItem="iac-f3-hGg" firstAttribute="trailing" secondItem="9Ow-d2-MYB" secondAttribute="trailing" type="default" id="l6E-Pn-rkK"/>
                                     <constraint firstAttribute="height" constant="52" type="user" id="w9D-H5-ODE"/>
                                     <constraint firstItem="iac-f3-hGg" firstAttribute="leading" secondItem="9Ow-d2-MYB" secondAttribute="leading" type="default" id="xSd-2X-tvM"/>
@@ -625,7 +625,10 @@
                                             <subviews>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="green-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hd1-QB-A7l"/>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgy-At-nxm">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="oYv-mG-6bx"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -635,9 +638,9 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="Kgy-At-nxm" firstAttribute="leading" secondItem="V3C-6g-gh5" secondAttribute="leading" constant="13" id="O42-CB-uyJ"/>
                                             <constraint firstAttribute="trailing" secondItem="Hd1-QB-A7l" secondAttribute="trailing" constant="20" type="default" id="THB-TZ-CpO"/>
                                             <constraint firstItem="Kgy-At-nxm" firstAttribute="centerY" secondItem="V3C-6g-gh5" secondAttribute="centerY" type="default" id="bcN-yR-zUJ"/>
-                                            <constraint firstItem="Kgy-At-nxm" firstAttribute="leading" secondItem="V3C-6g-gh5" secondAttribute="leading" constant="20" type="default" id="gu7-a3-9Tj"/>
                                             <constraint firstItem="Kgy-At-nxm" firstAttribute="centerY" secondItem="Hd1-QB-A7l" secondAttribute="centerY" type="default" id="lF2-7Q-ckn"/>
                                         </constraints>
                                         <connections>
@@ -731,7 +734,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="77a-ra-Pdt"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -748,11 +751,11 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ga3-Ek-YNi" firstAttribute="trailing" secondItem="qFx-s4-16r" secondAttribute="trailing" type="default" id="Nu2-Ql-9VC"/>
-                                    <constraint firstItem="qFx-s4-16r" firstAttribute="top" secondItem="XPE-Gt-T0v" secondAttribute="top" constant="16" id="cMy-32-kDX"/>
                                     <constraint firstItem="ga3-Ek-YNi" firstAttribute="leading" secondItem="XPE-Gt-T0v" secondAttribute="leading" constant="12" id="jy8-ea-7O4"/>
                                     <constraint firstItem="ga3-Ek-YNi" firstAttribute="top" secondItem="XPE-Gt-T0v" secondAttribute="top" constant="5" id="q6t-R9-nJK"/>
                                     <constraint firstAttribute="height" constant="52" type="user" id="q7n-bD-hUO"/>
                                     <constraint firstItem="ga3-Ek-YNi" firstAttribute="leading" secondItem="qFx-s4-16r" secondAttribute="leading" type="default" id="sLk-iX-Men"/>
+                                    <constraint firstItem="qFx-s4-16r" firstAttribute="top" secondItem="XPE-Gt-T0v" secondAttribute="top" constant="18" id="tgp-Ln-ohs"/>
                                     <constraint firstAttribute="height" constant="52" type="user" id="uuq-wU-d6j"/>
                                 </constraints>
                             </view>
@@ -917,10 +920,6 @@
     <classes>
         <class className="AuthenticationViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AuthenticationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="LogInFB:" candidateClass="UIButton"/>
-                <relationship kind="action" name="skipToBars:" candidateClass="UIButton"/>
-            </relationships>
         </class>
         <class className="BarTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BarTableViewController.h"/>
@@ -931,8 +930,6 @@
         <class className="CartViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CartViewController.h"/>
             <relationships>
-                <relationship kind="action" name="sendOrder:" candidateClass="UIButton"/>
-                <relationship kind="action" name="tipChange:" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="barNameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="cartItems" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="tipControl" candidateClass="UISegmentedControl"/>
@@ -960,7 +957,6 @@
         <class className="OrderFulfillmentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OrderFulfillmentViewController.h"/>
             <relationships>
-                <relationship kind="action" name="tapToRefresh:"/>
                 <relationship kind="outlet" name="keyWord" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="keywordBG" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="pickUpMessage" candidateClass="UILabel"/>
@@ -987,8 +983,6 @@
         <class className="PaymentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PaymentViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="save:"/>
                 <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="saveButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="stripeView" candidateClass="STPView"/>
